@@ -78,12 +78,16 @@ int 		ft_check_map(int fd)
 	char    	*line;
 	char    	**map;
 	s_player	player;
+	s_map		map;
 
-	player.x = 0;
-	player.y = 0;
-	player.pos = 0;
+	ft_init_s_player(&player);
+	ft_init_s_map(&map);
 	while (get_next_line(fd, line) > 0)
+	{
+		if (!ft_get_config(line, &map))
+			return (0);
 		line = ft_strjoin(line, "*", 1);
+	}
 	map = ft_split(line, '*');
 	if (!ft_check_walls(map))
 		return (0);

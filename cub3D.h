@@ -18,4 +18,20 @@ typedef struct  t_player
 	int         pos_count;
 }               s_player;
 
+typedef struct	t_map
+{
+	int			R1;
+	int			R2;
+	char		*NO;
+	char		*SO;
+	char		*WE;
+	char		*EA;
+	char		*S;
+	char		*F;
+	char		*C;
+	int			x;
+	int			y;
+	char		*param
+}				s_map;
+
 # endif
