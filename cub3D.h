@@ -27,7 +27,9 @@ typedef struct	t_map
 	char		*WE;
 	char		*EA;
 	char		*S;
-	char		*F;
+	int			F1;
+	int			F2;
+	int			F3;
 	char		*C;
 	int			x;
 	int			y;
