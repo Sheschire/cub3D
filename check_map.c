@@ -24,17 +24,28 @@ int			is_map_1st_line(char *line)
 	return (0);
 }
 
+int			is_in_set(char	c)
+{
+	char	*set;
+	int		i;
+
+	set = "012NSWE";
+	i = 0;
+	while (set[i])
+		if (c == set[i])
+			return (1);
+	return (0);
+}
+
 int			ft_check_UDRL(char **map, int x, int y)
 {
-	printf("y = %d\nx = %d\nmap[y][x] = %c\n", y, x, map[y][x]);
-	//A CHECKER : AJOUTER UN CHECK DE SI AUTOUR IL Y A UN JOUEUR,SINON CA RETURN 0
-	if (map[y - 1][x] != '1' && map[y - 1][x] != '0' && map[y - 1][x] != '2')
+	if (!is_in_set(map[y - 1][x]))
 		return (0);
-	if (map[y + 1][x] != '1' && map[y + 1][x] != '0' && map[y + 1][x] != '2')
+	if (!is_in_set(map[y + 1][x]))
 		return (0);
-	if (map[y][x - 1] != '1' && map[y][x - 1] != '0' && map[y][x - 1] != '2')
+	if (!is_in_set(map[y][x + 1]))
 		return (0);
-	if (map[y][x + 1] != '1' && map[y][x + 1] != '0' && map[y][x + 1] != '2')
+	if (!is_in_set(map[y][x - 1]))
 		return (0);
 	return (1);
 }
@@ -56,7 +67,7 @@ int 		ft_check_walls(char **map)
 				x++;
 			if (map[y][x] != '1' && map[y][x - 1] == ' ')
 				return (0);
-			if (map[y][x] == '0' || map[y][x] == '2')
+			if (is_in_set(map[y][x]) && map[y][x] != '1')
 				if (!ft_check_UDRL(map, x, y))
 					return (0);
 			x++;
