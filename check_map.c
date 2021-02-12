@@ -26,16 +26,15 @@ int			is_map_1st_line(char *line)
 
 int			ft_check_UDRL(char **map, int x, int y)
 {
-	if (map[y - 1][x] != '1' || map[y - 1][x] != '0' || map[y - 1][x] != '2')
-	{
-		printf("tesssssssst\n\n\n");
+	printf("y = %d\nx = %d\nmap[y][x] = %c\n", y, x, map[y][x]);
+	//A CHECKER : AJOUTER UN CHECK DE SI AUTOUR IL Y A UN JOUEUR,SINON CA RETURN 0
+	if (map[y - 1][x] != '1' && map[y - 1][x] != '0' && map[y - 1][x] != '2')
 		return (0);
-	}
-	if (map[y + 1][x] != '1' || map[y + 1][x] != '0' || map[y + 1][x] != '2')
+	if (map[y + 1][x] != '1' && map[y + 1][x] != '0' && map[y + 1][x] != '2')
 		return (0);
-	if (map[y][x - 1] != '1' || map[y][x - 1] != '0' || map[y][x - 1] != '2')
+	if (map[y][x - 1] != '1' && map[y][x - 1] != '0' && map[y][x - 1] != '2')
 		return (0);
-	if (map[y][x + 1] != '1' || map[y][x + 1] != '0' || map[y][x + 1] != '2')
+	if (map[y][x + 1] != '1' && map[y][x + 1] != '0' && map[y][x + 1] != '2')
 		return (0);
 	return (1);
 }
