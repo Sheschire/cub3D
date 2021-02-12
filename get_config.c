@@ -1,6 +1,14 @@
 #include "cub3D.h"
 
-int		ft_get_R(char *line, s_map *map)
+int		check_config(s_config *conf)
+{
+	if (conf->R1 && conf->R2 && conf->NO && conf->SO &&\
+	 conf->WE && conf->EA && conf->S && conf->F && conf->C)
+	 	return (1);
+	return (0);
+}
+
+int		ft_get_R(char *line, s_config *conf)
 {
 	while (*line)
 	{
@@ -8,22 +16,22 @@ int		ft_get_R(char *line, s_map *map)
 			return (0);
 		while (ft_isdigit(*line))
 		{
-			map->R1 = map->R1 * 10 + (*line - '0');
+			conf->R1 = conf->R1 * 10 + (*line - '0');
 			line++;
 		}
 		while (ft_isdigit(*line))
 		{
-			map->R2 = map->R2 * 10 + (*line - '0');
+			conf->R2 = conf->R2 * 10 + (*line - '0');
 			line++;
 		}
-		if (map->R1 && map->R2 && (ft_isdigit(*line) || *line != ' '))
+		if (conf->R1 && conf->R2 && (ft_isdigit(*line) || *line != ' '))
 			return (0);
 		line++;
 	}
 	return (1);
 }
-
-int		ft_get_color(char *line, s_map *map)
+/*
+int		ft_get_color(char *line, s_config *conf)
 {
 	char	*tmp;
 	char	**colors;
@@ -53,18 +61,19 @@ int		ft_get_color(char *line, s_map *map)
 	}
 	colors = ft_split(tmp, ',');
 	free(tmp);
-}
+}*/
 
-int		ft_get_config(char *line, s_map *map)
+int		ft_get_config(char *line, s_config *conf)
 {
 	while (*line)
 	{
 		if (*line == 'R')
-			return (ft_get_R(line + 1, map));
+			return (ft_get_R(line + 1, conf));
 		if (*line == 'S' || *line == 'N' || *line == 'W' || *line == 'E')
-			return (ft_get_texture(line, map));
-		if (*line == 'F' || *line == 'C')
-			return (ft_get_color(line, map));
+			return (ft_get_texture(line, conf));
+//		if (*line == 'F' || *line == 'C')
+//			return (ft_get_color(line, conf));
 		line++;
 	}
+	return (1);
 }

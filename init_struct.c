@@ -8,18 +8,17 @@ void    ft_init_s_player(s_player *player)
     player->pos_count = 0;
 }
 
-void    ft_init_s_map(s_map *map)
+void    ft_init_s_config(s_config *conf)
 {
-    map->R1 = 0;
-    map->R2 = 0;
-    map->NO = NULL;
-    map->SO = NULL;
-    map->WE = NULL;
-    map->EA = NULL;
-    map->S = NULL;
-    map->F = NULL;
-    map->C = NULL;
-    map->x = 0;
-    map->y = 0;
-    map->param = NULL;
+    conf->R1 = 0;
+    conf->R2 = 0;
+    conf->NO = NULL;
+    conf->SO = NULL;
+    conf->WE = NULL;
+    conf->EA = NULL;
+    conf->S = NULL;
+    conf->F = NULL;
+    conf->C = NULL;
+    conf->x = 0;
+    conf->y = 0;
 }

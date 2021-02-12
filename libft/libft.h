@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:19:34 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/01/21 17:07:36 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:07:24 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_strcat(char *dest, char *src);
