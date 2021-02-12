@@ -22,7 +22,7 @@ RM		=	rm -f
 $(NAME)		:	$(OBJS)
 		make all -C $(LIBDIR)
 		cp $(LIBDIR)/$(LIBFT) $(NAME)
-
+		
 all		:	$(NAME)
 
 fclean	:	clean

@@ -3,9 +3,9 @@
 int ft_error_manager(int n)
 {
     if (n == 1)
-        ft_putstr_fd("Error\nFile Descriptor is invalid or missing.", 1);
+        ft_putstr_fd("Error\nFile Descriptor is invalid or missing.\n", 1);
     if (n == 2)
-        ft_putstr_fd("Error\nMap file \"*.cub\" is not valid.", 1);
+        ft_putstr_fd("Error\nMap file \"*.cub\" is not valid.\n", 1);
     return (-1);
 }
 

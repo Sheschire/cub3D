@@ -22,3 +22,9 @@ void    ft_init_s_config(s_config *conf)
     conf->x = 0;
     conf->y = 0;
 }
+
+void    ft_init_s_map(s_map *map)
+{
+    map->line = NULL;
+    map->map = NULL;
+}

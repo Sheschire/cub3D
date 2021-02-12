@@ -32,6 +32,13 @@ typedef struct	t_config
 	int			y;
 }				s_config;
 
+typedef struct	t_map
+{
+	char		*line;
+	char		**map;
+}				s_map;
+
+
 int 		ft_error_manager(int n);
 int 		ft_check_map(int fd);
 void    	free_tab(char **tab);
@@ -41,5 +48,6 @@ int			get_next_line(int fd, char **line);
 int     	ft_get_texture(char *line, s_config *conf);
 void    	ft_init_s_player(s_player *player);
 void    	ft_init_s_config(s_config *conf);
+void    	ft_init_s_map(s_map *map);
 
 # endif

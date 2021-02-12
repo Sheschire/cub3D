@@ -27,7 +27,10 @@ int			is_map_1st_line(char *line)
 int			ft_check_UDRL(char **map, int x, int y)
 {
 	if (map[y - 1][x] != '1' || map[y - 1][x] != '0' || map[y - 1][x] != '2')
+	{
+		printf("tesssssssst\n\n\n");
 		return (0);
+	}
 	if (map[y + 1][x] != '1' || map[y + 1][x] != '0' || map[y + 1][x] != '2')
 		return (0);
 	if (map[y][x - 1] != '1' || map[y][x - 1] != '0' || map[y][x - 1] != '2')
@@ -89,38 +92,59 @@ void	ft_check_player(char **map, s_player *player)
 	}
 }
 
+void		get_map(char *line, s_map *map)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(line, "*", 1);
+	if (map->line == NULL)
+		map->line = ft_strdup(tmp);
+	else
+		map->line = ft_strjoin(map->line, tmp, 1);
+	free(tmp);
+}
+
 int 		ft_check_map(int fd)
 {
 	char    	*line;
-	char    	**map;
+	s_map    	map;
 	s_player	player;
 	s_config	conf;
 	int			ret;
 
 	ft_init_s_player(&player);
 	ft_init_s_config(&conf);
+	ft_init_s_map(&map);
 	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
 	{
 		if (!ft_get_config(line, &conf))
+		{
+			free(line);
 			return (0);
-		free(line);
+		}
+		else
+			free(line);
 	}
-	if (!check_config(&conf))
+	if (!check_config(&conf) || ret == 0)
 	{
 		free(line);
 		return (0);
 	}
-	if (ret == 0)
-		return (0);
+	if (is_map_1st_line(line))
+		get_map(line, &map);
 	while ((ret = get_next_line(fd, &line)) > 0)
+		get_map(line, &map);
+	get_map(line, &map);
+	map.map = ft_split(map.line, '*');
+/*	int i = 0;
+	while (map.map[i])
 	{
-		line = ft_strjoin(line, "*", 1);
-		free(line);
-	}
-	map = ft_split(line, '*');
-	if (!ft_check_walls(map))
+		printf("%s\n", map.map[i]);
+		i++;
+	}*/
+	if (!ft_check_walls(map.map))
 		return (0);
-	ft_check_player(map, &player);
+	ft_check_player(map.map, &player);
 	if (player.pos_count != 1)
 		return (0);
 //	if (!ft_check_empty_lines(map))
