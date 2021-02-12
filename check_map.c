@@ -32,7 +32,7 @@ int			is_in_set(char	c)
 	set = "012NSWE";
 	i = 0;
 	while (set[i])
-		if (c == set[i])
+		if (c == set[i++])
 			return (1);
 	return (0);
 }
@@ -146,12 +146,6 @@ int 		ft_check_map(int fd)
 		get_map(line, &map);
 	get_map(line, &map);
 	map.map = ft_split(map.line, '*');
-/*	int i = 0;
-	while (map.map[i])
-	{
-		printf("%s\n", map.map[i]);
-		i++;
-	}*/
 	if (!ft_check_walls(map.map))
 		return (0);
 	ft_check_player(map.map, &player);

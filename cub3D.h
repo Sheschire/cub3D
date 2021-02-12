@@ -5,7 +5,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include <libc.h>
 #include <stdlib.h>
 #include "./libft/libft.h"
 
