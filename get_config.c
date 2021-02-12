@@ -34,24 +34,22 @@ int		check_R(char **R)
 	return (1);
 }
 
-int		ft_get_R(char *line, s_config *conf)
+void	ft_get_R(char *line, s_config *conf, s_error *ERR)
 {
 	char	**R;
 
 	R = ft_split(line, ' ');
 	if (!check_R(R))
 	{
-		free_tab(R);
-		return (0);
+		free_tab(R, line, ' ');
+		_ERROR("R", ERR);
 	}
 	else
 	{
 		conf->R1 = ft_atoi(R[1]);
 		conf->R2 = ft_atoi(R[2]);
-		free_tab(R);
+		free_tab(R, line, ' ');
 	}
-
-	return (1);
 }
 /*
 int		ft_get_color(char *line, s_config *conf)
@@ -86,18 +84,37 @@ int		ft_get_color(char *line, s_config *conf)
 	free(tmp);
 }*/
 
-int		ft_get_config(char *line, s_config *conf)
+void	ft_get_config(char *line, s_config *conf, s_error *ERR)
 {
 	
 	while (*line)
 	{
 		if (*line == 'R')
-			return (ft_get_R(line, conf));
+			ft_get_R(line, conf, ERR);
 		if (*line == 'S' || *line == 'N' || *line == 'W' || *line == 'E')
-			return (ft_get_texture(line, conf));
+			ft_get_texture(line, conf, ERR);
 //		if (*line == 'F' || *line == 'C')
 //			return (ft_get_color(line, conf));
 		line++;
 	}
-	return (1);
+}
+
+char	*ft_config(int fd, s_error *ERR)
+{
+	char		*line;
+	int			ret;
+	s_config	conf;
+
+	ft_init_s_config(&conf);
+	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
+	{
+		ft_get_config(line, &conf, ERR);
+		free(line);
+	}
+	if (!check_config(&conf) || ret == 0)
+	{
+		free(line);
+		_ERROR("config", ERR);
+	}
+	return (line);
 }

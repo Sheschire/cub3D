@@ -119,27 +119,11 @@ int 		ft_check_map(int fd, s_error *ERR)
 	char    	*line;
 	s_map    	map;
 	s_player	player;
-	s_config	conf;
 	int			ret;
 
 	ft_init_s_player(&player);
-	ft_init_s_config(&conf);
 	ft_init_s_map(&map);
-	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
-	{
-		if (!ft_get_config(line, &conf))
-		{
-			free(line);
-			return (0);
-		}
-		else
-			free(line);
-	}
-	if (!check_config(&conf) || ret == 0)
-	{
-		free(line);
-		return (0);
-	}
+	line = ft_config(fd, ERR);
 	if (is_map_1st_line(line))
 		get_map(line, &map);
 	while ((ret = get_next_line(fd, &line)) > 0)

@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	ft_free_all(s_config *conf)
+void	ft_free_textures(s_config *conf)
 {
 	if (conf->SO)
 		free(conf->SO);
@@ -53,7 +53,7 @@ void	ft_get_path(s_config *conf, char **param)
     }
 }
 
-int		check_param(s_config *conf, char **param)
+int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
 {
 	int		i;
 
@@ -62,28 +62,27 @@ int		check_param(s_config *conf, char **param)
 		i++;
 	if (i - 1 != 1)
 	{
-		free_tab(param);
-		return (0);
+		free_tab(param, line, ' ');
+		_ERROR("param", ERR);
 	}
 	ft_get_path(conf, param);
 //	if (!ft_check_xpm(conf))
 //	{
-//		ft_free_all(conf);
-//		return (0);
+//		ft_free_textures(conf);
+//		_ERROR("xpm", ERR);
 //	}
 	return (1);
 }
 
-int     ft_get_texture(char *line, s_config *conf)
+void	ft_get_texture(char *line, s_config *conf, s_error *ERR)
 {
     char    **param;
 	int		i;
 
 	i = 0;
     param = ft_split(line, ' ');
-	if (!check_param(conf, param))
-		return (0);
+	if (!check_param(conf, param, ERR, line))
+		_ERROR("texture", ERR);
 	else
-		free_tab(param);
-    return (1);
+		free_tab(param, line, ' ');
 }

@@ -44,16 +44,17 @@ typedef struct	t_error
 
 
 int 		ft_error_manager(int n);
+char		*ft_config(int fd, s_error *ERR);
 int 		ft_check_map(int fd, s_error *ERR);
-void    	free_tab(char **tab);
+void		free_tab(char **tab, char const *s, char sep);
 int			check_config(s_config *conf);
-int			ft_get_config(char *line, s_config *conf);
 int			get_next_line(int fd, char **line);
-int     	ft_get_texture(char *line, s_config *conf);
+void     	ft_get_texture(char *line, s_config *conf, s_error *ERR);
 void    	ft_init_s_player(s_player *player);
 void    	ft_init_s_config(s_config *conf);
 void    	ft_init_s_map(s_map *map);
 void    	ft_init_s_error(s_error *ERR);
 void 		_ERROR(char  *s, s_error *ERR);
+int			is_map_1st_line(char *line);
 
 # endif
