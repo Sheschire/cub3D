@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:19:34 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/12 10:07:24 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:07:44 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putnstr(char *str, int n);
+void				ft_putstr(char *s);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_isalnum(int c);

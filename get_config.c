@@ -88,6 +88,7 @@ int		ft_get_color(char *line, s_config *conf)
 
 int		ft_get_config(char *line, s_config *conf)
 {
+	
 	while (*line)
 	{
 		if (*line == 'R')

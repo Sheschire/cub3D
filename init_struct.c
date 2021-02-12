@@ -28,3 +28,8 @@ void    ft_init_s_map(s_map *map)
     map->line = NULL;
     map->map = NULL;
 }
+
+void    ft_init_s_error(s_error *ERR)
+{
+    ERR->boo = 1;
+}

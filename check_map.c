@@ -114,7 +114,7 @@ void		get_map(char *line, s_map *map)
 	free(tmp);
 }
 
-int 		ft_check_map(int fd)
+int 		ft_check_map(int fd, s_error *ERR)
 {
 	char    	*line;
 	s_map    	map;
@@ -147,11 +147,11 @@ int 		ft_check_map(int fd)
 	get_map(line, &map);
 	map.map = ft_split(map.line, '*');
 	if (!ft_check_walls(map.map))
-		return (0);
+		_ERROR("wall", ERR);
 	ft_check_player(map.map, &player);
 	if (player.pos_count != 1)
-		return (0);
+		_ERROR("player", ERR);
 //	if (!ft_check_empty_lines(map))
 //		return (0);
-	return (1);
+	return (ERR->boo);
 }
