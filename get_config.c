@@ -112,9 +112,6 @@ char	*ft_config(int fd, s_error *ERR)
 		free(line);
 	}
 	if (!check_config(&conf) || ret == 0)
-	{
-		free(line);
 		_ERROR("config", ERR);
-	}
 	return (line);
 }

@@ -64,6 +64,7 @@ int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
 	{
 		free_tab(param, line, ' ');
 		_ERROR("param", ERR);
+		return (0);
 	}
 	ft_get_path(conf, param);
 //	if (!ft_check_xpm(conf))

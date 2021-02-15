@@ -28,7 +28,7 @@ void	free_tab(char **tab, char const *s, char sep)
 
 	n = ft_wordcount(s, sep);
 	i = 0;
-	while (i < n)
+	while (i < n )
 	{
 		free(tab[i]);
 		i++;
