@@ -60,7 +60,7 @@ void		fill_spaces(s_map *map)
 	}
 }
 
-int 		ft_check_map(int fd, s_error *ERR)
+int 		ft_check_map(int fd, s_error *err)
 {
 	char    	*line;
 	s_map    	map;
@@ -69,20 +69,20 @@ int 		ft_check_map(int fd, s_error *ERR)
 
 	ft_init_s_player(&player);
 	ft_init_s_map(&map);
-	line = ft_config(fd, ERR);
+	line = ft_config(fd, err);
 	if (is_map_1st_line(line))
 		get_map(line, &map);
 	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
 		get_map(line, &map);
 	get_map(line, &map);
 	if (!check_empty_line(map.line))
-		_ERROR("emptyline", ERR);
+		_ERROR("emptyline", err);
 	map.map = ft_split(map.line, '*');
 	fill_spaces(&map);
 	if (!ft_check_walls(&map, &player))
-		_ERROR("wall", ERR);
+		_ERROR("wall", err);
 	if (player.pos_count != 1)
-		_ERROR("player", ERR);
+		_ERROR("player", err);
 	tmp_print_check(&map, &player);
-	return (ERR->boo);
+	return (err->boo);
 }

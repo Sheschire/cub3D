@@ -10,15 +10,15 @@ void    ft_init_s_player(s_player *player)
 
 void    ft_init_s_config(s_config *conf)
 {
-    conf->R1 = 0;
-    conf->R2 = 0;
-    conf->NO = NULL;
-    conf->SO = NULL;
-    conf->WE = NULL;
-    conf->EA = NULL;
-    conf->S = NULL;
-    conf->F_rgb = -1;
-    conf->C_rgb = -1;
+    conf->r1 = 0;
+    conf->r2 = 0;
+    conf->no = NULL;
+    conf->so = NULL;
+    conf->we = NULL;
+    conf->ea = NULL;
+    conf->s = NULL;
+    conf->f_rgb = -1;
+    conf->c_rgb = -1;
     conf->x = 0;
     conf->y = 0;
 }
@@ -29,7 +29,7 @@ void    ft_init_s_map(s_map *map)
     map->map = NULL;
 }
 
-void    ft_init_s_error(s_error *ERR)
+void    ft_init_s_error(s_error *err)
 {
-    ERR->boo = 1;
+    err->boo = 1;
 }

@@ -2,32 +2,32 @@
 
 int		check_config(s_config *conf)
 {
-	if (conf->R1 && conf->R2 && conf->NO && conf->SO &&\
-	 conf->WE && conf->EA && conf->S && conf->F_rgb != -1 && conf->C_rgb != 1)
+	if (conf->r1 && conf->r2 && conf->no && conf->so &&\
+	 conf->we && conf->ea && conf->s && conf->f_rgb != -1 && conf->c_rgb != 1)
 	 	return (1);
 	return (0);
 }
 
-int		check_R(char **R)
+int		check_R(char **r)
 {
 	int	i;
 	int	error;
 
 	i = 0;
 	error = 0;
-	while (R[i])
+	while (r[i])
 		i++;
 	if (i - 1 != 2)
 		error = 1;
-	if (R[0][0] != 'R' || R[0][1])
+	if (r[0][0] != 'R' || r[0][1])
 		error = 1;
 	i = 0;
-	while (R[1][i])
-		if (!ft_isdigit(R[1][i++]))
+	while (r[1][i])
+		if (!ft_isdigit(r[1][i++]))
 			error = 1;
 	i = 0;
-	while (R[2][i])
-		if (!ft_isdigit(R[2][i++]))
+	while (r[2][i])
+		if (!ft_isdigit(r[2][i++]))
 			error = 1;
 	if (error == 1)
 		return (0);
@@ -59,15 +59,15 @@ int	    ft_check_xpm(s_config *conf)
 {
 	int fd;
 
-	if ((fd = (open(conf->S, O_RDONLY))) < 0)
+	if ((fd = (open(conf->s, O_RDONLY))) < 0)
 		close(fd);
-	if ((fd = (open(conf->NO, O_RDONLY))) < 0)
+	if ((fd = (open(conf->no, O_RDONLY))) < 0)
 		close(fd);
-	if ((fd = (open(conf->WE, O_RDONLY))) < 0)
+	if ((fd = (open(conf->we, O_RDONLY))) < 0)
 		close(fd);
-	if ((fd = (open(conf->EA, O_RDONLY))) < 0)
+	if ((fd = (open(conf->ea, O_RDONLY))) < 0)
 		close(fd);
-	if ((fd = (open(conf->SO, O_RDONLY))) < 0)
+	if ((fd = (open(conf->so, O_RDONLY))) < 0)
 		close(fd);
 	if (fd < 0)
 		return (0);
@@ -99,12 +99,12 @@ int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
 void	tmp_print_check2(s_config *conf)
 {
 	printf("[CONFIG CHECK]\n\n");
-	printf("RESOLUTION = %d %d\n", conf->R1, conf->R2);
-	printf("NO TEXTURE = %s\n", conf->NO);
-	printf("SO TEXTURE = %s\n", conf->SO);
-	printf("WE TEXTURE = %s\n", conf->WE);
-	printf("EA TEXTURE = %s\n", conf->EA);
-	printf("S TEXTURE = %s\n\n", conf->S);
-	printf("F COLOR = %d\n\n", conf->F_rgb);
-	printf("C COLOR = %d\n\n", conf->C_rgb);
+	printf("RESOLUTION = %d %d\n", conf->r1, conf->r2);
+	printf("NO TEXTURE = %s\n", conf->no);
+	printf("SO TEXTURE = %s\n", conf->so);
+	printf("WE TEXTURE = %s\n", conf->we);
+	printf("EA TEXTURE = %s\n", conf->ea);
+	printf("S TEXTURE = %s\n\n", conf->s);
+	printf("F COLOR = %d\n\n", conf->f_rgb);
+	printf("C COLOR = %d\n\n", conf->c_rgb);
 }

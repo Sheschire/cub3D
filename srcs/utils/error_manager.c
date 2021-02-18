@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void _ERROR(char  *s, s_error *ERR)
+void _ERROR(char  *s, s_error *err)
 {
     if (s)
         ft_putstr("Error\n");
@@ -26,5 +26,5 @@ void _ERROR(char  *s, s_error *ERR)
         ft_putstr("Empty line detected in map.\n");
     if (ft_strcmp(s, "colors") == 0)
         ft_putstr("Colors format is invalid.\n");
-    ERR->boo = 0;
+    err->boo = 0;
 }
