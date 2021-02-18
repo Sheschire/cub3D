@@ -76,7 +76,7 @@ int			greatest_line_len(char **map)
 	return (len);
 }
 
-void		tmp_print_check(s_map *map, s_player *player)
+void		tmp_print_check(s_map *map, s_player *player, s_config *conf)
 {
 	printf("[MAP CHECK]\n\n");
 	int	i = 0;
@@ -86,6 +86,15 @@ void		tmp_print_check(s_map *map, s_player *player)
 		i++;
 	}
 	printf("\n");
+	printf("[CONFIG CHECK]\n\n");
+	printf("RESOLUTION = %d %d\n", conf->r1, conf->r2);
+	printf("NO TEXTURE = %s\n", conf->no);
+	printf("SO TEXTURE = %s\n", conf->so);
+	printf("WE TEXTURE = %s\n", conf->we);
+	printf("EA TEXTURE = %s\n", conf->ea);
+	printf("S TEXTURE = %s\n\n", conf->s);
+	printf("F COLOR = %d\n\n", conf->f_rgb);
+	printf("C COLOR = %d\n\n", conf->c_rgb);
 	printf("PLAYER CHECK\n\n");
 	printf("POSITION = %c\n", player->orient);
 	printf("x = %d\n", player->x);

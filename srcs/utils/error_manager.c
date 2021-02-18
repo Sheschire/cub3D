@@ -26,5 +26,7 @@ void _ERROR(char  *s, s_error *err)
         ft_putstr("Empty line detected in map.\n");
     if (ft_strcmp(s, "colors") == 0)
         ft_putstr("Colors format is invalid.\n");
+    if (ft_strcmp(s, "twice") == 0)
+        ft_putstr("Repetition of config parameter is forbidden.\n");
     err->boo = 0;
 }

@@ -4,11 +4,16 @@ void	ft_get_R(char *line, s_config *conf, s_error *err)
 {
 	char	**r;
 
+	if (conf->r1 || conf->r2)
+	{
+		_ERROR("twice", err);
+		return ;
+	}
 	r = ft_split(line, ' ');
 	if (!check_R(r))
 	{
 		free_tab(r, line, ' ');
-		_ERROR("r", err);
+		_ERROR("R", err);
 	}
 	else
 	{
@@ -42,6 +47,11 @@ void	ft_split_colors(char *line, s_config *conf, s_error *err)
 	int		i;
 
 	i = 0;
+	if ((*line == 'C' && conf->c_rgb != -1) || (*line == 'F' && conf->f_rgb != -1))
+	{
+		_ERROR("twice", err);
+		return ;
+	}
 	tmp = ft_split(line, ' ');
 	while (tmp[i])
 		i++;
@@ -73,9 +83,9 @@ void	ft_get_config(char *line, s_config *conf, s_error *err)
 			{
 				if (*line == 'R')
 					ft_get_R(line, conf, err);
-				if (*line == 'S' || *line == 'N' || *line == 'W' || *line == 'E')
+				if (*line == 'S'|| *line == 'N' || *line == 'E'|| *line == 'W')
 					ft_get_texture(line, conf, err);
-				if (*line == 'F' || *line == 'C')
+				if (*line == 'F'|| *line == 'C')
 					ft_split_colors(line, conf, err);
 				line++;
 			}
@@ -84,20 +94,17 @@ void	ft_get_config(char *line, s_config *conf, s_error *err)
 
 }
 
-char	*ft_config(int fd, s_error *err)
+char	*ft_config(int fd, s_error *err, s_config *conf)
 {
 	char		*line;
 	int			ret;
-	s_config	conf;
 
-	ft_init_s_config(&conf);
 	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
 	{
-		ft_get_config(line, &conf, err);
+		ft_get_config(line, conf, err);
 		free(line);
 	}
-	if (!check_config(&conf) || ret == 0)
+	if (!check_config(conf) || ret == 0)
 		_ERROR("config", err);
-	tmp_print_check2(&conf);
 	return (line);
 }

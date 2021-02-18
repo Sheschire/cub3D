@@ -43,21 +43,20 @@ typedef struct	t_error
 }				s_error;
 
 //	Map
-int 	ft_check_map(int fd, s_error *err);
+void 	ft_check_map(int fd, s_error *err);
 int 	ft_check_walls(s_map *map, s_player *player);
 int		check_empty_line(char *line);
 int		greatest_line_len(char **map);
-void	tmp_print_check(s_map *map, s_player *player);
 void	ft_get_player(s_map *map, s_player *player, int x, int y);
+void	tmp_print_check(s_map *map, s_player *player, s_config *conf);
 
 //	Config
-char	*ft_config(int fd, s_error *err);
+char	*ft_config(int fd, s_error *err, s_config *conf);
 int		check_config(s_config *conf);
 int		check_R(char **r);
 int		check_colors(char **rgb);
 int		ft_check_xpm(s_config *conf);
 int		check_param(s_config *conf, char **param, s_error *err, char *line);
-void	tmp_print_check2(s_config *conf);
 
 //	Texture
 void	ft_get_texture(char *line, s_config *conf, s_error *err);
@@ -72,6 +71,7 @@ void    ft_init_s_error(s_error *err);
 
 //	Free
 void	free_tab(char **tab, char const *s, char sep);
+void	ft_free_all(s_map *map, s_config *conf);
 
 //	Error
 void 	_ERROR(char  *s, s_error *err);

@@ -74,7 +74,7 @@ int	    ft_check_xpm(s_config *conf)
 	return (1);
 }
 
-int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
+int		check_param(s_config *conf, char **param, s_error *err, char *line)
 {
 	int		i;
 
@@ -84,7 +84,7 @@ int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
 	if (i - 1 != 1)
 	{
 		free_tab(param, line, ' ');
-		_ERROR("param", ERR);
+		_ERROR("param", err);
 		return (0);
 	}
 	ft_get_path(conf, param);
@@ -94,17 +94,4 @@ int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
 //		_ERROR("xpm", ERR);
 //	}
 	return (1);
-}
-
-void	tmp_print_check2(s_config *conf)
-{
-	printf("[CONFIG CHECK]\n\n");
-	printf("RESOLUTION = %d %d\n", conf->r1, conf->r2);
-	printf("NO TEXTURE = %s\n", conf->no);
-	printf("SO TEXTURE = %s\n", conf->so);
-	printf("WE TEXTURE = %s\n", conf->we);
-	printf("EA TEXTURE = %s\n", conf->ea);
-	printf("S TEXTURE = %s\n\n", conf->s);
-	printf("F COLOR = %d\n\n", conf->f_rgb);
-	printf("C COLOR = %d\n\n", conf->c_rgb);
 }

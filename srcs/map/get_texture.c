@@ -40,6 +40,12 @@ void	ft_get_texture(char *line, s_config *conf, s_error *err)
 	int		i;
 
 	i = 0;
+	if ((*line == 'S' && conf->s) || (*line == 'N' && conf->no) ||\
+	(*line == 'E' && conf->ea) || (*line == 'W' && conf->we))
+	{
+		_ERROR("twice", err);
+		return ;
+	}
     param = ft_split(line, ' ');
 	if (!check_param(conf, param, err, line))
 		_ERROR("texture", err);

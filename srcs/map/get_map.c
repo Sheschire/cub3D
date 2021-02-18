@@ -9,18 +9,6 @@ void	ft_get_player(s_map *map, s_player *player, int x, int y)
 		map->map[y][x] = '0';
 }
 
-void		get_map(char *line, s_map *map)
-{
-	char	*tmp;
-
-	tmp = ft_strjoin(line, "*", 1);
-	if (map->line == NULL)
-		map->line = ft_strdup(tmp);
-	else
-		map->line = ft_strjoin(map->line, tmp, 1);
-	free(tmp);
-}
-
 void		add_walls(s_map *map, int y, int x, int len)
 {
 	int		diff;
@@ -60,16 +48,30 @@ void		fill_spaces(s_map *map)
 	}
 }
 
-int 		ft_check_map(int fd, s_error *err)
+void		get_map(char *line, s_map *map)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(line, "*", 1);
+	if (map->line == NULL)
+		map->line = ft_strdup(tmp);
+	else
+		map->line = ft_strjoin(map->line, tmp, 1);
+	free(tmp);
+}
+
+void 		ft_check_map(int fd, s_error *err)
 {
 	char    	*line;
 	s_map    	map;
 	s_player	player;
+	s_config	conf;
 	int			ret;
 
 	ft_init_s_player(&player);
 	ft_init_s_map(&map);
-	line = ft_config(fd, err);
+	ft_init_s_config(&conf);
+	line = ft_config(fd, err, &conf);
 	if (is_map_1st_line(line))
 		get_map(line, &map);
 	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
@@ -83,6 +85,7 @@ int 		ft_check_map(int fd, s_error *err)
 		_ERROR("wall", err);
 	if (player.pos_count != 1)
 		_ERROR("player", err);
-	tmp_print_check(&map, &player);
-	return (err->boo);
+	if (!err->boo)
+		ft_free_all(&map, &conf);
+	tmp_print_check(&map, &player, &conf);
 }
