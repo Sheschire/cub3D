@@ -14,25 +14,6 @@ void	ft_free_textures(s_config *conf)
 		free(conf->S);
 }
 
-int	ft_check_xpm(s_config *conf)
-{
-	int fd;
-
-	if ((fd = (open(conf->S, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(conf->NO, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(conf->WE, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(conf->EA, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(conf->SO, O_RDONLY))) < 0)
-		close(fd);
-	if (fd < 0)
-		return (0);
-	return (1);
-}
-
 void	ft_get_path(s_config *conf, char **param)
 {
 	size_t	i;
@@ -51,28 +32,6 @@ void	ft_get_path(s_config *conf, char **param)
 		if (ft_strcmp(param[0], "S") == 0)
 			conf->S = ft_substr(param[1], 0, ft_strlen(param[1]));
     }
-}
-
-int		check_param(s_config *conf, char **param, s_error *ERR, char *line)
-{
-	int		i;
-
-	i = 0;
-	while (param[i])
-		i++;
-	if (i - 1 != 1)
-	{
-		free_tab(param, line, ' ');
-		_ERROR("param", ERR);
-		return (0);
-	}
-	ft_get_path(conf, param);
-//	if (!ft_check_xpm(conf))
-//	{
-//		ft_free_textures(conf);
-//		_ERROR("xpm", ERR);
-//	}
-	return (1);
 }
 
 void	ft_get_texture(char *line, s_config *conf, s_error *ERR)

@@ -24,5 +24,7 @@ void _ERROR(char  *s, s_error *ERR)
         ft_putstr("A config parameter is invalid or missing.\n");
     if (ft_strcmp(s, "emptyline") == 0)
         ft_putstr("Empty line detected in map.\n");
+    if (ft_strcmp(s, "colors") == 0)
+        ft_putstr("Colors format is invalid.\n");
     ERR->boo = 0;
 }

@@ -1,13 +1,13 @@
 #include "cub3D.h"
 
-int main()
+int main(int ac, char **av)
 {
     int     fd;
     char    *map_path;
     s_error ERR;
 
     ft_init_s_error(&ERR);
-    map_path = "./map.cub";
+    map_path = av[1];
     fd = open(map_path, O_RDONLY);
     if (fd < 0)
         _ERROR("fd", &ERR);

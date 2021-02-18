@@ -4,7 +4,7 @@ void    ft_init_s_player(s_player *player)
 {
     player->x = 0;
     player->y = 0;
-    player->pos = 0;
+    player->orient = 0;
     player->pos_count = 0;
 }
 
@@ -17,8 +17,8 @@ void    ft_init_s_config(s_config *conf)
     conf->WE = NULL;
     conf->EA = NULL;
     conf->S = NULL;
-    conf->F = NULL;
-    conf->C = NULL;
+    conf->F_rgb = -1;
+    conf->C_rgb = -1;
     conf->x = 0;
     conf->y = 0;
 }

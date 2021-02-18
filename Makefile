@@ -2,13 +2,17 @@ NAME	=	cub3D
 LIBDIR	=	./libft/
 LIBFT	=	libft.a
 
-SRCS	=	check_map.c\
-			free_tab.c\
-			get_config.c\
-			get_texture.c\
-			init_struct.c\
-			map_parser.c\
-			get_next_line.c
+SRCS	=	./srcs/checks/check_config.c\
+			./srcs/checks/check_map.c\
+			./srcs/checks/check_utils.c\
+			./srcs/map/get_config.c\
+			./srcs/map/get_map.c\
+			./srcs/map/get_texture.c\
+			./srcs/utils/error_manager.c\
+			./srcs/utils/free_tab.c\
+			./srcs/utils/get_next_line.c\
+			./srcs/utils/init_struct.c\
+			./srcs/cub3D.c\
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang
@@ -17,11 +21,11 @@ AR		=	ar rc
 RM		=	rm -f
 
 %.o: %.c
-	$(CC) -I. -o $@ -c $? $(FLAGS)
+	$(CC) -I./includes -o $@ -c $? $(FLAGS)
 
 $(NAME)		:	$(OBJS)
 		make all -C $(LIBDIR)
-		cp $(LIBDIR)/$(LIBFT) $(NAME)
+		$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBDIR)/$(LIBFT)
 		
 all		:	$(NAME)
 
