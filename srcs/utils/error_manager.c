@@ -1,17 +1,17 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-void	ft_exit(s_config *c)
+void	ft_exit(t_config *c)
 {
 	ft_free_all(c);
 	exit(0);
 }
 
-void 	_ERROR(char  *s, s_config *c)
+void 	f_error(char  *s, t_config *c)
 {
 	if (s)
 		ft_putstr("Error\n");
 	if (ft_strcmp(s, "fd") == 0)
-		ft_putstr("Files Descriptor is invalid or missing.\n");
+		ft_putstr("File is invalid or missing.\n");
 	if (ft_strcmp(s, "map") == 0)
 		ft_putstr("Map file \"*.cub\" is not valid.\n");
 	if (ft_strcmp(s, "wall") == 0)
@@ -28,12 +28,12 @@ void 	_ERROR(char  *s, s_config *c)
 		ft_putstr("Too much/few arguments in textures.\n");
 	if (ft_strcmp(s, "config") == 0)
 		ft_putstr("A config parameter is invalid or missing.\n");
-	if (ft_strcmp(s, "emptyline") == 0)
-		ft_putstr("Empty line detected in map.\n");
 	if (ft_strcmp(s, "colors") == 0)
 		ft_putstr("Colors format is invalid.\n");
 	if (ft_strcmp(s, "twice") == 0)
 		ft_putstr("Repetition of config parameter is forbidden.\n");
-	ft_exit(c);
+	if (ft_strcmp(s, "line_after_map") == 0)
+		ft_putstr("Elements detected after map definition.\n");
 	c->error = 0;
+	ft_exit(c);
 }

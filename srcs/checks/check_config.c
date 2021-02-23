@@ -1,6 +1,6 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-int		check_config(s_config *c)
+int		check_config(t_config *c)
 {
 	if (c->r1 && c->r2 && c->no && c->so &&\
 	 c->we && c->ea && c->s && c->f_rgb != -1 && c->c_rgb != 1)
@@ -8,7 +8,7 @@ int		check_config(s_config *c)
 	return (0);
 }
 
-int		check_R(char **r)
+int		check_r(char **r)
 {
 	int	i;
 	int	error;
@@ -55,7 +55,7 @@ int		check_colors(char **rgb)
 	return (1);
 }
 
-int	    ft_check_xpm(s_config *c)
+int	    ft_check_xpm(t_config *c)
 {
 	int fd;
 
@@ -74,7 +74,7 @@ int	    ft_check_xpm(s_config *c)
 	return (1);
 }
 
-int		check_param(s_config *c, char **param, char *line)
+int		check_param(t_config *c, char **param, char *line)
 {
 	int		i;
 
@@ -84,14 +84,14 @@ int		check_param(s_config *c, char **param, char *line)
 	if (i - 1 != 1)
 	{
 		free_tab(param, line, ' ');
-		_ERROR("param", c);
+		f_error("param", c);
 		return (0);
 	}
 	ft_get_path(c, param);
 //	if (!ft_check_xpm(conf))
 //	{
 //		ft_free_textures(conf);
-//		_ERROR("xpm", ERR);
+//		f_error("xpm", ERR);
 //	}
 	return (1);
 }

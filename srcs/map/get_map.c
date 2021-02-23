@@ -1,6 +1,6 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-void	ft_get_player(s_config *c, int x, int y)
+void	ft_get_player(t_config *c, int x, int y)
 {
 		c->p.pos_count++;
 		c->p.x = x;
@@ -9,7 +9,7 @@ void	ft_get_player(s_config *c, int x, int y)
 		c->m.map[y][x] = '0';
 }
 
-void		add_walls(s_config *c, int y, int x, int len)
+void		add_walls(t_config *c, int y, int x, int len)
 {
 	int		diff;
 	char	*to_join;
@@ -25,7 +25,7 @@ void		add_walls(s_config *c, int y, int x, int len)
 	c->m.map[y] = ft_strjoin(c->m.map[y], to_join, 3);
 }
 
-void		fill_spaces(s_config *c)
+void		fill_spaces(t_config *c)
 {
 	int	len;
 	int	y;
@@ -48,7 +48,7 @@ void		fill_spaces(s_config *c)
 	}
 }
 
-void		get_map(char *line, s_config *c)
+void		get_map(char *line, t_config *c)
 {
 	char	*tmp;
 
@@ -60,26 +60,23 @@ void		get_map(char *line, s_config *c)
 	free(tmp);
 }
 
-void 		ft_check_map(int fd, s_config *c)
+void		map_gnl(int fd, char *line, t_config *c)
 {
-	char    	*line;
-	int			ret;
+	int	ret;
+	int	end_map;
 
-	line = ft_config(fd, c);
+	end_map = 0;
 	if (is_map_1st_line(line))
 		get_map(line, c);
-	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		if (!*line)
+			end_map = 1;
+		if (*line && end_map == 1)
+			f_error("line_after_map", c);
 		get_map(line, c);
+	}
+	if (*line && !is_map_1st_line(line))
+		f_error("wall", c);
 	get_map(line, c);
-	if (!check_empty_line(c->m.line))
-		_ERROR("emptyline", c);
-	c->m.map = ft_split(c->m.line, '*');
-	if (!ft_check_walls(c))
-		_ERROR("wall", c);
-	fill_spaces(c);
-	if (c->p.pos_count != 1)
-		_ERROR("player", c);
-	if (!c->error)
-		ft_exit(c);
-	tmp_print_check(c);
 }

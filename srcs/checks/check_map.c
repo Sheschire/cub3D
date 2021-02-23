@@ -1,6 +1,6 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-int 		ft_check_walls(s_config *c)
+int 		ft_check_walls(t_config *c)
 {
 	int	x;
 	int y;
@@ -30,35 +30,6 @@ int 		ft_check_walls(s_config *c)
 	return (1);
 }
 
-int			check_empty_line(char *line)
-{
-	int	i;
-	int	boo;
-
-	i = 0;
-	while (line[i])
-	{
-		boo = 0;
-		if (line[i] == '*')
-		{
-			i++;
-			if (line[i])
-			{
-				while (line[i] != '*')
-				{
-					if (is_in_set(line[i], "012NSWE"))
-						boo = 1;
-					i++;
-				}
-			}
-			if (line[i] == '*' && boo == 0)
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
 int			greatest_line_len(char **map)
 {
 	int	y;
@@ -79,7 +50,7 @@ int			greatest_line_len(char **map)
 	return (len);
 }
 
-void		tmp_print_check(s_config *c)
+void		tmp_print_check(t_config *c)
 {
 	printf("[MAP CHECK]\n\n");
 	int	i = 0;
@@ -102,4 +73,21 @@ void		tmp_print_check(s_config *c)
 	printf("POSITION = %c\n", c->p.orient);
 	printf("x = %d\n", c->p.x);
 	printf("y = %d\n", c->p.y);
+}
+
+void 		ft_check_map(int fd, t_config *c)
+{
+	char    	*line;
+
+	line = ft_config(fd, c);
+	map_gnl(fd, line, c);
+	c->m.map = ft_split(c->m.line, '*');
+	if (!ft_check_walls(c))
+		f_error("wall", c);
+	fill_spaces(c);
+	if (c->p.pos_count != 1)
+		f_error("player", c);
+	if (!c->error)
+		ft_exit(c);
+	tmp_print_check(c);
 }

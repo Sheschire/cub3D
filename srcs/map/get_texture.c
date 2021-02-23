@@ -1,6 +1,6 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-void	ft_free_textures(s_config *c)
+void	ft_free_textures(t_config *c)
 {
 	if (c->so)
 		free(c->so);
@@ -14,7 +14,7 @@ void	ft_free_textures(s_config *c)
 		free(c->s);
 }
 
-void	ft_get_path(s_config *c, char **param)
+void	ft_get_path(t_config *c, char **param)
 {
 	size_t	i;
 
@@ -34,7 +34,7 @@ void	ft_get_path(s_config *c, char **param)
     }
 }
 
-void	ft_get_texture(char *line, s_config *c)
+void	ft_get_texture(char *line, t_config *c)
 {
     char    **param;
 	int		i;
@@ -43,12 +43,12 @@ void	ft_get_texture(char *line, s_config *c)
 	if ((*line == 'S' && c->s) || (*line == 'N' && c->no) ||\
 	(*line == 'E' && c->ea) || (*line == 'W' && c->we))
 	{
-		_ERROR("twice", c);
+		f_error("twice", c);
 		return ;
 	}
     param = ft_split(line, ' ');
 	if (!check_param(c, param, line))
-		_ERROR("texture", c);
+		f_error("texture", c);
 	else
 		free_tab(param, line, ' ');
 }

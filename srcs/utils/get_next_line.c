@@ -6,11 +6,11 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:40:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 10:32:29 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:06:03 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 char		*ft_concat(char *s1, char *s2, int len)
 {

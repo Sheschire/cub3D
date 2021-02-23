@@ -1,6 +1,6 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-void    ft_init_s_config(s_config *c)
+void    ft_init_t_config(t_config *c)
 {
     c->r1 = 0;
     c->r2 = 0;

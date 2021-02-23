@@ -1,4 +1,4 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
 int		ft_wordcount(char const *str, char c)
 {
@@ -48,7 +48,7 @@ void	ft_free(char *tmp)
 	}
 }
 
-void	ft_free_all(s_config *c)
+void	ft_free_all(t_config *c)
 {
 	if (c->m.map)
 		free_tab(c->m.map, c->m.line, '*');

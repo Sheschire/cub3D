@@ -1,19 +1,19 @@
-#include "cub3D.h"
+#include "cub3d.h"
 
-void	ft_get_R(char *line, s_config *c)
+void	ft_get_r(char *line, t_config *c)
 {
 	char	**r;
 
 	if (c->r1 || c->r2)
 	{
-		_ERROR("twice", c);
+		f_error("twice", c);
 		return ;
 	}
 	r = ft_split(line, ' ');
-	if (!check_R(r))
+	if (!check_r(r))
 	{
 		free_tab(r, line, ' ');
-		_ERROR("R", c);
+		f_error("R", c);
 	}
 	else
 	{
@@ -23,7 +23,7 @@ void	ft_get_R(char *line, s_config *c)
 	}
 }
 
-void	ft_get_colors(char **tmp, char **rgb, s_config *c)
+void	ft_get_colors(char **tmp, char **rgb, t_config *c)
 {
 	int	r;
 	int	g;
@@ -40,7 +40,7 @@ void	ft_get_colors(char **tmp, char **rgb, s_config *c)
 		c->c_rgb = (r << 16) + (g << 8) + b;
 }
 
-void	ft_split_colors(char *line, s_config *c)
+void	ft_split_colors(char *line, t_config *c)
 {
 	char	**tmp;
 	char	**rgb;
@@ -49,19 +49,19 @@ void	ft_split_colors(char *line, s_config *c)
 	i = 0;
 	if ((*line == 'C' && c->c_rgb != -1) || (*line == 'F' && c->f_rgb != -1))
 	{
-		_ERROR("twice", c);
+		f_error("twice", c);
 		return ;
 	}
 	tmp = ft_split(line, ' ');
 	while (tmp[i])
 		i++;
 	if (i - 1 != 1 || (ft_strcmp(tmp[0], "F") != 0 && ft_strcmp(tmp[0], "C") != 0))
-		_ERROR("param", c);
+		f_error("param", c);
 	else
 	{
 		rgb = ft_split(tmp[1], ',');
 		if (!check_colors(rgb))
-			_ERROR("colors", c);
+			f_error("colors", c);
 		else
 			ft_get_colors(tmp, rgb, c);
 		free_tab(rgb, line, ',');
@@ -69,20 +69,20 @@ void	ft_split_colors(char *line, s_config *c)
 	free_tab(tmp, line, ' ');
 }
 
-void	ft_get_config(char *line, s_config *c)
+void	ft_get_config(char *line, t_config *c)
 {
 	if (*line)
 	{
 		while (*line == ' ')
 			line++;
 		if (!is_in_set(*line, "RSNWEFC"))
-			_ERROR("param", c);
+			f_error("param", c);
 		else
 		{
 			while (*line)
 			{
 				if (*line == 'R')
-					ft_get_R(line, c);
+					ft_get_r(line, c);
 				if (*line == 'S'|| *line == 'N' || *line == 'E'|| *line == 'W')
 					ft_get_texture(line, c);
 				if (*line == 'F'|| *line == 'C')
@@ -94,7 +94,7 @@ void	ft_get_config(char *line, s_config *c)
 
 }
 
-char	*ft_config(int fd, s_config *c)
+char	*ft_config(int fd, t_config *c)
 {
 	char		*line;
 	int			ret;
@@ -105,6 +105,6 @@ char	*ft_config(int fd, s_config *c)
 		free(line);
 	}
 	if (!check_config(c) || ret == 0)
-		_ERROR("config", c);
+		f_error("config", c);
 	return (line);
 }
