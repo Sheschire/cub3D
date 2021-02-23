@@ -22,10 +22,6 @@ typedef struct	t_map
 	char		**map;
 }				s_map;
 
-typedef struct	t_error 
-{
-	int			boo;
-}				s_error;
 
 typedef struct	t_config
 {

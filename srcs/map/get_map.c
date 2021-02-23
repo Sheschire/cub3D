@@ -74,9 +74,9 @@ void 		ft_check_map(int fd, s_config *c)
 	if (!check_empty_line(c->m.line))
 		_ERROR("emptyline", c);
 	c->m.map = ft_split(c->m.line, '*');
-	fill_spaces(c);
 	if (!ft_check_walls(c))
 		_ERROR("wall", c);
+	fill_spaces(c);
 	if (c->p.pos_count != 1)
 		_ERROR("player", c);
 	if (!c->error)

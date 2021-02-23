@@ -17,7 +17,7 @@ int		check_R(char **r)
 	error = 0;
 	while (r[i])
 		i++;
-	if (i - 1 != 2)
+	if (i != 3)
 		return (0);
 	if (r[0][0] != 'R' || r[0][1])
 		error = 1;

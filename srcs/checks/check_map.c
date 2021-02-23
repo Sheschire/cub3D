@@ -9,22 +9,22 @@ int 		ft_check_walls(s_config *c)
 	while (c->m.map[y])
 	{
 		x = 0;
-		while (c->m.map[y][x])
+		while (c->m.map[y][x] != '1')
 		{
-			if (!is_in_set(c->m.map[y][x], " 	120NSEW"))
+			if (!is_in_set(c->m.map[y][x], " \t"))
 				return (0);
-			while (c->m.map[y][x] == ' ')
-				x++;
-			if (c->m.map[y][x])
-				if (c->m.map[y][x] != '1' && (c->m.map[y][x - 1] == ' ' || c->m.map[y][x - 1] == '	'))
-					return (0);
-			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
-				ft_get_player(c, x, y);
-/*			if (is_in_set(map[y][x]) && map[y][x] != '1')
-				if (!ft_check_UDRL(map, x, y))
-					return (0);*/
 			x++;
 		}
+		while (c->m.map[y][x])
+		{
+			if (!is_in_set(c->m.map[y][x], " 120NSEW"))
+				return (0);
+			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
+				ft_get_player(c, x, y);
+			x++;
+		}
+		if (c->m.map[y][x - 1] != '1')
+			return (0);
 		y++;
 	}
 	return (1);
@@ -42,11 +42,14 @@ int			check_empty_line(char *line)
 		if (line[i] == '*')
 		{
 			i++;
-			while (line[i] != '*')
+			if (line[i])
 			{
-				if (is_in_set(line[i], "012NSWE"))
-					boo = 1;
-				i++;
+				while (line[i] != '*')
+				{
+					if (is_in_set(line[i], "012NSWE"))
+						boo = 1;
+					i++;
+				}
 			}
 			if (line[i] == '*' && boo == 0)
 				return (0);
