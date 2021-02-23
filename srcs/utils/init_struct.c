@@ -1,35 +1,23 @@
 #include "cub3D.h"
 
-void    ft_init_s_player(s_player *player)
+void    ft_init_s_config(s_config *c)
 {
-    player->x = 0;
-    player->y = 0;
-    player->orient = 0;
-    player->pos_count = 0;
-}
-
-void    ft_init_s_config(s_config *conf)
-{
-    conf->r1 = 0;
-    conf->r2 = 0;
-    conf->no = NULL;
-    conf->so = NULL;
-    conf->we = NULL;
-    conf->ea = NULL;
-    conf->s = NULL;
-    conf->f_rgb = -1;
-    conf->c_rgb = -1;
-    conf->x = 0;
-    conf->y = 0;
-}
-
-void    ft_init_s_map(s_map *map)
-{
-    map->line = NULL;
-    map->map = NULL;
-}
-
-void    ft_init_s_error(s_error *err)
-{
-    err->boo = 1;
+    c->r1 = 0;
+    c->r2 = 0;
+    c->no = NULL;
+    c->so = NULL;
+    c->we = NULL;
+    c->ea = NULL;
+    c->s = NULL;
+    c->f_rgb = -1;
+    c->c_rgb = -1;
+    c->x = 0;
+    c->y = 0;
+    c->p.x = 0;
+    c->p.y = 0;
+    c->p.orient = 0;
+    c->p.pos_count = 0;
+    c->m.line = NULL;
+    c->m.map = NULL;
+    c->error = 1;
 }

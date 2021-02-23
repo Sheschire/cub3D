@@ -30,7 +30,8 @@ void	free_tab(char **tab, char const *s, char sep)
 	i = 0;
 	while (i < n )
 	{
-		free(tab[i]);
+		if (tab[i])
+			free(tab[i]);
 		i++;
 	}
 	if (tab)
@@ -38,20 +39,23 @@ void	free_tab(char **tab, char const *s, char sep)
 	tab = 0;
 }
 
-void	ft_free_all(s_map *map, s_config *conf)
+void	ft_free(char *tmp)
 {
-//	if (map->map)
-//		free_tab(map->map, map->line, '*');
-//	if (map->line)
-//		free(map->line);
-	if (conf->no)
-		free(conf->no);
-	if (conf->so)
-		free(conf->so);
-	if (conf->s)
-		free(conf->s);
-	if (conf->we)
-		free(conf->we);
-	if (conf->ea)
-		free(conf->ea);
+	if (tmp)
+	{
+		free(tmp);
+		tmp = NULL;
+	}
+}
+
+void	ft_free_all(s_config *c)
+{
+	if (c->m.map)
+		free_tab(c->m.map, c->m.line, '*');
+	free(c->m.line);
+	ft_free(c->no);
+	ft_free(c->so);
+	ft_free(c->s);
+	ft_free(c->we);
+	ft_free(c->ea);
 }

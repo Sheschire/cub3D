@@ -1,25 +1,25 @@
 #include "cub3D.h"
 
-int 		ft_check_walls(s_map *map, s_player *player)
+int 		ft_check_walls(s_config *c)
 {
 	int	x;
 	int y;
 
 	y = 0;
-	while (map->map[y])
+	while (c->m.map[y])
 	{
 		x = 0;
-		while (map->map[y][x])
+		while (c->m.map[y][x])
 		{
-			if (!is_in_set(map->map[y][x], " 	120NSEW"))
+			if (!is_in_set(c->m.map[y][x], " 	120NSEW"))
 				return (0);
-			while (map->map[y][x] == ' ')
+			while (c->m.map[y][x] == ' ')
 				x++;
-			if (map->map[y][x])
-				if (map->map[y][x] != '1' && (map->map[y][x - 1] == ' ' || map->map[y][x - 1] == '	'))
+			if (c->m.map[y][x])
+				if (c->m.map[y][x] != '1' && (c->m.map[y][x - 1] == ' ' || c->m.map[y][x - 1] == '	'))
 					return (0);
-			if (map->map[y][x] == 'N' || map->map[y][x] == 'S' || map->map[y][x] == 'E' || map->map[y][x] == 'W')
-				ft_get_player(map, player, x, y);
+			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
+				ft_get_player(c, x, y);
 /*			if (is_in_set(map[y][x]) && map[y][x] != '1')
 				if (!ft_check_UDRL(map, x, y))
 					return (0);*/
@@ -76,27 +76,27 @@ int			greatest_line_len(char **map)
 	return (len);
 }
 
-void		tmp_print_check(s_map *map, s_player *player, s_config *conf)
+void		tmp_print_check(s_config *c)
 {
 	printf("[MAP CHECK]\n\n");
 	int	i = 0;
-	while (map->map[i])
+	while (c->m.map[i])
 	{
-		printf("%s\n", map->map[i]);
+		printf("%s\n", c->m.map[i]);
 		i++;
 	}
 	printf("\n");
 	printf("[CONFIG CHECK]\n\n");
-	printf("RESOLUTION = %d %d\n", conf->r1, conf->r2);
-	printf("NO TEXTURE = %s\n", conf->no);
-	printf("SO TEXTURE = %s\n", conf->so);
-	printf("WE TEXTURE = %s\n", conf->we);
-	printf("EA TEXTURE = %s\n", conf->ea);
-	printf("S TEXTURE = %s\n\n", conf->s);
-	printf("F COLOR = %d\n\n", conf->f_rgb);
-	printf("C COLOR = %d\n\n", conf->c_rgb);
+	printf("RESOLUTION = %d %d\n", c->r1, c->r2);
+	printf("NO TEXTURE = %s\n", c->no);
+	printf("SO TEXTURE = %s\n", c->so);
+	printf("WE TEXTURE = %s\n", c->we);
+	printf("EA TEXTURE = %s\n", c->ea);
+	printf("S TEXTURE = %s\n\n", c->s);
+	printf("F COLOR = %d\n\n", c->f_rgb);
+	printf("C COLOR = %d\n\n", c->c_rgb);
 	printf("PLAYER CHECK\n\n");
-	printf("POSITION = %c\n", player->orient);
-	printf("x = %d\n", player->x);
-	printf("y = %d\n", player->y);
+	printf("POSITION = %c\n", c->p.orient);
+	printf("x = %d\n", c->p.x);
+	printf("y = %d\n", c->p.y);
 }

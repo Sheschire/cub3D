@@ -6,58 +6,95 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:40:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/12 11:05:43 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/02/23 10:32:29 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	ft_line(int fd, char **line, char *save[fd], char *str)
+char		*ft_concat(char *s1, char *s2, int len)
 {
-	char	*tmp;
+	char		*s3;
+	int			i;
+	int			j;
+	int			size_s1;
 
-	if (str)
+	i = 0;
+	size_s1 = 0;
+	while ((j = -1) && s1 && s1[size_s1])
+		size_s1++;
+	if (!(s3 = malloc(sizeof(char) * (len + size_s1 + 1))))
+		return (0);
+	while (s1 && s1[i])
 	{
-		*line = ft_substr(*save, 0, str - *save);
-		tmp = ft_substr(str + 1, 0, ft_strlen(str + 1));
-		free(*save);
-		*save = tmp;
-		return (1);
+		s3[i] = s1[i];
+		i++;
 	}
-	if (*save)
+	while (s2 && ++j < len)
 	{
-		*line = *save;
-		*save = NULL;
+		s3[i] = s2[j];
+		i++;
 	}
-	else
-		*line = ft_strdup("");
-	return (0);
+	if (s1)
+		free(s1);
+	s3[i] = '\0';
+	return (s3);
 }
 
-int			get_next_line(int fd, char **line)
+int			check_n(char *p)
 {
-	static char	*save[256];
-	int			n_read;
-	static char	buf[20 + 1];
-	char		*tmp;
-	char		*str;
+	int			i;
 
-	n_read = 1;
-	if (fd < 0 || !line || 20 <= 0)
-		return (-1);
-	while ((str = ft_strchr(save[fd], '\n')) == 0 && \
-	((n_read = read(fd, buf, 20)) > 0))
+	i = 0;
+	while (p[i] && p[i] != '\n')
+		i++;
+	return (i);
+}
+
+int			handling_return(int r, char *buf, char **line, char *p)
+{
+	if (r > 0)
 	{
-		buf[n_read] = '\0';
-		if (save[fd] == NULL)
-			tmp = ft_substr(buf, 0, 20);
-		else
-			tmp = ft_strjoin(save[fd], buf, 0);
-		if (save[fd])
-			free(save[fd]);
-		save[fd] = tmp;
+		buf[r] = '\0';
+		if (!(*line = ft_concat(p, buf, check_n(buf))))
+			return (-1);
+		return (r);
 	}
-	if (n_read < 0)
+	else if (r == 0)
+	{
+		if (!*line)
+			if (!(*line = ft_concat(0, 0, 0)))
+				return (-1);
+		return (0);
+	}
+	*line = ft_concat(0, 0, 0);
+	return (-1);
+}
+
+int				get_next_line(int fd, char **line)
+{
+	static char	buf[BUFFER_SIZE + 1];
+	static int	i = 0;
+	int			r;
+	char		*p;
+
+	if (!line)
 		return (-1);
-	return (ft_line(fd, line, &save[fd], str));
+	p = 0;
+	*line = 0;
+	while (BUFFER_SIZE > 0)
+	{
+		if (i && !(*line = ft_concat(p, buf + i, check_n(buf + i))))
+			return (-1);
+		else if (!i && (r = read(fd, buf, BUFFER_SIZE)) >= -1)
+			if ((handling_return(r, buf, line, p)) <= 0)
+				return (r);
+		p = *line;
+		i += check_n(buf + i) + 1;
+		if (!buf[i - 1])
+			i = 0;
+		if (buf[i - 1] == '\n')
+			return (1);
+	}
+	return (-1);
 }
