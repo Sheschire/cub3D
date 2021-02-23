@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_manager.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:28:00 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/02/23 15:30:19 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_exit(t_config *c)
@@ -6,14 +18,12 @@ void	ft_exit(t_config *c)
 	exit(0);
 }
 
-void 	f_error(char  *s, t_config *c)
+void	f_error(char *s, t_config *c)
 {
 	if (s)
 		ft_putstr("Error\n");
 	if (ft_strcmp(s, "fd") == 0)
 		ft_putstr("File is invalid or missing.\n");
-	if (ft_strcmp(s, "map") == 0)
-		ft_putstr("Map file \"*.cub\" is not valid.\n");
 	if (ft_strcmp(s, "wall") == 0)
 		ft_putstr("Problem in game map.(Walls or spaces)\n");
 	if (ft_strcmp(s, "player") == 0)
@@ -34,6 +44,5 @@ void 	f_error(char  *s, t_config *c)
 		ft_putstr("Repetition of config parameter is forbidden.\n");
 	if (ft_strcmp(s, "line_after_map") == 0)
 		ft_putstr("Elements detected after map definition.\n");
-	c->error = 0;
 	ft_exit(c);
 }

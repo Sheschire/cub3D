@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_config.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/02/23 15:40:06 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_get_r(char *line, t_config *c)
@@ -33,10 +45,8 @@ void	ft_get_colors(char **tmp, char **rgb, t_config *c)
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	if (ft_strcmp(tmp[0], "F") == 0)
-//		conf->f_rgb = 65536 * r + 256 * g + b;
 		c->f_rgb = (r << 16) + (g << 8) + b;
 	if (ft_strcmp(tmp[0], "C") == 0)
-//		conf->c_rgb = 65536 * r + 256 * g + b;
 		c->c_rgb = (r << 16) + (g << 8) + b;
 }
 
@@ -55,7 +65,7 @@ void	ft_split_colors(char *line, t_config *c)
 	tmp = ft_split(line, ' ');
 	while (tmp[i])
 		i++;
-	if (i - 1 != 1 || (ft_strcmp(tmp[0], "F") != 0 && ft_strcmp(tmp[0], "C") != 0))
+	if (i != 2 || (ft_strcmp(tmp[0], "F") != 0 && ft_strcmp(tmp[0], "C") != 0))
 		f_error("param", c);
 	else
 	{
@@ -83,15 +93,15 @@ void	ft_get_config(char *line, t_config *c)
 			{
 				if (*line == 'R')
 					ft_get_r(line, c);
-				if (*line == 'S'|| *line == 'N' || *line == 'E'|| *line == 'W')
+				if (*line == 'S' || *line == 'N' || \
+				*line == 'E' || *line == 'W')
 					ft_get_texture(line, c);
-				if (*line == 'F'|| *line == 'C')
+				if (*line == 'F' || *line == 'C')
 					ft_split_colors(line, c);
 				line++;
 			}
 		}
 	}
-
 }
 
 char	*ft_config(int fd, t_config *c)

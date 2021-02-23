@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:42:10 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/02/23 15:43:13 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_get_player(t_config *c, int x, int y)
 {
-		c->p.pos_count++;
-		c->p.x = x;
-		c->p.y = y;
-		c->p.orient = c->m.map[y][x];
-		c->m.map[y][x] = '0';
+	c->p.pos_count++;
+	c->p.x = x;
+	c->p.y = y;
+	c->p.orient = c->m.map[y][x];
+	c->m.map[y][x] = '0';
 }
 
-void		add_walls(t_config *c, int y, int x, int len)
+void	add_walls(t_config *c, int y, int x, int len)
 {
 	int		diff;
 	char	*to_join;
@@ -25,7 +37,7 @@ void		add_walls(t_config *c, int y, int x, int len)
 	c->m.map[y] = ft_strjoin(c->m.map[y], to_join, 3);
 }
 
-void		fill_spaces(t_config *c)
+void	fill_spaces(t_config *c)
 {
 	int	len;
 	int	y;
@@ -48,7 +60,7 @@ void		fill_spaces(t_config *c)
 	}
 }
 
-void		get_map(char *line, t_config *c)
+void	get_map(char *line, t_config *c)
 {
 	char	*tmp;
 
@@ -60,7 +72,7 @@ void		get_map(char *line, t_config *c)
 	free(tmp);
 }
 
-void		map_gnl(int fd, char *line, t_config *c)
+void	map_gnl(int fd, char *line, t_config *c)
 {
 	int	ret;
 	int	end_map;

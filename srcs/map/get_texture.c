@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_texture.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:43:22 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/02/23 15:45:17 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_free_textures(t_config *c)
@@ -19,7 +31,8 @@ void	ft_get_path(t_config *c, char **param)
 	size_t	i;
 
 	i = ft_strlen(param[1]);
-	if (param[1][i - 1] == 'm' && param[1][i - 2] == 'p' && param[1][i - 3] == 'x' && param[1][i - 4] == '.')
+	if (param[1][i - 1] == 'm' && param[1][i - 2] == 'p' && \
+	param[1][i - 3] == 'x' && param[1][i - 4] == '.')
 	{
 		if (ft_strcmp(param[0], "NO") == 0)
 			c->no = ft_substr(param[1], 0, ft_strlen(param[1]));
@@ -31,12 +44,12 @@ void	ft_get_path(t_config *c, char **param)
 			c->ea = ft_substr(param[1], 0, ft_strlen(param[1]));
 		if (ft_strcmp(param[0], "S") == 0)
 			c->s = ft_substr(param[1], 0, ft_strlen(param[1]));
-    }
+	}
 }
 
 void	ft_get_texture(char *line, t_config *c)
 {
-    char    **param;
+	char	**param;
 	int		i;
 
 	i = 0;
@@ -46,7 +59,7 @@ void	ft_get_texture(char *line, t_config *c)
 		f_error("twice", c);
 		return ;
 	}
-    param = ft_split(line, ' ');
+	param = ft_split(line, ' ');
 	if (!check_param(c, param, line))
 		f_error("texture", c);
 	else

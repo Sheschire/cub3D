@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/02/23 15:29:11 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int 		ft_check_walls(t_config *c)
+int		ft_check_walls(t_config *c)
 {
 	int	x;
 	int y;
@@ -10,16 +22,14 @@ int 		ft_check_walls(t_config *c)
 	{
 		x = 0;
 		while (c->m.map[y][x] != '1')
-		{
-			if (!is_in_set(c->m.map[y][x], " \t"))
+			if (!is_in_set(c->m.map[y][x++], " \t"))
 				return (0);
-			x++;
-		}
 		while (c->m.map[y][x])
 		{
 			if (!is_in_set(c->m.map[y][x], " 120NSEW"))
 				return (0);
-			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
+			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || \
+			c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
 				ft_get_player(c, x, y);
 			x++;
 		}
@@ -30,7 +40,7 @@ int 		ft_check_walls(t_config *c)
 	return (1);
 }
 
-int			greatest_line_len(char **map)
+int		greatest_line_len(char **map)
 {
 	int	y;
 	int	x;
@@ -50,15 +60,14 @@ int			greatest_line_len(char **map)
 	return (len);
 }
 
-void		tmp_print_check(t_config *c)
+void	tmp_print_check(t_config *c)
 {
+	int	i;
+
+	i = 0;
 	printf("[MAP CHECK]\n\n");
-	int	i = 0;
 	while (c->m.map[i])
-	{
-		printf("%s\n", c->m.map[i]);
-		i++;
-	}
+		printf("%s\n", c->m.map[i++]);
 	printf("\n");
 	printf("[CONFIG CHECK]\n\n");
 	printf("RESOLUTION = %d %d\n", c->r1, c->r2);
@@ -75,9 +84,9 @@ void		tmp_print_check(t_config *c)
 	printf("y = %d\n", c->p.y);
 }
 
-void 		ft_check_map(int fd, t_config *c)
+void	ft_check_map(int fd, t_config *c)
 {
-	char    	*line;
+	char	*line;
 
 	line = ft_config(fd, c);
 	map_gnl(fd, line, c);
@@ -87,7 +96,6 @@ void 		ft_check_map(int fd, t_config *c)
 	fill_spaces(c);
 	if (c->p.pos_count != 1)
 		f_error("player", c);
-	if (!c->error)
-		ft_exit(c);
 	tmp_print_check(c);
+	ft_exit(c);
 }

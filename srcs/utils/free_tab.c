@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:30:32 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/02/23 15:30:51 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int		ft_wordcount(char const *str, char c)
@@ -28,7 +40,7 @@ void	free_tab(char **tab, char const *s, char sep)
 
 	n = ft_wordcount(s, sep);
 	i = 0;
-	while (i < n )
+	while (i < n)
 	{
 		if (tab[i])
 			free(tab[i]);
