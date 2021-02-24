@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:29:11 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/02/24 10:24:04 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,5 @@ void	ft_check_map(int fd, t_config *c)
 	if (c->p.pos_count != 1)
 		f_error("player", c);
 	tmp_print_check(c);
-	ft_exit(c);
+//	ft_exit(c);
 }
