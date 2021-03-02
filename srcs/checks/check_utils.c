@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:27:10 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:27:33 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/01 15:45:47 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_map_1st_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '1' && line[i] != '	')
+		if (line[i] != ' ' && line[i] != '1' && line[i] != '\t')
 			return (0);
 		i++;
 	}

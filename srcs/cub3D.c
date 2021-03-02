@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:46:31 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/24 10:23:32 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/01 15:43:55 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int	main(int ac, char **av)
 	if (fd < 0)
 		f_error("fd", &c);
 	ft_check_map(fd, &c);
-	
 	return (0);
 }

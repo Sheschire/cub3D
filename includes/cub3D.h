@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:16:05 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/02 16:42:00 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+
 
 typedef	struct	s_player
 {
@@ -50,6 +51,7 @@ typedef struct	s_config
 	int			error;
 	t_player	p;
 	t_map		m;
+
 }				t_config;
 
 # ifndef BUFFER_SIZE
