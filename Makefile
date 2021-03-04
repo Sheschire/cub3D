@@ -13,6 +13,7 @@ SRCS	=	./srcs/checks/check_config.c\
 			./srcs/utils/get_next_line.c\
 			./srcs/utils/init_struct.c\
 			./srcs/cub3d.c\
+			./mlx/minimap.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang
@@ -21,11 +22,11 @@ AR		=	ar rc
 RM		=	rm -f
 
 %.o: %.c
-	$(CC) -I./includes -o $@ -c $? $(FLAGS)
+	$(CC) -I./includes -Imlx -c $< -o $@ $(FLAGS)
 
 $(NAME)		:	$(OBJS)
 		make all -C $(LIBDIR)
-		$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBDIR)/$(LIBFT)
+		$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS) $(LIBDIR)/$(LIBFT)
 		
 all		:	$(NAME)
 
@@ -39,4 +40,4 @@ clean	:
 
 re		:	fclean all
 
-.PHONY	:	all re clean fclean
+.PHONY	:	all re clean fclean mlx libft

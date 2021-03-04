@@ -6,11 +6,34 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:42:10 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/02 17:02:32 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:08:36 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	greatest_x_y_max(t_config *c)
+{
+	int	y;
+	int	x;
+	int	len;
+
+	y = 0;
+	len = 0;
+	while (c->m.map[y])
+	{
+		x = 0;
+		while (c->m.map[y][x])
+			x++;
+		if (x > len)
+			len = x;
+		y++;
+	}
+	c->x_max = len;
+	c->abs = (float)c->r1 / (float)c->x_max;
+	c->y_max = y;
+	c->ord = (float)c->r2 / (float)c->y_max;
+}
 
 void	ft_get_player(t_config *c, int x, int y)
 {

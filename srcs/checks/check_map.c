@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/02 17:03:17 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:58:42 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_check_walls(t_config *c)
 			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || \
 			c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
 				ft_get_player(c, x, y);
-			if (c->m.map[y][x] == '0')
+			if (is_in_set(c->m.map[y][x], "02NSWE"))
 				if (!check_UDRL(c, y, x))
 					return (0);
 			x++;
@@ -87,6 +87,7 @@ void	ft_check_map(int fd, t_config *c)
 //	fill_spaces(c);
 	if (c->p.pos_count != 1)
 		f_error("player", c);
+	greatest_x_y_max(c);
 	tmp_print_check(c);
 //	ft_exit(c);
 }

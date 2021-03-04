@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/02 16:42:00 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:08:13 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,20 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+# include <../mlx/mlx.h>
 
+typedef struct  s_vars {
+    void        *mlx;
+    void        *win;
+}               t_vars;
+
+typedef struct  s_data {
+	void        *img;
+	char        *addr;
+	int         bits_per_pixel;
+	int         line_length;
+	int         endian;
+}               t_data;
 
 typedef	struct	s_player
 {
@@ -48,6 +61,10 @@ typedef struct	s_config
 	int			c_rgb;
 	int			x;
 	int			y;
+	int			x_max;
+	int			y_max;
+	float		abs;
+	float		ord;
 	int			error;
 	t_player	p;
 	t_map		m;
@@ -64,10 +81,8 @@ typedef struct	s_config
 void			ft_check_map(int fd, t_config *c);
 void			ft_get_player(t_config *c, int x, int y);
 void			map_gnl(int fd, char *line, t_config *c);
-void			add_walls(t_config *c, int y, int x, int len);
-void			fill_spaces(t_config *c);
 void			get_map(char *line, t_config *c);
-int				greatest_line_len(char **map);
+void			greatest_x_y_max(t_config *c);
 
 /*
 **	Config
@@ -109,4 +124,10 @@ void			ft_exit(t_config *c);
 int				is_in_set(char	c, char *set);
 int				is_map_1st_line(char *line);
 int				get_next_line(int fd, char **line);
+
+/*
+**	MLX
+*/
+void    init_mlx(t_config *c);
+
 #endif
