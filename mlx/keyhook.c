@@ -1,37 +1,44 @@
-#include <mlx.h>
-#include <stdio.h>
-#include <stdlib.h>
-/*
-void            ft_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char    *dst;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyhook.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/03/05 13:38:14 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
+#include "../includes/cub3d.h"
 
-int	close(int keycode, t_vars *vars)
+int	win_close(int keycode, t_vars *v)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_window(v->mlx, v->win);
 		exit(0);
 	}
 	return (1);
 }
 
-int             key_hook(int keycode, t_vars *vars)
+int	movement(int keycode, t_vars *v)
 {
-    printf("You pressed : %d\n", keycode);
-	close(keycode, vars);
+	if (keycode == W)
+		printf("w\n");
+	return (1);
 }
 
-int             main(void)
+int	key_decoder(int keycode, t_vars *v)
 {
-    t_vars      vars;
+	printf("You pressed : %d\n", keycode);
+	win_close(keycode, v);
+	movement(keycode, v);
+	return (1);
+}
 
-    vars.mlx = mlx_init();
-    vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
-    mlx_key_hook(vars.win, key_hook, &vars);
-    mlx_loop(vars.mlx);
-}*/
+int	keyhook(t_config *c, t_vars *v, t_data *img)
+{
+	mlx_key_hook(v->win, key_decoder, v);
+	return (1);
+}

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/04 15:08:13 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/05 13:37:58 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 # include <../mlx/mlx.h>
+
+# define W 13
+# define A 0
+# define D 2
+# define S 1
+# define TAB 48
+# define SHIFT 257
+# define SPACE 49
+# define UP_ARROW 126
+# define DOWN_ARROW 125
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
 
 typedef struct  s_vars {
     void        *mlx;
@@ -128,6 +140,7 @@ int				get_next_line(int fd, char **line);
 /*
 **	MLX
 */
-void    init_mlx(t_config *c);
+void    		init_mlx(t_config *c);
+int				keyhook(t_config *c, t_vars *v, t_data *img);
 
 #endif

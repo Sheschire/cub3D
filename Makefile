@@ -13,7 +13,8 @@ SRCS	=	./srcs/checks/check_config.c\
 			./srcs/utils/get_next_line.c\
 			./srcs/utils/init_struct.c\
 			./srcs/cub3d.c\
-			./mlx/minimap.c
+			./mlx/minimap.c\
+			./mlx/keyhook.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/04 14:58:42 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/05 13:01:41 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,42 @@ void	tmp_print_check(t_config *c)
 	printf("y = %d\n", c->p.y);
 }
 
+char	*space_to_join(t_config *c, char *map_y, int len)
+{
+	char	*space;
+	int		i;
+	int		size;
+	
+	i = 0;
+	size = c->x_max - len;
+	space = (char *)malloc(sizeof(char) * size + 1);
+	if (!space)
+		ft_exit(c);
+	while (i < size)
+		space[i++] = ' ';
+	space[i] = '\0';
+	return (space);
+}
+
+void	adapt_to_greatest(t_config *c)
+{
+	int		y;
+	int		len;
+	char	*space;
+	
+	y = 0;
+	while (c->m.map[y])
+	{
+		len = (int)ft_strlen(c->m.map[y]);
+		if (len < c->x_max)
+		{
+			space = space_to_join(c, c->m.map[y], len);
+			c->m.map[y] = ft_strjoin(c->m.map[y], space, 2);
+		}
+		y++;
+	}
+}
+
 void	ft_check_map(int fd, t_config *c)
 {
 	char	*line;
@@ -84,10 +120,10 @@ void	ft_check_map(int fd, t_config *c)
 	c->m.map = ft_split(c->m.line, '*');
 	if (!ft_check_walls(c))
 		f_error("wall", c);
-//	fill_spaces(c);
 	if (c->p.pos_count != 1)
 		f_error("player", c);
 	greatest_x_y_max(c);
-	tmp_print_check(c);
+	adapt_to_greatest(c);
+//	tmp_print_check(c);
 //	ft_exit(c);
 }
