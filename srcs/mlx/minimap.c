@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/05 13:23:38 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/08 11:32:55 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print_cube(t_config *c, t_data *img, int color, int p)
 		x_abs = x + c->abs/2; //PROPORTION du joueur
 	y_ord = y + c->ord;   //PROPORTION du carre
 	if (p)
-		y_ord = y + c->ord/2;  //PROPORTION du joueur
+		y_ord = y + c->ord/3;  //PROPORTION du joueur
 	while (y < y_ord && y < c->r2)
 	{
 		tmp_x = x;

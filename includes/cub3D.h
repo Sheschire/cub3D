@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/05 13:37:58 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/08 12:00:12 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ typedef	struct	s_player
 	int			y;
 	char		orient;
 	int			pos_count;
+	int			forward;
+	int			backward;
+	int			left;
+	int			right;
+	int			r_left;
+	int			r_right;
 }				t_player;
 
 typedef	struct	s_map
@@ -142,5 +148,6 @@ int				get_next_line(int fd, char **line);
 */
 void    		init_mlx(t_config *c);
 int				keyhook(t_config *c, t_vars *v, t_data *img);
+void    		player_movement(int keycode, t_config *c);
 
 #endif

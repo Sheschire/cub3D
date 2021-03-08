@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/05 13:38:14 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/08 11:58:41 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,10 @@ int	win_close(int keycode, t_vars *v)
 	return (1);
 }
 
-int	movement(int keycode, t_vars *v)
+int	key_decoder(int keycode, t_vars *v, t_config *c)
 {
-	if (keycode == W)
-		printf("w\n");
-	return (1);
-}
-
-int	key_decoder(int keycode, t_vars *v)
-{
-	printf("You pressed : %d\n", keycode);
 	win_close(keycode, v);
-	movement(keycode, v);
+	player_movement(keycode, c);
 	return (1);
 }
 
