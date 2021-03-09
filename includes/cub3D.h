@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/09 12:00:35 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:56:21 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ int				keyhook(t_config *c);
 void    		player_movement(int keycode, t_config *c);
 void			print_cube(t_config *c, int color, int p);
 void			minimap_to_window(t_config *c);
+int				key_release(int keycode, t_config *c);
 
 #endif

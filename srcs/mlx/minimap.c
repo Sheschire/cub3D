@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/09 10:43:46 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:44:13 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,22 @@ void	minimap_to_window(t_config *c)
 		c->y++;
 	}
 	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
+	mlx_destroy_image(c->v.mlx, c->img.img);
+}
+
+int		launch_game(t_config *c)
+{
+	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
+	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
+	minimap_to_window(c);
 	keyhook(c);
+	return (1);
 }
 
 void    init_mlx(t_config *c)
 {
-	t_vars	v;
-	t_data	img;
-
 	c->v.mlx = mlx_init();
 	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "IceCub3D");
-	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
-	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
-	minimap_to_window(c);
+	mlx_loop_hook(c->v.mlx, launch_game, c);
 	mlx_loop(c->v.mlx);
 }
