@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/05 13:01:41 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/09 10:36:02 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_check_walls(t_config *c)
 	}
 	return (1);
 }
-
+/*
 void	tmp_print_check(t_config *c)
 {
 	int	i;
@@ -73,7 +73,7 @@ void	tmp_print_check(t_config *c)
 	printf("POSITION = %c\n", c->p.orient);
 	printf("x = %d\n", c->p.x);
 	printf("y = %d\n", c->p.y);
-}
+}*/
 
 char	*space_to_join(t_config *c, char *map_y, int len)
 {

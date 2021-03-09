@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/08 12:00:12 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:00:35 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct  s_data {
 
 typedef	struct	s_player
 {
-	int			x;
-	int			y;
+	float			x;
+	float			y;
 	char		orient;
 	int			pos_count;
 	int			forward;
@@ -86,7 +86,8 @@ typedef struct	s_config
 	int			error;
 	t_player	p;
 	t_map		m;
-
+	t_vars		v;
+	t_data		img;
 }				t_config;
 
 # ifndef BUFFER_SIZE
@@ -147,7 +148,9 @@ int				get_next_line(int fd, char **line);
 **	MLX
 */
 void    		init_mlx(t_config *c);
-int				keyhook(t_config *c, t_vars *v, t_data *img);
+int				keyhook(t_config *c);
 void    		player_movement(int keycode, t_config *c);
+void			print_cube(t_config *c, int color, int p);
+void			minimap_to_window(t_config *c);
 
 #endif
