@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/09 14:44:13 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/10 12:06:56 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		launch_game(t_config *c)
 	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
 	minimap_to_window(c);
 	keyhook(c);
+	player_movement(c);
 	return (1);
 }
 

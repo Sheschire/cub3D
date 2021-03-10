@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/09 13:56:21 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:30:08 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 # include <../mlx/mlx.h>
+# include <math.h>
 
 # define W 13
 # define A 0
@@ -32,6 +33,8 @@
 # define DOWN_ARROW 125
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
+# define ESC 53
+# define DIST 0.1
 
 typedef struct  s_vars {
     void        *mlx;
@@ -52,8 +55,7 @@ typedef	struct	s_player
 	float			y;
 	char		orient;
 	int			pos_count;
-	int			forward;
-	int			backward;
+	int			walk;
 	int			left;
 	int			right;
 	int			r_left;
@@ -149,9 +151,10 @@ int				get_next_line(int fd, char **line);
 */
 void    		init_mlx(t_config *c);
 int				keyhook(t_config *c);
-void    		player_movement(int keycode, t_config *c);
+int				key_press(int keycode, t_config *c);
+int				key_release(int keycode, t_config *c);
 void			print_cube(t_config *c, int color, int p);
 void			minimap_to_window(t_config *c);
-int				key_release(int keycode, t_config *c);
-
+void			player_movement(t_config *c);
+void			win_close(t_config *c);
 #endif

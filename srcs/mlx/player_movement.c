@@ -6,34 +6,43 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:38:23 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/09 14:45:42 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:31:31 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-/*
-int		is_collision(t_config *c)
-{
-	
-}*/
 
-void    player_movement(int keycode, t_config *c)
+void	is_collision(t_config *c)
 {
-	if (keycode == UP_ARROW || keycode == W)
-		c->p.y -= 0.2;
-	if (keycode == DOWN_ARROW || keycode == S)
-		c->p.y += 0.2;
-	if (keycode == A)
-		c->p.x -= 0.2;
-	if (keycode == D)
-		c->p.x += 0.2;
-//	mlx_hook(c->v.win, 3, 1L<<1, key_release, c);
-/*	if (keycode == UP_ARROW || keycode == W)
-		c->p.forward = 1;
-	if (keycode == DOWN_ARROW || keycode == S)
-		c->p.backward = 1;
-	if (keycode == A)
-		c->p.left = 1;
-	if (keycode == D)
-		c->p.right = 1;*/
+	int		y;
+	int		x;
+	int		y_ord;
+	int		x_abs;
+	
+	x = (int)floorf(c->p.x);
+	y = (int)floorf(c->p.y);
+	y_ord = (int)floorf(c->p.y + c->p.y / c->ord);
+	x_abs = (int)floorf(c->p.x + c->p.x / c->abs);
+	printf("y_ord = %d\nx_abs = %d\n", y_ord, x_abs);
+	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y_ord][x], "12")) && c->p.walk == 1)
+		c->p.y += DIST;
+	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y_ord][x], "12")) && c->p.walk == -1)
+		c->p.y -= DIST;
+	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y][x_abs], "12")) && c->p.left == 1)
+		c->p.x += DIST;
+	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y][x_abs], "12")) && c->p.right == 1)
+		c->p.x -= DIST;
+}
+
+void	player_movement(t_config *c)
+{
+	if (c->p.walk == 1)
+		c->p.y -= DIST;
+	if (c->p.walk == -1)
+		c->p.y += DIST;
+	if (c->p.left == 1)
+		c->p.x -= DIST;
+	if (c->p.right == 1)
+		c->p.x += DIST;
+	is_collision(c);
 }

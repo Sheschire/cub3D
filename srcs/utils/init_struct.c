@@ -6,11 +6,24 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:32:39 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/09 16:03:07 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_player(t_config *c)
+{
+	c->p.x = 0;
+	c->p.y = 0;
+	c->p.orient = 0;
+	c->p.pos_count = 0;
+	c->p.walk = 0;
+	c->p.left = 0;
+	c->p.right = 0;
+	c->p.r_left = 0;
+	c->p.r_right = 0;
+}
 
 void	ft_init_t_config(t_config *c)
 {
@@ -25,10 +38,7 @@ void	ft_init_t_config(t_config *c)
 	c->c_rgb = -1;
 	c->x = 0;
 	c->y = 0;
-	c->p.x = 0;
-	c->p.y = 0;
-	c->p.orient = 0;
-	c->p.pos_count = 0;
 	c->m.line = NULL;
 	c->m.map = NULL;
+	init_player(c);
 }
