@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:38:23 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/10 15:31:31 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:32:02 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	is_collision(t_config *c)
 	y = (int)floorf(c->p.y);
 	y_ord = (int)floorf(c->p.y + c->p.y / c->ord);
 	x_abs = (int)floorf(c->p.x + c->p.x / c->abs);
-	printf("y_ord = %d\nx_abs = %d\n", y_ord, x_abs);
+	printf("y_ord = %f\nx_abs = %f\n", c->p.y, c->p.x);
 	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y_ord][x], "12")) && c->p.walk == 1)
 		c->p.y += DIST;
 	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y_ord][x], "12")) && c->p.walk == -1)
