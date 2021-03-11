@@ -6,11 +6,16 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:38:23 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/10 16:32:02 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:53:51 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	update_angle(t_config *c)
+{
+	c->p.r_angle += c->p.r_dir * c->p.r_speed;
+}
 
 void	is_collision(t_config *c)
 {
@@ -21,28 +26,25 @@ void	is_collision(t_config *c)
 	
 	x = (int)floorf(c->p.x);
 	y = (int)floorf(c->p.y);
-	y_ord = (int)floorf(c->p.y + c->p.y / c->ord);
-	x_abs = (int)floorf(c->p.x + c->p.x / c->abs);
-	printf("y_ord = %f\nx_abs = %f\n", c->p.y, c->p.x);
-	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y_ord][x], "12")) && c->p.walk == 1)
-		c->p.y += DIST;
-	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y_ord][x], "12")) && c->p.walk == -1)
-		c->p.y -= DIST;
-	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y][x_abs], "12")) && c->p.left == 1)
-		c->p.x += DIST;
-	if ((is_in_set(c->m.map[y][x], "12") || is_in_set(c->m.map[y][x_abs], "12")) && c->p.right == 1)
-		c->p.x -= DIST;
+	if (is_in_set(c->m.map[y][x], "12") && c->p.walk == 1)
+		c->p.y += DIST * c->p.speed;
+	if (is_in_set(c->m.map[y][x], "12") && c->p.walk == -1)
+		c->p.y -= DIST * c->p.speed;
+	if (is_in_set(c->m.map[y][x], "12") && c->p.left == 1)
+		c->p.x += DIST * c->p.speed;
+	if (is_in_set(c->m.map[y][x], "12") && c->p.right == 1)
+		c->p.x -= DIST * c->p.speed;
 }
 
 void	player_movement(t_config *c)
 {
 	if (c->p.walk == 1)
-		c->p.y -= DIST;
+		c->p.y -= DIST * c->p.speed;
 	if (c->p.walk == -1)
-		c->p.y += DIST;
+		c->p.y += DIST * c->p.speed;
 	if (c->p.left == 1)
-		c->p.x -= DIST;
+		c->p.x -= DIST * c->p.speed;
 	if (c->p.right == 1)
-		c->p.x += DIST;
+		c->p.x += DIST * c->p.speed;
 	is_collision(c);
 }

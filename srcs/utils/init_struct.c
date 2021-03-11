@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/09 16:03:07 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/11 15:44:09 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ void	init_player(t_config *c)
 	c->p.walk = 0;
 	c->p.left = 0;
 	c->p.right = 0;
-	c->p.r_left = 0;
-	c->p.r_right = 0;
+	c->p.speed = 5;
+	c->p.dir_x = -1;
+	c->p.dir_y = 0;
+	c->p.plan_x = 0;
+	c->p.plan_y = 0.66;
+	c->p.r_angle = 3.14 / 2;
+	c->p.r_dir = 0;
+	c->p.r_speed = 2 * (3.14 / 180);
 }
 
 void	ft_init_t_config(t_config *c)

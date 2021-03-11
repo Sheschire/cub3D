@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/10 15:30:08 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:54:06 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
 # define ESC 53
-# define DIST 0.1
+# define DIST 0.01
 
 typedef struct  s_vars {
     void        *mlx;
@@ -58,8 +58,14 @@ typedef	struct	s_player
 	int			walk;
 	int			left;
 	int			right;
-	int			r_left;
-	int			r_right;
+	int			speed;
+	int			r_dir;
+	float		r_speed;
+	float		r_angle;
+	float		dir_x;
+	float		dir_y;
+	float		plan_x;
+	float		plan_y;
 }				t_player;
 
 typedef	struct	s_map
@@ -157,4 +163,5 @@ void			print_cube(t_config *c, int color, int p);
 void			minimap_to_window(t_config *c);
 void			player_movement(t_config *c);
 void			win_close(t_config *c);
+void			update_angle(t_config *c);
 #endif

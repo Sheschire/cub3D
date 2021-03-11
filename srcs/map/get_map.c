@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:42:10 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/05 10:27:42 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:21:05 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	greatest_x_y_max(t_config *c)
 	{
 		x = 0;
 		while (c->m.map[y][x])
+		{
+			if (c->m.map[y][x] == ' ')
+				c->m.map[y][x] = '1';
 			x++;
+		}
 		if (x > len)
 			len = x;
 		y++;

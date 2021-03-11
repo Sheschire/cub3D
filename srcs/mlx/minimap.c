@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/10 16:35:13 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/11 17:09:36 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,31 @@ void	print_cube(t_config *c, int color, int p)
 	}
 }
 
+void	print_ray(t_config *c)
+{
+	float	x;
+	float	y;
+	float	tmp_x;
+	float	tmp_y;
+	float	x_angle;
+	float	y_angle;
+	
+	update_angle(c);
+	x = c->p.x * c->abs;
+	y = c->p.y * c->ord;
+	x_angle = x + cos(c->p.r_angle) * 30;
+	y_angle = y + sin(c->p.r_angle) * 30;
+	tmp_x = x_angle;
+	tmp_y = y_angle;
+	while (tmp_y < y + 200)
+		pixel_put(&c->img, tmp_x, tmp_y++, 0x0055F267);
+	tmp_y = y_angle;
+	while (tmp_x < x + 200)
+		pixel_put(&c->img, tmp_x++, tmp_y, 0x0055F267);
+}
+
 void	minimap_to_window(t_config *c)
-{	
+{
 	c->y = 0;
 	while (c->y < c->y_max && c->y < c->r2)
 	{
@@ -67,6 +90,7 @@ void	minimap_to_window(t_config *c)
 		}
 		c->y++;
 	}
+	print_ray(c);
 	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
 	mlx_destroy_image(c->v.mlx, c->img.img);
 }
