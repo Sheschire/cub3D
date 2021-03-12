@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:38:23 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/11 16:53:51 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 14:53:27 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	update_angle(t_config *c)
 {
-	c->p.r_angle += c->p.r_dir * c->p.r_speed;
+	c->r.angle += c->r.dir * c->r.speed;
+	c->r.fov_angle = c->r.angle - (c->r.fov / 2);
 }
 
 void	is_collision(t_config *c)

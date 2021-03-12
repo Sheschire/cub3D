@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/11 16:54:06 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 15:55:35 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ typedef	struct	s_player
 	int			left;
 	int			right;
 	int			speed;
-	int			r_dir;
-	float		r_speed;
-	float		r_angle;
 	float		dir_x;
 	float		dir_y;
 	float		plan_x;
@@ -73,6 +70,17 @@ typedef	struct	s_map
 	char		*line;
 	char		**map;
 }				t_map;
+
+typedef struct	s_ray
+{
+	int			dir;
+	float		speed;
+	float		angle;
+	float		fov;
+	float		fov_angle;
+	int			n_rays;
+	int			wall_thick;
+}				t_ray;
 
 typedef struct	s_config
 {
@@ -96,6 +104,7 @@ typedef struct	s_config
 	t_map		m;
 	t_vars		v;
 	t_data		img;
+	t_ray		r;
 }				t_config;
 
 # ifndef BUFFER_SIZE
@@ -159,7 +168,7 @@ void    		init_mlx(t_config *c);
 int				keyhook(t_config *c);
 int				key_press(int keycode, t_config *c);
 int				key_release(int keycode, t_config *c);
-void			print_cube(t_config *c, int color, int p);
+void			print_cube(t_config *c, int color);
 void			minimap_to_window(t_config *c);
 void			player_movement(t_config *c);
 void			win_close(t_config *c);

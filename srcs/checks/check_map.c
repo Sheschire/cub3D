@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/11 11:19:02 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:29:42 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	tmp_print_check(t_config *c)
 	printf("C COLOR = %d\n\n", c->c_rgb);
 	printf("PLAYER CHECK\n\n");
 	printf("POSITION = %c\n", c->p.orient);
-	printf("x = %d\n", c->p.x);
-	printf("y = %d\n", c->p.y);
+	printf("x = %f\n", c->p.x);
+	printf("y = %f\n", c->p.y);
 }*/
 
 char	*space_to_join(t_config *c, char *map_y, int len)

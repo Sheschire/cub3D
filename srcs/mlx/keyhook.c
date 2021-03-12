@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/11 15:41:32 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:49:34 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		key_press(int keycode, t_config *c)
 	if (keycode == SHIFT)
 		c->p.speed = 10;
 	if (keycode == LEFT_ARROW)
-		c->p.r_dir = -1;
+		c->r.dir = -1;
 	if (keycode == RIGHT_ARROW)
-		c->p.r_dir = 1;
+		c->r.dir = 1;
 	return (1);
 }
 
@@ -52,9 +52,9 @@ int	key_release(int keycode, t_config *c)
 	if (keycode == SHIFT)
 		c->p.speed = 5;
 	if (keycode == LEFT_ARROW)
-		c->p.r_dir = 0;
+		c->r.dir = 0;
 	if (keycode == RIGHT_ARROW)
-		c->p.r_dir = 0;
+		c->r.dir = 0;
 	return (1);
 }
 
