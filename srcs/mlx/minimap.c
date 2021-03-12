@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/11 17:09:36 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 10:54:09 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,27 @@ void	print_ray(t_config *c)
 {
 	float	x;
 	float	y;
-	float	tmp_x;
-	float	tmp_y;
 	float	x_angle;
 	float	y_angle;
+	float	tmp_x;
+	float	tmp_y;
+	int		i;
 	
+	i = 1;
 	update_angle(c);
 	x = c->p.x * c->abs;
 	y = c->p.y * c->ord;
-	x_angle = x + cos(c->p.r_angle) * 30;
-	y_angle = y + sin(c->p.r_angle) * 30;
-	tmp_x = x_angle;
-	tmp_y = y_angle;
-	while (tmp_y < y + 200)
-		pixel_put(&c->img, tmp_x, tmp_y++, 0x0055F267);
-	tmp_y = y_angle;
-	while (tmp_x < x + 200)
-		pixel_put(&c->img, tmp_x++, tmp_y, 0x0055F267);
+	x_angle = x + cos(c->p.r_angle) * 100;
+	y_angle = y + sin(c->p.r_angle) * 100;
+	tmp_x = x;
+	tmp_y = y;
+	while (i < 100)
+	{
+		tmp_x = x + cos(c->p.r_angle) * i;
+		tmp_y = y + sin(c->p.r_angle) * i;
+		pixel_put(&c->img, tmp_x, tmp_y, 0x00000000);
+		i++;
+	}
 }
 
 void	minimap_to_window(t_config *c)
