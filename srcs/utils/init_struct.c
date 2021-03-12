@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 16:07:28 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 17:13:42 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void	init_ray(t_config *c)
 	c->r.speed = 2 * (3.14 / 180);
 	c->r.angle = 0;
 	c->r.dir = 0;
-	c->r.fov = 60 * (3.14 / 180);
+	c->r.fov = 90 * (3.14 / 180);
 	c->r.fov_angle = 0;
 	c->r.n_rays = 0;
+	c->r.hit_x = 0;
+	c->r.hit_y = 0;
 }
 
 void	ft_init_t_config(t_config *c)

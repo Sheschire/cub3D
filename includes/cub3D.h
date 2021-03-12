@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 15:55:35 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/12 17:13:27 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct	s_ray
 	float		fov_angle;
 	int			n_rays;
 	int			wall_thick;
+	int			hit_x;
+	int			hit_y;
 }				t_ray;
 
 typedef struct	s_config
