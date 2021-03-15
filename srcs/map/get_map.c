@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:42:10 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 13:43:39 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 12:39:29 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@ void	ft_get_player(t_config *c, int x, int y)
 	c->p.y = y;
 	c->p.orient = c->m.map[y][x];
 	c->m.map[y][x] = '0';
-	if (c->p.orient == 'N')
-		c->r.angle = 3.14 * 1.5;
-	if (c->p.orient == 'S')
-		c->r.angle = 3.14 / 2;
-	if (c->p.orient == 'W')
-		c->r.angle = 3.14;
-	if (c->p.orient == 'E')
-		c->r.angle = 0;
 }
 
 void	get_map(char *line, t_config *c)

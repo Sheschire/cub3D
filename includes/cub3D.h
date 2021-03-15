@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 17:13:27 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:26:40 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define RIGHT_ARROW 124
 # define ESC 53
 # define DIST 0.01
+# define PI 3.14159265358979323846
 
 typedef struct  s_vars {
     void        *mlx;
@@ -58,7 +59,7 @@ typedef	struct	s_player
 	int			walk;
 	int			left;
 	int			right;
-	int			speed;
+	float		speed;
 	float		dir_x;
 	float		dir_y;
 	float		plan_x;
@@ -80,8 +81,11 @@ typedef struct	s_ray
 	float		fov_angle;
 	int			n_rays;
 	int			wall_thick;
-	int			hit_x;
-	int			hit_y;
+	float		hit_x;
+	float		hit_y;
+	float		dist;
+	int			face_y;
+	int			face_x;
 }				t_ray;
 
 typedef struct	s_config
@@ -167,12 +171,18 @@ int				get_next_line(int fd, char **line);
 **	MLX
 */
 void    		init_mlx(t_config *c);
+void			pixel_put(t_data *data, int x, int y, int color);
 int				keyhook(t_config *c);
 int				key_press(int keycode, t_config *c);
 int				key_release(int keycode, t_config *c);
-void			print_cube(t_config *c, int color);
 void			minimap_to_window(t_config *c);
-void			player_movement(t_config *c);
+void			print_cube(t_config *c, int color);
 void			win_close(t_config *c);
+
+/*
+**	RAYCAST
+*/
 void			update_angle(t_config *c);
+void			print_fov(t_config *c);
+void			player_movement(t_config *c);
 #endif

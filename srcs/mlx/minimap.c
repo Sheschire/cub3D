@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 16:17:45 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:22:01 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,45 +65,6 @@ void	print_player(t_config *c)
 			pixel_put(&c->img, x, y, 0x00000000);
 			angle += 0.1;
 		}
-		i++;
-	}
-}
-
-void	print_ray(t_config *c)
-{
-	float	x;
-	float	y;
-	float	tmp_x;
-	float	tmp_y;
-	int		i;
-	
-	i = 0;
-	x = c->p.x * c->abs;
-	y = c->p.y * c->ord;
-	tmp_x = x;
-	tmp_y = y;
-	while (!is_in_set(c->m.map[(int)floorf(tmp_y / c->ord)][(int)floorf(tmp_x / c->abs)], "12"))
-	{
-		tmp_x = x + cos(c->r.fov_angle) * i;
-		tmp_y = y + sin(c->r.fov_angle) * i;
-		pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
-		i++;
-	}
-}
-
-void	print_fov(t_config *c)
-{
-	float	fov_angle;
-	int		i;
-	
-	c->r.wall_thick = 50;
-	c->r.n_rays = c->r1 / c->r.wall_thick;
-	update_angle(c);
-	i = 0;
-	while (i < c->r.n_rays)
-	{
-		print_ray(c);
-		c->r.fov_angle += c->r.fov / c->r.n_rays;
 		i++;
 	}
 }

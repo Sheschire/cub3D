@@ -15,7 +15,8 @@ SRCS	=	./srcs/checks/check_config.c\
 			./srcs/cub3d.c\
 			./srcs/mlx/minimap.c\
 			./srcs/mlx/keyhook.c\
-			./srcs/mlx/player_movement.c
+			./srcs/mlx/player_movement.c\
+			./srcs/mlx/raycast.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang

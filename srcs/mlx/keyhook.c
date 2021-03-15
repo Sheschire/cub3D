@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 11:49:34 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:57:15 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		key_press(int keycode, t_config *c)
 	if (keycode == ESC)
 		win_close(c);
 	if (keycode == SHIFT)
-		c->p.speed = 10;
+		c->p.speed *= 2;
 	if (keycode == LEFT_ARROW)
 		c->r.dir = -1;
 	if (keycode == RIGHT_ARROW)
@@ -50,7 +50,7 @@ int	key_release(int keycode, t_config *c)
 	if (keycode == D)
 		c->p.right = 0;
 	if (keycode == SHIFT)
-		c->p.speed = 5;
+		c->p.speed /= 2;
 	if (keycode == LEFT_ARROW)
 		c->r.dir = 0;
 	if (keycode == RIGHT_ARROW)
