@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/15 16:26:40 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:38:46 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ typedef struct	s_ray
 	int			wall_thick;
 	float		hit_x;
 	float		hit_y;
-	float		dist;
+	float		delt_x;
+	float		delt_y;
+	float		dist_p_hit;
 	int			face_y;
 	int			face_x;
 }				t_ray;

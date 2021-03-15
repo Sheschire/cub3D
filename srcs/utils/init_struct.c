@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/15 16:00:27 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:47:07 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	init_ray(t_config *c)
 	c->r.n_rays = 0;
 	c->r.hit_x = 0;
 	c->r.hit_y = 0;
+	c->r.delt_y = 0;
+	c->r.delt_x = 0;
+	c->r.face_y = 0;
+	c->r.face_x = 0;
+	c->r.dist_p_hit = 0;
 }
 
 void	ft_init_t_config(t_config *c)

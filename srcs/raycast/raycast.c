@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/15 16:26:49 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:09:42 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,34 @@ void	print_ray(t_config *c)
 	}
 }
 
+void	update_hit(t_config *c)
+{
+	c->r.hit_y = (int)floorf(c->p.y / c->ord) * c->ord;
+	if (c->r.face_y == -1)
+		c->r.hit_y += c->ord;
+	c->r.hit_x = c->p.x + (c->r.hit_y - c->p.y) / tan(c->r.angle);
+	c->r.delt_y = c->ord;
+	if (c->r.face_y == 1)
+		c->r.delt_y *= -1;
+	c->r.delt_x = c->abs / tan(c->r.angle);
+	if (c->r.face_x == -1 && c->delt_x > 0)
+		c->r.delt_x *= -1;
+	if (c->r.face_x == 1 && c->delt_x < 0)
+		c->r.delt_x *= -1;
+}
+
 void	print_fov(t_config *c)
 {
 	int		i;
 	
-	c->r.wall_thick = 50;
-	c->r.n_rays = c->r1 / c->r.wall_thick;
+//	c->r.wall_thick = 50;
+	c->r.n_rays = c->r1 ;/// c->r.wall_thick;
 	update_angle(c);
 	i = 0;
 	while (i < c->r.n_rays)
 	{
 		print_ray(c);
+		update_hit(c);
 		c->r.fov_angle += c->r.fov / c->r.n_rays;
 		i++;
 	}
