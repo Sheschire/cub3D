@@ -16,7 +16,9 @@ SRCS	=	./srcs/checks/check_config.c\
 			./srcs/raycast/minimap.c\
 			./srcs/raycast/keyhook.c\
 			./srcs/raycast/player_movement.c\
-			./srcs/raycast/raycast.c
+			./srcs/raycast/raycast.c\
+			./srcs/raycast/horizontal_hit.c\
+			./srcs/raycast/vertical_hit.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang

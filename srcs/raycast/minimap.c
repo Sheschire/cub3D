@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/15 16:22:01 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/18 09:45:45 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,32 @@ void	print_player(t_config *c)
 		i++;
 	}
 }
+void	print_grid(t_config *c)
+{
+	float	x;
+	float	y;
+	float	tmp_y;
+	float	tmp_x;
+	float	x_abs;
+	float	y_ord;
+	
+	x = c->x * c->abs;
+	y = c->y * c->ord;
+	x_abs = x + c->abs;
+	y_ord = y + c->ord;
+	tmp_y = 0;
+	while (tmp_y < y_ord && tmp_y < c->r2)
+	{
+		tmp_x = x;
+		while (tmp_x < x_abs && tmp_x < c->r1)
+			pixel_put(&c->img, tmp_x++, y, 0x0000000);
+		while (tmp_y < y_ord && tmp_y < c->r2)
+		{
+			pixel_put(&c->img, tmp_x, tmp_y++, 0x0000000);
+		}
+		tmp_y += c->ord;
+	}
+}
 
 void	minimap_to_window(t_config *c)
 {
@@ -83,6 +109,7 @@ void	minimap_to_window(t_config *c)
 				print_cube(c, 0x00E0DABD);
 			if (c->m.map[c->y][c->x] == '2')
 				print_cube(c, 0x002F29E0);
+			print_grid(c);
 			c->x++;
 		}
 		c->y++;

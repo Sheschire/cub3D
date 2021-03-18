@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/15 16:38:46 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/17 16:20:28 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define RIGHT_ARROW 124
 # define ESC 53
 # define DIST 0.01
-# define PI 3.14159265358979323846
+# define PI 3.1415926
 
 typedef struct  s_vars {
     void        *mlx;
@@ -54,6 +54,8 @@ typedef	struct	s_player
 {
 	float			x;
 	float			y;
+	float			mx;
+	float			my;
 	char		orient;
 	int			pos_count;
 	int			walk;
@@ -81,13 +83,17 @@ typedef struct	s_ray
 	float		fov_angle;
 	int			n_rays;
 	int			wall_thick;
-	float		hit_x;
-	float		hit_y;
+	float		xi;
+	float		yi;
 	float		delt_x;
 	float		delt_y;
 	float		dist_p_hit;
 	int			face_y;
 	int			face_x;
+	float		h_hitx;
+	float		h_hity;
+	float		v_hitx;
+	float		v_hity;
 }				t_ray;
 
 typedef struct	s_config
@@ -185,6 +191,11 @@ void			win_close(t_config *c);
 **	RAYCAST
 */
 void			update_angle(t_config *c);
+void			print_ray(t_config *c);
 void			print_fov(t_config *c);
 void			player_movement(t_config *c);
+void			horizontal_hit(t_config *c);
+void			vertical_hit(t_config *c);
+void			reset_ray(t_config *c);
+void    		find_dist_p_hit(t_config *c);
 #endif

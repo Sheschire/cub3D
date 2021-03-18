@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:19:50 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/16 12:21:49 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		check_colors(char **rgb)
 		return (0);
 	return (1);
 }
-
+/*
 int		ft_check_xpm(t_config *c)
 {
 	int fd;
@@ -84,7 +84,7 @@ int		ft_check_xpm(t_config *c)
 	if (fd < 0)
 		return (0);
 	return (1);
-}
+}*/
 
 int		check_param(t_config *c, char **param, char *line)
 {
@@ -100,12 +100,10 @@ int		check_param(t_config *c, char **param, char *line)
 		return (0);
 	}
 	ft_get_path(c, param);
-/*
-**	if (!ft_check_xpm(conf))
-**	{
-**		ft_free_textures(conf);
-**		f_error("xpm", ERR);
-**	}
-*/
+/*	if (!ft_check_xpm(c))
+	{
+		ft_free_textures(c);
+		f_error("xpm", c);
+	}*/
 	return (1);
 }

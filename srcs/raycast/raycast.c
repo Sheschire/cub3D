@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/15 17:09:42 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/17 17:05:41 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	update_angle(t_config *c)
 		c->r.angle -= 2 * PI;
 	if (c->r.angle < 2 * -PI)
 		c->r.angle += 2 * PI;
+//	c->r.fov_angle = remainder(c->r.fov, 2 * PI);
 	if (c->r.angle < 0)
 		c->r.angle += 2 * PI;
 	if (c->r.angle > 0 && c->r.angle < PI)
@@ -30,7 +31,6 @@ void	update_angle(t_config *c)
 		c->r.face_x = 1;
 	else
 		c->r.face_x = -1;
-//	printf("face_x = %d\nface_y = %d\nangle = %f\n", c->r.face_x, c->r.face_y, c->r.angle);
 }
 
 void	print_ray(t_config *c)
@@ -40,6 +40,38 @@ void	print_ray(t_config *c)
 	float	tmp_x;
 	float	tmp_y;
 	int		i;
+
+	i = 0;
+	x = c->p.x * c->abs;
+	y = c->p.y * c->ord;
+	tmp_x = x;
+	tmp_y = y;
+	printf("tmp_x = %f\ntmp_y = %f\n", tmp_x, tmp_y);
+	printf("dist = %f\n", c->r.dist_p_hit);
+	while (i < c->r.dist_p_hit)
+	{
+		tmp_x = x + cos(c->r.angle) * i;
+		tmp_y = y + sin(c->r.angle) * i;
+		pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
+		i++;
+	}
+}
+
+void	cast_ray(t_config *c, int column)
+{
+	update_angle(c);
+	horizontal_hit(c);
+//	printf("h_hitx = %f\nh_hity = %f\n", c->r.h_hitx, c->r.h_hity);
+	vertical_hit(c);
+	find_dist_p_hit(c);
+	printf("dist = %f\n", c->r.dist_p_hit);
+//	print_ray(c);
+
+	float	x;
+	float	y;
+	float	tmp_x;
+	float	tmp_y;
+	float	i;
 	
 	i = 0;
 	x = c->p.x * c->abs;
@@ -48,42 +80,43 @@ void	print_ray(t_config *c)
 	tmp_y = y;
 	while (!is_in_set(c->m.map[(int)floorf(tmp_y / c->ord)][(int)floorf(tmp_x / c->abs)], "12"))
 	{
-		tmp_x = x + cos(c->r.fov_angle) * i;
-		tmp_y = y + sin(c->r.fov_angle) * i;
+		tmp_x = x + cos(c->r.angle) * i;
+		tmp_y = y + sin(c->r.angle) * i;
 		pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
-		i++;
+		i += 1;
 	}
+//	c->r.hitx = tmp_x / c->abs;
+//	c->r.hity = tmp_x / c->ord;
+//	c->r.dist_p_hit = (float)i;
+//	printf("hitx = %f\nhity = %f\n", c->r.hitx, c->r.hity);
+//	printf("dist = %f\n", c->r.dist_p_hit);*/
 }
 
-void	update_hit(t_config *c)
+void	reset_ray(t_config *c)
 {
-	c->r.hit_y = (int)floorf(c->p.y / c->ord) * c->ord;
-	if (c->r.face_y == -1)
-		c->r.hit_y += c->ord;
-	c->r.hit_x = c->p.x + (c->r.hit_y - c->p.y) / tan(c->r.angle);
-	c->r.delt_y = c->ord;
-	if (c->r.face_y == 1)
-		c->r.delt_y *= -1;
-	c->r.delt_x = c->abs / tan(c->r.angle);
-	if (c->r.face_x == -1 && c->delt_x > 0)
-		c->r.delt_x *= -1;
-	if (c->r.face_x == 1 && c->delt_x < 0)
-		c->r.delt_x *= -1;
+	c->r.face_y = 0;
+	c->r.face_x = 0;
+	c->r.h_hitx = 0;
+	c->r.h_hity = 0;
+	c->r.v_hitx = 0;
+	c->r.v_hity = 0;
+	c->r.xi = 0;
+	c->r.yi = 0;
+	c->r.dist_p_hit = 0;
 }
 
 void	print_fov(t_config *c)
 {
-	int		i;
-	
-//	c->r.wall_thick = 50;
-	c->r.n_rays = c->r1 ;/// c->r.wall_thick;
-	update_angle(c);
-	i = 0;
-	while (i < c->r.n_rays)
+	int		column;
+
+	c->r.n_rays = 1;
+//	update_angle(c);
+	column = 0;
+	while (column < c->r.n_rays)
 	{
-		print_ray(c);
-		update_hit(c);
+//		reset_ray(c);
+		cast_ray(c, column);
 		c->r.fov_angle += c->r.fov / c->r.n_rays;
-		i++;
+		column++;
 	}
 }
