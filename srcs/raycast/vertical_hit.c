@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 14:05:20 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/18 16:16:29 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/19 13:58:57 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ void    find_dist_p_hit(t_config *c)
 	py = c->p.y * c->ord;
 	dist_x = sqrt((c->r.h_hitx - px) * (c->r.h_hitx - px) + (c->r.h_hity - py) * (c->r.h_hity - py));
 	dist_y = sqrt((c->r.v_hitx - px) * (c->r.v_hitx - px) + (c->r.v_hity - py) * (c->r.v_hity - py));
+	if (c->r.h_hitx == 0.000 || c->r.h_hity == 0.000)
+		dist_x = 2147483647;
+	if (c->r.v_hitx == 0.000 || c->r.v_hity == 0.000)
+		dist_y = 2147483647;
+//	printf("distx = %f\ndisty = %f\n", dist_x, dist_y);
 	if (dist_x < dist_y)
 		c->r.dist_p_hit = dist_x;
-	else
+	if (dist_x > dist_y)
 		c->r.dist_p_hit = dist_y;
-//	printf("dist = %f\n", c->r.dist_p_hit / c->ord);
 }
 
 void	vertical_hit_2(t_config *c)
@@ -37,16 +41,15 @@ void	vertical_hit_2(t_config *c)
 	
 	nextx = c->r.xi;
 	nexty = c->r.yi;
-	while (nextx >= 0 && nextx <= c->r1 && nexty >= 0 && nexty <= c->r2)
+	while (nextx >= 0 && nextx < (c->x_max * c->abs) && nexty >= 0 && nexty < (c->y_max * c->ord))
 	{
 		if (c->r.face_x == -1)
 			nextx--;
-		if (is_in_set(c->m.map[(int)(nexty / c->ord)][(int)(nextx / c->abs)], "12") && nexty < c->r2 && nextx < c->r1)
+		if (is_in_set(c->m.map[(int)(nexty / c->ord)][(int)(nextx / c->abs)], "12"))
 		{
 			c->r.v_hitx = nextx;
 			c->r.v_hity = nexty;
-//			printf("V x = %f\n", c->r.h_hitx / c->abs);
-//			printf("V y = %f\n", c->r.h_hity / c->ord);
+			
 			break;
 		}
 		else
@@ -67,9 +70,7 @@ void	vertical_hit(t_config *c)
 	if (c->r.face_x == -1)
 		c->r.delt_x *= -1;
 	c->r.delt_y = c->ord * tan(c->r.fov_angle);
-	if (c->r.face_y == 1 && c->r.delt_y > 0)
-		c->r.delt_y *= -1;
-	if (c->r.face_y == -1 && c->r.delt_y < 0)
+	if ((c->r.face_y == 1 && c->r.delt_y > 0) || (c->r.face_y == -1 && c->r.delt_y < 0))
 		c->r.delt_y *= -1;
 	vertical_hit_2(c);
 }

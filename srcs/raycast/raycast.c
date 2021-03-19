@@ -6,13 +6,13 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/19 09:48:30 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/19 13:55:40 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	update_angle(t_config *c)
+void	update_ray(t_config *c)
 {
 	if (c->r.fov_angle > 2 * PI)
 		c->r.fov_angle -= 2 * PI;
@@ -47,28 +47,10 @@ void	print_ray(t_config *c)
 	{
 		tmp_x = x + cos(c->r.fov_angle) * i;
 		tmp_y = y + sin(c->r.fov_angle) * i;
-		pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
+		if (c->m.map[(int)floor(tmp_y / c->ord)][(int)floor(tmp_x / c->abs)] != '1')
+			pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
 		i++;
 	}
-	/*
-	float	x;
-	float	y;
-	float	tmp_x;
-	float	tmp_y;
-	float	i;
-	
-	i = 0;
-	x = c->p.x * c->abs;
-	y = c->p.y * c->ord;
-	tmp_x = x;
-	tmp_y = y;
-	while (!is_in_set(c->m.map[(int)floorf(tmp_y / c->ord)][(int)floorf(tmp_x / c->abs)], "12"))
-	{
-		tmp_x = x + cos(c->r.angle) * i;
-		tmp_y = y + sin(c->r.angle) * i;
-		pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
-		i += 1;
-	}*/
 }
 
 void	reset_ray(t_config *c)
@@ -87,12 +69,17 @@ void	reset_ray(t_config *c)
 }
 
 
-void	cast_ray(t_config *c, int column)
+void	cast_ray(t_config *c)
 {
 	horizontal_hit(c);
 	vertical_hit(c);
 	find_dist_p_hit(c);
 	print_ray(c);
+//	printf("V x = %f\n", c->r.v_hitx / c->abs);
+//			printf("V y = %f\n", c->r.v_hity / c->ord);
+//		printf("H x = %f\n", c->r.h_hitx / c->abs);
+//			printf("H y = %f\n", c->r.h_hity / c->ord);
+//	printf("dist = %f\n", c->r.dist_p_hit / c->ord);
 }
 
 void	print_fov(t_config *c)
@@ -106,8 +93,8 @@ void	print_fov(t_config *c)
 	while (column < c->r.n_rays)
 	{
 		reset_ray(c);
-		update_angle(c);
-		cast_ray(c, column);
+		update_ray(c);
+		cast_ray(c);
 		c->r.fov_angle += c->r.fov / c->r.n_rays;
 		column++;
 	}

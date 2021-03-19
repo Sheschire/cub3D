@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/18 12:01:31 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:54:02 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ void	print_grid(t_config *c)
 		while (tmp_x < x_abs && tmp_x < c->r1)
 			pixel_put(&c->img, tmp_x++, y, 0x0000000);
 		while (tmp_y < y_ord && tmp_y < c->r2)
-		{
 			pixel_put(&c->img, tmp_x, tmp_y++, 0x0000000);
-		}
 		tmp_y += c->ord;
 	}
 }
