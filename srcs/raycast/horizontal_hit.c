@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 14:05:32 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/17 17:04:56 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:17:40 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,28 @@ void	horizontal_hit_2(t_config *c)
 	{
 		if (c->r.face_y == 1)
 			nexty--;
-		if (is_in_set(c->m.map[(int)(nexty / c->ord + 0.0001)][(int)(nextx / c->abs + 0.0001)], "12"))
+		if (is_in_set(c->m.map[(int)(nexty / c->ord)][(int)(nextx / c->abs)], "12") && nexty < c->r2 && nextx < c->r1)
 		{
 			c->r.h_hitx = nextx;
 			c->r.h_hity = nexty;
-	//		printf("Hhitx = %f\n", c->r.h_hitx / c->abs);
-	//		printf("Hhity = %f\n", c->r.h_hity / c->ord);
+//			printf("H x = %f\n", c->r.h_hitx / c->abs);
+//			printf("H y = %f\n", c->r.h_hity / c->ord);
 			break;
 		}
 		else
 		{
 			nextx += c->r.delt_x;
-			nexty = c->r.delt_y;
+			nexty += c->r.delt_y;
 		}
 	}
 }
 
 void	horizontal_hit(t_config *c)
 {
-	c->r.yi = floor(c->p.y) * c->ord;
-//	printf("%f\n", c->r.yi);
-//	printf("c->p.y = %f\n", c->p.y);
-//	printf("c->ord = %f\n", c->ord);
-//	printf("yi = %f\n", c->r.yi);
+	c->r.yi = floor((c->p.y * c->ord) / c->ord) * c->ord;
 	if (c->r.face_y == -1)
 		c->r.yi += c->ord;
-	c->r.xi = c->p.x + (c->r.yi - c->p.y) / tan(c->r.fov_angle);
+	c->r.xi = (c->p.x * c->abs) + (c->r.yi - (c->p.y * c->ord)) / tan(c->r.fov_angle);
 	c->r.delt_y = c->ord;
 	if (c->r.face_y == 1)
 		c->r.delt_y *= -1;
