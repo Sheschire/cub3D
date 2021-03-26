@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 10:40:34 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/26 16:59:40 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	print_cube(t_config *c, int color)
 	float	y;
 	float	y_ord;
 	float	x_abs;
-	
-	x = c->x * c->abs ;//* c->scale;
-	y = c->y * c->abs ;//* c->scale;
-	x_abs = x + c->abs ;//* c->scale;
-	y_ord = y + c->abs ;//* c->scale;
+
+	x = c->x * (TILE / SCALE);// * c->scale;
+	y = c->y * (TILE / SCALE);// * c->scale;
+	x_abs = x + (TILE / SCALE);// * c->scale;
+	y_ord = y + (TILE / SCALE);// * c->scale;
 	while (y < y_ord && y < c->r2)
 	{
 		tmp_x = x;
@@ -48,9 +48,9 @@ void	print_player(t_config *c)
 	float	y;
 	float	angle;
 	int		i;
-	
-	x = c->p.x * c->abs ;//* c->scale;
-	y = c->p.y * c->abs ;//* c->scale;
+
+	x = c->p.x * (TILE / SCALE);
+	y = c->p.y * (TILE / SCALE);
 	radius = 4;
 	angle = 0;
 	i = 0;
@@ -60,8 +60,8 @@ void	print_player(t_config *c)
 		angle = 0;
 		while (angle <= 6.28)
 		{
-			x = (c->p.x * c->abs) + cos(angle) * i;
-			y = (c->p.y * c->abs) + sin(angle) * i;
+			x = (c->p.x * (TILE / SCALE)) + cos(angle) * i;
+			y = (c->p.y * (TILE / SCALE)) + sin(angle) * i;
 			pixel_put(&c->img, x, y, 0x00000000);
 			angle += 0.1;
 		}
@@ -77,10 +77,10 @@ void	print_grid(t_config *c)
 	float	x_abs;
 	float	y_ord;
 	
-	x = c->x * c->abs ;//* c->scale;
-	y = c->y * c->abs ;//* c->scale;
-	x_abs = x + c->abs ;//* c->scale;
-	y_ord = y + c->abs ;//* c->scale;
+	x = c->x * (TILE / SCALE);
+	y = c->y * (TILE / SCALE);
+	x_abs = x + (TILE / SCALE);
+	y_ord = y + (TILE / SCALE);
 	tmp_y = 0;
 	while (tmp_y < y_ord && tmp_y < c->r2)
 	{
@@ -89,7 +89,7 @@ void	print_grid(t_config *c)
 			pixel_put(&c->img, tmp_x++, y, 0x0000000);
 		while (tmp_y < y_ord && tmp_y < c->r2)
 			pixel_put(&c->img, tmp_x, tmp_y++, 0x0000000);
-		tmp_y += c->abs * c->scale;
+		tmp_y += TILE;
 	}
 }
 
@@ -107,7 +107,7 @@ void	minimap_to_window(t_config *c)
 				print_cube(c, 0x00E0DABD);
 			if (c->m.map[c->y][c->x] == '2')
 				print_cube(c, 0x002F29E0);
-			print_grid(c);
+//			print_grid(c);
 			c->x++;
 		}
 		c->y++;
@@ -122,6 +122,7 @@ int		launch_game(t_config *c)
 {
 	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
 	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
+	draw_3d(c);
 	minimap_to_window(c);
 	keyhook(c);
 	player_movement(c);

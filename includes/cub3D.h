@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 09:58:07 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/26 16:56:24 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define ESC 53
 # define DIST 0.01
 # define PI 3.1415926
+# define TILE 32
+# define SCALE 3
 
 typedef struct  s_vars {
     void        *mlx;
@@ -96,6 +98,12 @@ typedef struct	s_ray
 	float		v_hity;
 }				t_ray;
 
+typedef struct	s_world
+{
+	unsigned int	*rgb_buf;
+	
+}				t_world;
+
 typedef struct	s_config
 {
 	int			r1;
@@ -105,8 +113,8 @@ typedef struct	s_config
 	char		*we;
 	char		*ea;
 	char		*s;
-	int			f_rgb;
-	int			c_rgb;
+	unsigned int	f_rgb;
+	unsigned int	c_rgb;
 	int			x;
 	int			y;
 	int			x_max;
@@ -114,12 +122,13 @@ typedef struct	s_config
 	float		abs;
 	float		ord;
 	int			error;
-	float		scale;
+	int			tile;
 	t_player	p;
 	t_map		m;
 	t_vars		v;
 	t_data		img;
 	t_ray		r;
+	t_world		w;
 }				t_config;
 
 # ifndef BUFFER_SIZE
@@ -199,4 +208,10 @@ void			horizontal_hit(t_config *c);
 void			vertical_hit(t_config *c);
 void			reset_ray(t_config *c);
 void    		find_dist_p_hit(t_config *c);
+
+/*
+**	WORLD
+*/
+void    		draw_3d(t_config *c);
+void			init_world(t_config *c);
 #endif
