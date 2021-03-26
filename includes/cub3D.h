@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/19 12:33:11 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/26 09:58:07 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct	s_config
 	float		abs;
 	float		ord;
 	int			error;
+	float		scale;
 	t_player	p;
 	t_map		m;
 	t_vars		v;

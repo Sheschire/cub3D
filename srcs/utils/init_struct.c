@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/18 16:24:23 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/26 10:03:13 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_init_t_config(t_config *c)
 	c->y = 0;
 	c->m.line = NULL;
 	c->m.map = NULL;
+	c->scale = 0.2;
 	init_player(c);
 	init_ray(c);
 }

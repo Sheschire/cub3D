@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/19 11:54:02 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/26 10:40:34 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	print_cube(t_config *c, int color)
 	float	y_ord;
 	float	x_abs;
 	
-	x = c->x * c->abs;
-	y = c->y * c->ord;
-	x_abs = x + c->abs;
-	y_ord = y + c->ord;
+	x = c->x * c->abs ;//* c->scale;
+	y = c->y * c->abs ;//* c->scale;
+	x_abs = x + c->abs ;//* c->scale;
+	y_ord = y + c->abs ;//* c->scale;
 	while (y < y_ord && y < c->r2)
 	{
 		tmp_x = x;
@@ -49,8 +49,8 @@ void	print_player(t_config *c)
 	float	angle;
 	int		i;
 	
-	x = c->p.x * c->abs;
-	y = c->p.y * c->ord;
+	x = c->p.x * c->abs ;//* c->scale;
+	y = c->p.y * c->abs ;//* c->scale;
 	radius = 4;
 	angle = 0;
 	i = 0;
@@ -61,7 +61,7 @@ void	print_player(t_config *c)
 		while (angle <= 6.28)
 		{
 			x = (c->p.x * c->abs) + cos(angle) * i;
-			y = (c->p.y * c->ord) + sin(angle) * i;
+			y = (c->p.y * c->abs) + sin(angle) * i;
 			pixel_put(&c->img, x, y, 0x00000000);
 			angle += 0.1;
 		}
@@ -77,10 +77,10 @@ void	print_grid(t_config *c)
 	float	x_abs;
 	float	y_ord;
 	
-	x = c->x * c->abs;
-	y = c->y * c->ord;
-	x_abs = x + c->abs;
-	y_ord = y + c->ord;
+	x = c->x * c->abs ;//* c->scale;
+	y = c->y * c->abs ;//* c->scale;
+	x_abs = x + c->abs ;//* c->scale;
+	y_ord = y + c->abs ;//* c->scale;
 	tmp_y = 0;
 	while (tmp_y < y_ord && tmp_y < c->r2)
 	{
@@ -89,7 +89,7 @@ void	print_grid(t_config *c)
 			pixel_put(&c->img, tmp_x++, y, 0x0000000);
 		while (tmp_y < y_ord && tmp_y < c->r2)
 			pixel_put(&c->img, tmp_x, tmp_y++, 0x0000000);
-		tmp_y += c->ord;
+		tmp_y += c->abs * c->scale;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 14:05:32 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/19 13:54:20 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/26 10:18:36 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	horizontal_hit_2(t_config *c)
 	
 	nextx = c->r.xi;
 	nexty = c->r.yi;
-	while (nextx >= 0 && nextx < (c->x_max * c->abs) && nexty >= 0 && nexty < (c->y_max * c->ord))
+	while (nextx >= 0 && nextx < (c->x_max * c->abs) && nexty >= 0 && nexty < (c->y_max * c->abs))
 	{
 		if (c->r.face_y == 1)
 			nexty--;
-		if (is_in_set(c->m.map[(int)(nexty / c->ord)][(int)(nextx / c->abs)], "12"))
+		if (is_in_set(c->m.map[(int)(nexty / c->abs)][(int)(nextx / c->abs)], "12"))
 		{
 			c->r.h_hitx = nextx;
 			c->r.h_hity = nexty;
@@ -40,11 +40,11 @@ void	horizontal_hit_2(t_config *c)
 
 void	horizontal_hit(t_config *c)
 {
-	c->r.yi = floor((c->p.y * c->ord) / c->ord) * c->ord;
+	c->r.yi = floor((c->p.y * c->abs) / c->abs) * c->abs;
 	if (c->r.face_y == -1)
-		c->r.yi += c->ord;
-	c->r.xi = (c->p.x * c->abs) + (c->r.yi - (c->p.y * c->ord)) / tan(c->r.fov_angle);
-	c->r.delt_y = c->ord;
+		c->r.yi += c->abs;
+	c->r.xi = (c->p.x * c->abs) + (c->r.yi - (c->p.y * c->abs)) / tan(c->r.fov_angle);
+	c->r.delt_y = c->abs;
 	if (c->r.face_y == 1)
 		c->r.delt_y *= -1;
 	c->r.delt_x = c->abs / tan(c->r.fov_angle);
