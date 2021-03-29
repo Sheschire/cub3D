@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:22:25 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 14:38:44 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:02:14 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void    draw_3d(t_config *c, int column)
     while (y < wall_bottom)
     {
         if (c->r.verthit == 0)
-            pixel_put(&c->img, column, y, 0x00D6C5CC);
+            pixel_put(&c->img, column, y, 0x00EEEEEE);
         else
-            pixel_put(&c->img, column, y, 0x00D6C5EE);
+            pixel_put(&c->img, column, y, 0x00FFFFFF);
         y++;
     }
 }
