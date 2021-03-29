@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 10:40:32 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:52:38 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	update_ray(t_config *c)
 	if (c->r.fov_angle < 0)
 		c->r.fov_angle += 2 * PI;
 	if (c->r.fov_angle > 0 && c->r.fov_angle < PI)
-		c->r.face_y = -1;
+		c->r.face_down = 1;
 	else
-		c->r.face_y = 1;
+		c->r.face_up = 1;
 	if (c->r.fov_angle < 0.5 * PI || c->r.fov_angle > 1.5 * PI)
-		c->r.face_x = 1;
+		c->r.face_right = 1;
 	else
-		c->r.face_x = -1;
+		c->r.face_left = 1;
 }
 
 void	print_ray(t_config *c)
@@ -55,17 +55,18 @@ void	print_ray(t_config *c)
 
 void	reset_ray(t_config *c)
 {
-	c->r.face_y = 0;
-	c->r.face_x = 0;
-	c->r.h_hitx = 0;
-	c->r.h_hity = 0;
-	c->r.v_hitx = 0;
-	c->r.v_hity = 0;
+	c->r.face_up = 0;
+	c->r.face_down = 0;
+	c->r.face_left = 0;
+	c->r.face_right = 0;
+	c->r.hitx = 0;
+	c->r.hity = 0;
 	c->r.xi = 0;
 	c->r.yi = 0;
 	c->r.delt_x = 0;
 	c->r.delt_y = 0;
-	c->r.dist_p_hit = 0;
+	c->r.dist_p_hit = 2147483647;
+	c->r.verthit = 0;
 }
 
 
@@ -73,13 +74,7 @@ void	cast_ray(t_config *c)
 {
 	horizontal_hit(c);
 	vertical_hit(c);
-	find_dist_p_hit(c);
-	print_ray(c);
-//	printf("V x = %f\n", c->r.v_hitx / TILE);
-//	printf("V y = %f\n", c->r.v_hity / c->ord);
-//	printf("H x = %f\n", c->r.h_hitx / TILE);
-//	printf("H y = %f\n", c->r.h_hity / c->ord);
-//	printf("dist = %f\n", c->r.dist_p_hit / c->ord);
+//	print_ray(c);
 }
 
 void	print_fov(t_config *c)

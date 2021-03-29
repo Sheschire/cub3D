@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 09:41:48 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:15:34 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	print_cube(t_config *c, int color)
 	float	y_ord;
 	float	x_abs;
 
-	x = c->x * (TILE / SCALE);// * c->scale;
-	y = c->y * (TILE / SCALE);// * c->scale;
-	x_abs = x + (TILE / SCALE);// * c->scale;
-	y_ord = y + (TILE / SCALE);// * c->scale;
+	x = c->x * (TILE / SCALE);
+	y = c->y * (TILE / SCALE);
+	x_abs = x + (TILE / SCALE);
+	y_ord = y + (TILE / SCALE);
 	while (y < y_ord && y < c->r2)
 	{
 		tmp_x = x;

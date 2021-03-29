@@ -6,37 +6,14 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:22:25 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 11:25:50 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:38:44 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    clear_rgb_buf(t_config *c, unsigned int color)
-{
-    int x;
-    int y;
-
-    x = 0;
-    while (x <c->r1)
-    {
-        y = 0;
-        while (y < c->r2)
-        {
-            c->w.rgb_buf[(c->r1 * y) + x] = color;
-            y++;
-        }
-        x++;
-    }
-}
-
 void    draw_3d(t_config *c, int column)
-{/*
-    unsigned int     color;
-
-    color = 0xFF000000;
-    init_world(c);
-    clear_rgb_buf(c, color);*/
+{
     float   dist_proj_plane;
     float   wall_height;
     float   perp_dist;
@@ -58,7 +35,10 @@ void    draw_3d(t_config *c, int column)
     y = wall_top;
     while (y < wall_bottom)
     {
-        c->img.addr[(c->r1 * y) + column] = (char)0xFFCCCCCC;
+        if (c->r.verthit == 0)
+            pixel_put(&c->img, column, y, 0x00D6C5CC);
+        else
+            pixel_put(&c->img, column, y, 0x00D6C5EE);
         y++;
     }
 }

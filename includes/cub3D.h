@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 10:40:50 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:52:06 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define DIST 0.01
 # define PI 3.1415926
 # define TILE 32
-# define SCALE 3
+# define SCALE 5
 
 typedef struct  s_vars {
     void        *mlx;
@@ -64,10 +64,6 @@ typedef	struct	s_player
 	int			left;
 	int			right;
 	float		speed;
-	float		dir_x;
-	float		dir_y;
-	float		plan_x;
-	float		plan_y;
 }				t_player;
 
 typedef	struct	s_map
@@ -90,12 +86,13 @@ typedef struct	s_ray
 	float		delt_x;
 	float		delt_y;
 	float		dist_p_hit;
-	int			face_y;
-	int			face_x;
-	float		h_hitx;
-	float		h_hity;
-	float		v_hitx;
-	float		v_hity;
+	int			face_up;
+	int			face_down;
+	int			face_left;
+	int			face_right;
+	float		hitx;
+	float		hity;
+	int			verthit;
 }				t_ray;
 
 typedef struct	s_world
@@ -207,7 +204,7 @@ void			player_movement(t_config *c);
 void			horizontal_hit(t_config *c);
 void			vertical_hit(t_config *c);
 void			reset_ray(t_config *c);
-void    		find_dist_p_hit(t_config *c);
+int        		is_wall(float y, float x, t_config *c);
 
 /*
 **	WORLD

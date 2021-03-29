@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 16:56:01 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:37:45 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	init_player(t_config *c)
 	c->p.left = 0;
 	c->p.right = 0;
 	c->p.speed = 0.05;
-	c->p.dir_x = -1;
-	c->p.dir_y = 0;
-	c->p.plan_x = 0;
-	c->p.plan_y = 0.66;
 }
 
 void	init_ray(t_config *c)
@@ -36,6 +32,7 @@ void	init_ray(t_config *c)
 	c->r.fov = 90 * (PI / 180);
 	c->r.fov_angle = 0;
 	c->r.n_rays = 0;
+	c->r.verthit = 0;
 }
 
 void	init_world(t_config *c)

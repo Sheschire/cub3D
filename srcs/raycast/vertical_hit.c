@@ -6,32 +6,11 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 14:05:20 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 14:16:40 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:51:58 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void    find_dist_p_hit(t_config *c)
-{
-    float	dist_x;
-	float	dist_y;
-	float	px;
-	float	py;
-
-	px = c->p.x * TILE;
-	py = c->p.y * TILE;
-	dist_x = sqrt((c->r.h_hitx - px) * (c->r.h_hitx - px) + (c->r.h_hity - py) * (c->r.h_hity - py));
-	dist_y = sqrt((c->r.v_hitx - px) * (c->r.v_hitx - px) + (c->r.v_hity - py) * (c->r.v_hity - py));
-	if (c->r.h_hitx == 0.000 || c->r.h_hity == 0.000)
-		dist_x = 2147483647;
-	if (c->r.v_hitx == 0.000 || c->r.v_hity == 0.000)
-		dist_y = 2147483647;
-	if (dist_x < dist_y)
-		c->r.dist_p_hit = dist_x;
-	if (dist_x > dist_y)
-		c->r.dist_p_hit = dist_y;
-}
 
 void	vertical_hit_2(t_config *c)
 {
@@ -42,12 +21,15 @@ void	vertical_hit_2(t_config *c)
 	nexty = c->r.yi;
 	while (nextx >= 0 && nextx < (c->x_max * TILE) && nexty >= 0 && nexty < (c->y_max * TILE))
 	{
-		if (c->r.face_x == -1)
-			nextx--;
-		if (is_in_set(c->m.map[(int)(nexty / TILE)][(int)(nextx / TILE)], "12"))
+		if (is_wall(nexty, nextx - c->r.face_left, c))
 		{
-			c->r.v_hitx = nextx;
-			c->r.v_hity = nexty;
+			if (c->r.dist_p_hit > hypot(nextx - (c->p.x * TILE), nexty - (c->p.y * TILE)))
+			{
+				c->r.hitx = nextx;
+				c->r.hity = nexty;
+				c->r.verthit = 1;
+				c->r.dist_p_hit = hypot(nextx - (c->p.x * TILE), nexty - (c->p.y * TILE));
+			}
 			break;
 		}
 		else
@@ -60,15 +42,15 @@ void	vertical_hit_2(t_config *c)
 
 void	vertical_hit(t_config *c)
 {
-	c->r.xi = floor((c->p.x * TILE) / TILE) * TILE;
-	if (c->r.face_x == 1)
+	c->r.xi = floor(c->p.x) * TILE;
+	if (c->r.face_right == 1)
 		c->r.xi += TILE;
 	c->r.yi = (c->p.y * TILE) + (c->r.xi - (c->p.x * TILE)) * tan(c->r.fov_angle);
 	c->r.delt_x = TILE;
-	if (c->r.face_x == -1)
+	if (c->r.face_left == 1)
 		c->r.delt_x *= -1;
 	c->r.delt_y = TILE * tan(c->r.fov_angle);
-	if ((c->r.face_y == 1 && c->r.delt_y > 0) || (c->r.face_y == -1 && c->r.delt_y < 0))
+	if ((c->r.face_up == 1 && c->r.delt_y > 0) || (c->r.face_down == 1 && c->r.delt_y < 0))
 		c->r.delt_y *= -1;
 	vertical_hit_2(c);
 }
