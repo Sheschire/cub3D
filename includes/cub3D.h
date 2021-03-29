@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 16:56:24 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 10:40:50 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ void    		find_dist_p_hit(t_config *c);
 /*
 **	WORLD
 */
-void    		draw_3d(t_config *c);
 void			init_world(t_config *c);
+void    		draw_background(t_config *c);
+void    		draw_3d(t_config *c, int column);
 #endif

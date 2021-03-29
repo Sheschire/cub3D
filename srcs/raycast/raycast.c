@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 17:04:52 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 10:40:32 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void	print_ray(t_config *c)
 	float	i;
 
 	i = 0;
-	x = c->p.x * 32;
-	y = c->p.y * 32;
+	x = c->p.x * (TILE / SCALE);
+	y = c->p.y * (TILE / SCALE);
 	tmp_x = x;
 	tmp_y = y;
-	while (i < c->r.dist_p_hit)
+	while (i < c->r.dist_p_hit / (TILE / SCALE))
 	{
 		tmp_x = x + cos(c->r.fov_angle) * i;
 		tmp_y = y + sin(c->r.fov_angle) * i;
-		if (c->m.map[(int)floor(tmp_y / TILE)][(int)floor(tmp_x / TILE)] != '1')
+		if (c->m.map[(int)floor(tmp_y / (TILE / SCALE))][(int)floor(tmp_x / (TILE / SCALE))] != '1')
 			pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
 		i++;
 	}
@@ -95,6 +95,7 @@ void	print_fov(t_config *c)
 		reset_ray(c);
 		update_ray(c);
 		cast_ray(c);
+		draw_3d(c, column);
 		c->r.fov_angle += c->r.fov / c->r.n_rays;
 		column++;
 	}

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:22:25 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/26 16:39:23 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:25:50 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,35 @@ void    clear_rgb_buf(t_config *c, unsigned int color)
     }
 }
 
-void    draw_background(t_config *c)
-{
-    int x;
-    int y;
-
-    y = 0;
-    while (y < c->r2)
-    {
-        x = 0;
-        while (x < c->r1)
-        {
-            if (y < c->r2 / 2)
-                pixel_put(&c->img, x, y, c->c_rgb);
-            else
-                pixel_put(&c->img, x, y, c->f_rgb);
-            x++;
-        }
-        y++;
-    }
-}
-
-void    draw_3d(t_config *c)
-{
+void    draw_3d(t_config *c, int column)
+{/*
     unsigned int     color;
 
     color = 0xFF000000;
-    draw_background(c);
-  //  clear_rgb_buf(c, color);
+    init_world(c);
+    clear_rgb_buf(c, color);*/
+    float   dist_proj_plane;
+    float   wall_height;
+    float   perp_dist;
+    int     wall_strip;
+    int     wall_top;
+    int     wall_bottom;
+    int     y;
+    
+    perp_dist = c->r.dist_p_hit * cos(c->r.fov_angle - c->r.angle);
+    dist_proj_plane = (c->r1 / 2) / tan(c->r.fov / 2);
+    wall_height = (TILE / perp_dist) * dist_proj_plane;
+    wall_strip = (int)wall_height;
+    wall_top = (c->r2 / 2) - (wall_strip / 2);
+    if (wall_top < 0)
+        wall_top = 0;
+    wall_bottom = (c->r2 / 2) + (wall_strip / 2);
+    if (wall_bottom > c->r2)
+        wall_bottom = c->r2;
+    y = wall_top;
+    while (y < wall_bottom)
+    {
+        c->img.addr[(c->r1 * y) + column] = (char)0xFFCCCCCC;
+        y++;
+    }
 }
