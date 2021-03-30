@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void    get_wall_values(t_config *c)
 {
@@ -57,9 +57,14 @@ void	apply_texture(t_config *c, int column)
 	{
 		offset_y = c->w.w_top + (c->w.w_height / 2) - (c->r2 / 2);
 		offset_y = offset_y * ((float)c->t[n_t].height / c->w.w_height);
-		color = c->t[n_t].addr[(c->t[n_t].width * offset_y) + offset_x];
-		if (color != 0x000000 && color != -16777216)
-			c->img.addr[(c->w.w_top * c->r1) + column] = color;
+		color = c->t[n_t].addr[(c->t[n_t].width * offset_y * 4) + offset_x * 4];
+		c->img.addr[(c->w.w_top * c->r1 * 4) + column * 4] = color;
+		color = c->t[n_t].addr[(c->t[n_t].width * offset_y * 4) + offset_x * 4 + 1];
+		c->img.addr[(c->w.w_top * c->r1 * 4) + column * 4 + 1] = color;
+		color = c->t[n_t].addr[(c->t[n_t].width * offset_y * 4) + offset_x * 4 + 2];
+		c->img.addr[(c->w.w_top * c->r1 * 4) + column * 4 + 2] = color;
+		color = c->t[n_t].addr[(c->t[n_t].width * offset_y * 4) + offset_x * 4 + 3];
+		c->img.addr[(c->w.w_top * c->r1 * 4) + column * 4 + 3] = color;
 		c->w.w_top++;
 	}
 }
@@ -67,7 +72,7 @@ void	apply_texture(t_config *c, int column)
 void    draw_3d(t_config *c, int column)
 {
 	get_wall_values(c);
-//	apply_texture(c, column);
+	apply_texture(c, column);
 /*	while (c->w.w_top < c->w.w_bot)
 	{
 		if (c->r.verthit == 0)

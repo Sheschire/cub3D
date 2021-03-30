@@ -68,7 +68,7 @@ typedef	struct	s_map
 typedef struct	s_texture
 {
 	void		*img;
-	int			*addr;
+	char		*addr;
 	int			height;
 	int			width;
 }				t_texture;
