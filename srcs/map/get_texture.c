@@ -6,25 +6,11 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:43:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:45:17 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 10:27:18 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_free_textures(t_config *c)
-{
-	if (c->so)
-		free(c->so);
-	if (c->no)
-		free(c->no);
-	if (c->we)
-		free(c->we);
-	if (c->ea)
-		free(c->ea);
-	if (c->s)
-		free(c->s);
-}
 
 void	ft_get_path(t_config *c, char **param)
 {

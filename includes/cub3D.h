@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 16:52:06 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 10:18:35 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,26 @@ typedef struct  s_data {
 	int         endian;
 }               t_data;
 
+typedef struct	s_world
+{
+	int			w_top;
+	int			w_bot;
+}				t_world;
+
+typedef	struct	s_map
+{
+	char		*line;
+	char		**map;
+}				t_map;
+
+typedef struct	s_texture
+{
+	void		*img;
+	int			*addr;
+	int			height;
+	int			width;
+}				t_texture
+
 typedef	struct	s_player
 {
 	float			x;
@@ -65,12 +85,6 @@ typedef	struct	s_player
 	int			right;
 	float		speed;
 }				t_player;
-
-typedef	struct	s_map
-{
-	char		*line;
-	char		**map;
-}				t_map;
 
 typedef struct	s_ray
 {
@@ -94,12 +108,6 @@ typedef struct	s_ray
 	float		hity;
 	int			verthit;
 }				t_ray;
-
-typedef struct	s_world
-{
-	unsigned int	*rgb_buf;
-	
-}				t_world;
 
 typedef struct	s_config
 {
@@ -126,6 +134,7 @@ typedef struct	s_config
 	t_data		img;
 	t_ray		r;
 	t_world		w;
+	t_texture	t;
 }				t_config;
 
 # ifndef BUFFER_SIZE

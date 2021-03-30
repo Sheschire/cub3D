@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/16 12:21:49 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 10:26:06 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,6 @@ int		check_colors(char **rgb)
 		return (0);
 	return (1);
 }
-/*
-int		ft_check_xpm(t_config *c)
-{
-	int fd;
-
-	if ((fd = (open(c->s, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(c->no, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(c->we, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(c->ea, O_RDONLY))) < 0)
-		close(fd);
-	if ((fd = (open(c->so, O_RDONLY))) < 0)
-		close(fd);
-	if (fd < 0)
-		return (0);
-	return (1);
-}*/
 
 int		check_param(t_config *c, char **param, char *line)
 {
@@ -100,10 +81,5 @@ int		check_param(t_config *c, char **param, char *line)
 		return (0);
 	}
 	ft_get_path(c, param);
-/*	if (!ft_check_xpm(c))
-	{
-		ft_free_textures(c);
-		f_error("xpm", c);
-	}*/
 	return (1);
 }

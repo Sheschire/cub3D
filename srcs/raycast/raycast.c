@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 16:59:26 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 09:18:40 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	print_ray(t_config *c)
 	{
 		tmp_x = x + cos(c->r.fov_angle) * i;
 		tmp_y = y + sin(c->r.fov_angle) * i;
-			if (c->m.map[(int)floor(tmp_y / (TILE / SCALE))][(int)floor(tmp_x / (TILE / SCALE))] != '1')
-		pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
+			if (c->m.map[(int)floor(tmp_y / (TILE / SCALE))][(int)floor(tmp_x / (TILE / SCALE))] != '1' && tmp_x < c->r1 && tmp_y < c->r2)
+				pixel_put(&c->img, tmp_x, tmp_y, 0x1AD08D);
 		i++;
 	}
 }
@@ -74,7 +74,7 @@ void	cast_ray(t_config *c)
 {
 	horizontal_hit(c);
 	vertical_hit(c);
-	print_ray(c);
+//	print_ray(c);
 }
 
 void	print_fov(t_config *c)
