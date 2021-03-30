@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 14:37:45 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 11:09:40 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ void	init_ray(t_config *c)
 	c->r.fov_angle = 0;
 	c->r.n_rays = 0;
 	c->r.verthit = 0;
-}
-
-void	init_world(t_config *c)
-{
-	c->w.rgb_buf = (unsigned int *) malloc(sizeof(unsigned int) * \
-	(unsigned int)c->r1 * (unsigned int)c->r2);	
 }
 
 void	ft_init_t_config(t_config *c)

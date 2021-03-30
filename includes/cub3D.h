@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/30 10:18:35 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 11:16:59 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_world
 {
 	int			w_top;
 	int			w_bot;
+	int			w_height;
 }				t_world;
 
 typedef	struct	s_map
@@ -70,7 +71,7 @@ typedef struct	s_texture
 	int			*addr;
 	int			height;
 	int			width;
-}				t_texture
+}				t_texture;
 
 typedef	struct	s_player
 {
@@ -134,7 +135,7 @@ typedef struct	s_config
 	t_data		img;
 	t_ray		r;
 	t_world		w;
-	t_texture	t;
+	t_texture	t[5];
 }				t_config;
 
 # ifndef BUFFER_SIZE
