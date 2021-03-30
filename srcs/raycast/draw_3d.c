@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:22:25 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/30 11:26:35 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/30 11:53:32 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	apply_texture(t_config *c, int column)
 void    draw_3d(t_config *c, int column)
 {
 	get_wall_values(c);
-	apply_texture(c, column);
+//	apply_texture(c, column);
 /*	while (c->w.w_top < c->w.w_bot)
 	{
 		if (c->r.verthit == 0)

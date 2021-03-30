@@ -1,15 +1,15 @@
     R      1920 1080
 
-NO      ../images/Lugia.png.xpm 
+NO      ./images/stone.xpm
 
 
-    SO ../images/Lugia.png.xpm  
+    SO ./images/stone.xpm 
 
-WE ../images/Lugia.png.xpm 
+WE ./images/stone.xpm
 
-EA ../images/Lugia.png.xpm  
+EA ./images/stone.xpm 
 
-S ../images/Lugia.png.xpm 
+S ./images/stone.xpm
 
 
 
