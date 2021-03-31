@@ -19,7 +19,8 @@ SRCS	=	./srcs/checks/check_config.c\
 			./srcs/raycast/raycast.c\
 			./srcs/raycast/horizontal_hit.c\
 			./srcs/raycast/vertical_hit.c\
-			./srcs/raycast/draw_3d.c
+			./srcs/raycast/draw_3d.c\
+			./srcs/raycast/draw_sprites.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang

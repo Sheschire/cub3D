@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/12 16:05:13 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/31 09:44:15 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,8 @@ void	ft_get_r(char *line, t_config *c)
 {
 	char	**r;
 
-	if (c->r1 || c->r2)
-	{
-		f_error("twice", c);
-		return ;
-	}
 	r = ft_split(line, ' ');
-	if (!check_r(r))
+	if (!check_r(r, c))
 	{
 		free_tab(r, line, ' ');
 		f_error("R", c);

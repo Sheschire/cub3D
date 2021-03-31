@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 14:05:32 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 16:51:21 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:38:23 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int        is_wall(float y, float x, t_config *c)
         y < 0 || y > c->y_max * TILE ||
         mapx > c->x_max - 1 || mapy > c->y_max - 1)
         return (1);
-    if (c->m.map[mapy][mapx] == '1' || c->m.map[mapy][mapx] == '2')
+    if (c->m.map[mapy][mapx] == '1')
         return (1);
     return (0);
 }

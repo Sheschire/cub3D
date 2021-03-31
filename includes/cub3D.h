@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/30 11:58:58 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:55:21 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define PI 3.1415926
 # define TILE 32
 # define SCALE 5
+# define NUM_SPRITES 1
 
 typedef struct  s_vars {
     void        *mlx;
@@ -85,6 +86,10 @@ typedef	struct	s_player
 	int			left;
 	int			right;
 	float		speed;
+	float		xdir;
+	float		ydir;
+	float		plany;
+	float		planx;
 }				t_player;
 
 typedef struct	s_ray
@@ -109,6 +114,23 @@ typedef struct	s_ray
 	float		hity;
 	int			verthit;
 }				t_ray;
+
+typedef struct	s_sprite
+{
+	int			topx;
+	int			topy;
+	int			botx;
+	int			boty;
+	int			screenx;
+	int			num;
+	int			width;
+	int			height;
+	float		size;
+	float		newy;
+	float		x;
+	float		y;
+	float		dist;
+}				t_sprite;
 
 typedef struct	s_config
 {
@@ -136,6 +158,7 @@ typedef struct	s_config
 	t_ray		r;
 	t_world		w;
 	t_texture	t[5];
+	t_sprite	sp[NUM_SPRITES];
 }				t_config;
 
 # ifndef BUFFER_SIZE
@@ -156,10 +179,11 @@ void			greatest_x_y_max(t_config *c);
 */
 char			*ft_config(int fd, t_config *c);
 int				check_config(t_config *c);
-int				check_r(char **r);
+int				check_r(char **r, t_config *c);
 int				check_colors(char **rgb);
 int				ft_check_xpm(t_config *c);
 int				check_param(t_config *c, char **param, char *line);
+void			player_orientation(t_config *c);
 
 /*
 **	Texture
@@ -222,4 +246,7 @@ int        		is_wall(float y, float x, t_config *c);
 void			init_world(t_config *c);
 void    		draw_background(t_config *c);
 void    		draw_3d(t_config *c, int column);
+void			draw_sprites(t_config *c);
+void			find_sprite(t_config *c);
+void		update_var_angle(t_config *c);
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/30 10:26:06 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/31 09:44:48 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		check_config(t_config *c)
 	return (0);
 }
 
-int		check_r(char **r)
+int		check_r(char **r, t_config *c)
 {
 	int	i;
 	int	error;
@@ -43,6 +43,8 @@ int		check_r(char **r)
 			error = 1;
 	if (error == 1)
 		return (0);
+	if ((c->r1 || c->r2) && r[0][0] == 'R')
+		f_error("twice", c);
 	return (1);
 }
 

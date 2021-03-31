@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:43:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/30 12:01:11 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:58:56 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	*get_texture_addr(t_config *c, int n, char *filename)
 	int		tmp[3];
 	char	*addr_value;
 
-	addr_value = 0;
+//	if (c->t[n].img)
+//		f_error("twice", c);
 	if (!(c->t[n].img = mlx_xpm_file_to_image(&c->img.img, filename, &c->t[n].width, &c->t[n].height)))
 		f_error("xpm", c);
 	addr_value = mlx_get_data_addr(c->t[n].img, &tmp[0], &tmp[1], &tmp[2]);
@@ -67,12 +68,6 @@ void	ft_get_texture(char *line, t_config *c)
 	int		i;
 
 	i = 0;
-	if ((*line == 'S' && c->s) || (*line == 'N' && c->no) ||\
-	(*line == 'E' && c->ea) || (*line == 'W' && c->we))
-	{
-		f_error("twice", c);
-		return ;
-	}
 	param = ft_split(line, ' ');
 	if (!check_param(c, param, line))
 		f_error("texture", c);

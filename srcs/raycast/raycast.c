@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 16:21:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/30 09:18:40 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:46:41 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,42 @@ void	update_ray(t_config *c)
 		c->r.face_right = 1;
 	else
 		c->r.face_left = 1;
+}
+
+void	player_orientation(t_config *c)
+{
+	if (c->p.orient == 'W')
+	{
+		c->r.angle = PI;
+		c->p.xdir = -1;
+		c->p.ydir = 0;
+		c->p.planx = 0;
+		c->p.plany = 0.66;
+	}
+	else if (c->p.orient == 'E')
+	{
+		c->r.angle = 0;
+		c->p.xdir = 1;
+		c->p.ydir = 0;
+		c->p.planx = 0;
+		c->p.plany = -0.66;
+	}
+	else if (c->p.orient == 'N')
+	{
+		c->r.angle = 1.5 * PI;
+		c->p.xdir = 0;
+		c->p.ydir = -1;
+		c->p.planx = -0.66;
+		c->p.plany = 0;
+	}
+	else if (c->p.orient == 'S')
+	{
+		c->r.angle = 0.5 * PI;
+		c->p.xdir = 0;
+		c->p.ydir = 1;
+		c->p.planx = 0.66;
+		c->p.plany = 0;
+	}
 }
 
 void	print_ray(t_config *c)
@@ -82,16 +118,16 @@ void	print_fov(t_config *c)
 	int		column;
 	
 	c->r.n_rays = c->r1;
-	c->r.angle += c->r.dir * c->r.speed;
-	c->r.fov_angle = c->r.angle - (c->r.fov / 2);
+//	c->r.angle += c->r.dir * c->r.speed;
 	column = 0;
 	while (column < c->r.n_rays)
 	{
+		c->r.fov_angle = c->r.angle + atan((column - c->r1 / 2) / ((c->r1 / 2) / tan(c->r.fov / 2)));
 		reset_ray(c);
 		update_ray(c);
 		cast_ray(c);
 		draw_3d(c, column);
-		c->r.fov_angle += c->r.fov / c->r.n_rays;
+		draw_sprites(c);
 		column++;
 	}
 }
