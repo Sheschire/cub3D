@@ -43,7 +43,7 @@ void	find_sprite(t_config *c)
 		x = -1;
 		while (++x < c->x_max)
 		{
-			if (is_in_set(c->m.map[y][x], "2345"))
+			if (is_in_set(c->m.map[y][x], "234567"))
 			{
 				init_sprite(c, c->n_sprite, x, y);
 				c->n_sprite++;
@@ -111,12 +111,14 @@ void	get_sprite_size(t_config *c, int i)
 {
 	float	coef;
 
-	if (c->sp[i].num == 2)
-		coef = 1;
-	else if (c->sp[i].num == 3 || c->sp[i].num == 5)
+	if (c->sp[i].num == 3 || c->sp[i].num == 5)
 		coef = 0.3;
+	else if (c->sp[i].num == 6)
+		coef = 1.5;
 	else if (c->sp[i].num == 4)
 		coef = 2;
+	else
+		coef = 1.6;
 	c->sp[i].size = TILE * coef * fabs((int)c->r2 / c->sp[i].newy);
 }
 

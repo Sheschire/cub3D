@@ -35,12 +35,6 @@ void	init_ray(t_config *c)
 	c->r.verthit = 0;
 }
 
-void	init_obj(t_config *c)
-{
-	c->obj.pokeflute = 0;
-	c->obj.pokeball = 0;
-}
-
 void	ft_init_t_config(t_config *c)
 {
 	c->r1 = 0;
@@ -53,6 +47,10 @@ void	ft_init_t_config(t_config *c)
 	c->s1 = NULL;
 	c->s2 = NULL;
 	c->s3 = NULL;
+	c->s4 = NULL;
+	c->s5 = NULL;
+	c->pokeflute = 0;
+	c->pokeball = 0;
 	c->f_rgb = -1;
 	c->c_rgb = -1;
 	c->x = 0;

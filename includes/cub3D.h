@@ -52,12 +52,12 @@ typedef struct  s_data {
 	int         endian;
 }               t_data;
 
-typedef struct	s_world
+typedef struct	s_wall
 {
 	int			w_top;
 	int			w_bot;
 	int			w_height;
-}				t_world;
+}				t_wall;
 
 typedef	struct	s_map
 {
@@ -131,12 +131,6 @@ typedef struct	s_sprite
 	float		dist;
 }				t_sprite;
 
-typedef struct	s_object
-{
-	int			pokeball;
-	int			pokeflute;
-}				t_object;
-
 typedef struct	s_config
 {
 	float		*buff;
@@ -150,6 +144,10 @@ typedef struct	s_config
 	char		*s1;
 	char		*s2;
 	char		*s3;
+	char		*s4;
+	char		*s5;
+	int			pokeflute;
+	int			pokeball;
 	unsigned int	f_rgb;
 	unsigned int	c_rgb;
 	int			x;
@@ -166,10 +164,9 @@ typedef struct	s_config
 	t_vars		v;
 	t_data		img;
 	t_ray		r;
-	t_world		w;
-	t_texture	t[5];
+	t_wall		w;
+	t_texture	t[10];
 	t_sprite	*sp;
-	t_object	obj;
 }				t_config;
 
 # ifndef BUFFER_SIZE
@@ -261,5 +258,4 @@ void			draw_sprites(t_config *c);
 void			find_sprite(t_config *c);
 void			update_var_angle(t_config *c);
 void			event(t_config *c);
-void			init_obj(t_config *c);
 #endif

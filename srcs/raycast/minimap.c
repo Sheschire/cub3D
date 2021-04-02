@@ -100,20 +100,21 @@ void	minimap_to_window(t_config *c)
 	while (c->y < c->y_max && c->y < c->r2)
 	{
 		c->x = 0;
-		while (c->x < c->x_max && c->x < c->r1)
+		while (c->x < 33 && c->x < c->r1)
 		{
 			if (c->m.map[c->y][c->x] == '1')
 				print_cube(c, 0x00D90F56);
 			if (c->m.map[c->y][c->x] == '0')
 				print_cube(c, 0x00E0DABD);
-			if (is_in_set(c->m.map[c->y][c->x], "2345"))
+			if (is_in_set(c->m.map[c->y][c->x], "234567"))
 				print_cube(c, 0x002F29E0);
 //			print_grid(c);
 			c->x++;
 		}
 		c->y++;
 	}
-	print_player(c);
+	if (c->p.x < 33)
+		print_player(c);
 }
 
 void    paint_floor_ceiling(t_config *c)
@@ -157,8 +158,7 @@ void    init_mlx(t_config *c)
 {
 	c->v.mlx = mlx_init();
 	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
-//	init_obj(c);
-	system("afplay route1mp3 &");
+	system("afplay ./sounds/route1mp3 &");
 	mlx_loop_hook(c->v.mlx, launch_game, c);
 	mlx_loop(c->v.mlx);
 }

@@ -12,32 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void	wall_collision(t_config *c)
-{
-	int		y;
-	int		x;
-	int		y_ord;
-	int		x_abs;
-	
-	x = (int)floorf(c->p.x);
-	y = (int)floorf(c->p.y);
-	if (is_in_set(c->m.map[y][x], "1") && (c->p.walk == 1 || c->p.walk == -1))
-	{
-		c->p.x -= cos(c->r.angle) * (c->p.walk * c->p.speed);
-		c->p.y -= sin(c->r.angle) * (c->p.walk * c->p.speed);
-	}
-	if (is_in_set(c->m.map[y][x], "1") && c->p.left == 1)
-	{
-		c->p.x -= cos(c->r.angle - (90 * (PI / 180))) * c->p.speed;
-		c->p.y -= sin(c->r.angle - (90 * (PI / 180))) * c->p.speed;
-	}
-	if (is_in_set(c->m.map[y][x], "1") && c->p.right == 1)
-	{
-		c->p.x -= cos(c->r.angle + (90 * (PI / 180))) * c->p.speed;
-		c->p.y -= sin(c->r.angle + (90 * (PI / 180))) * c->p.speed;
-	}
-}
-
 void	update_var_angle(t_config *c)
 {
 	float	tmpx;
@@ -61,7 +35,7 @@ void		update_player(t_config *c, float step, char var)
 	tmpx = (int)floor(c->p.x);
 	tmpy = (int)floor(c->p.y);
 	if (tmpx > c->x_max - 1 || tmpy > c->y_max - 1 || tmpx < 0 || tmpy < 0 ||
-	is_in_set(c->m.map[tmpy][tmpx], "124"))
+	is_in_set(c->m.map[tmpy][tmpx], "1247"))
 	{
 		if (var == 'x')
 			c->p.x = c->p.x - cos(c->r.angle) * step;
