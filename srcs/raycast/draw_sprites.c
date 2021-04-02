@@ -22,7 +22,7 @@ void	init_sprite(t_config *c, int n, int x, int y)
 	c->sp[n].newy = 0;
 	c->sp[n].x = x * TILE + TILE / 2;
 	c->sp[n].y = y * TILE + TILE / 2;
-	c->sp[n].dist = hypot(c->sp[n].x - c->p.x, c->sp[n].y - c->p.y);
+	c->sp[n].dist = hypot(c->sp[n].x - (c->p.x * TILE), c->sp[n].y - (c->p.y * TILE));
 	c->sp[n].num = c->m.map[y][x] - '0';
 	c->sp[n].height = c->t[c->sp[n].num + 2].height;
 	c->sp[n].width = c->t[c->sp[n].num + 2].width;
@@ -32,10 +32,13 @@ void	find_sprite(t_config *c)
 {
 	int	x;
 	int	y;
-	int	n;
 	
-	n = 0;
+	c->n_sprite = 0;
 	y = -1;
+	if (c->buff)
+		free(c->buff);
+	c->buff = malloc(sizeof(float) * c->r1);
+	ft_bzero(c->buff, sizeof(float) * c->r1);
 	while (++y < c->y_max)
 	{
 		x = -1;
@@ -43,8 +46,8 @@ void	find_sprite(t_config *c)
 		{
 			if (c->m.map[y][x] == '2')
 			{
-				init_sprite(c, n, x, y);
-				n++;
+				init_sprite(c, c->n_sprite, x, y);
+				c->n_sprite++;
 			}
 		}
 	}
@@ -55,8 +58,8 @@ void	update_dist_sprites(t_config *c)
 	int	i;
 	
 	i = -1;
-	while (++i < NUM_SPRITES)
-		c->sp[i].dist = hypot(c->sp[i].x - c->p.x, c->sp[i].y - c->p.y);
+	while (++i < c->n_sprite)
+		c->sp[i].dist = hypot(c->sp[i].x - (c->p.x * TILE), c->sp[i].y - (c->p.y * TILE));
 }
 
 void	sort_sprites(t_config *c)
@@ -67,7 +70,7 @@ void	sort_sprites(t_config *c)
 	t_sprite	tmp;
 	
 	sorted = 0;
-	n = NUM_SPRITES;
+	n = c->n_sprite;
 	update_dist_sprites(c);
 	while (sorted == 0)
 	{
@@ -96,8 +99,8 @@ void	get_newy(t_config *c, int i)
 	float	newx;
 	float	newy;
 
-	delt_x = c->sp[i].x - c->p.x;
-	delt_y = c->sp[i].y - c->p.y;
+	delt_x = c->sp[i].x - c->p.x * TILE;
+	delt_y = c->sp[i].y - c->p.y * TILE;
 	inv_det = 1.0 / ((c->p.planx * c->p.ydir) - (c->p.xdir * c->p.plany));
 	newx = inv_det * (c->p.ydir * delt_x - c->p.xdir * delt_y);
 	newy = inv_det * (-c->p.plany * delt_x + c->p.planx * delt_y);
@@ -150,18 +153,19 @@ void	draw_textures_sprite(t_sprite *sp, int x, int y, t_config *c)
 				(sp->width - 1) / sp->size) / 256;
 	while (y < sp->boty)
 	{
-		offsety = (y) * 256 - c->r2 * 128 + sp->size * 128;
+		offsety = y * 256 - c->r2 * 128 + sp->size * 128;
 		texty = ((offsety * sp->height) / sp->size) / 256;
 		if ((texty * sp->width) + textx < (int)sizeof(c->t[sp->num + 2].addr))
 			return ;
 		color = c->t[sp->num + 2].addr[(texty * sp->width * 4) + textx * 4];
-		c->img.addr[(y * c->r1 * 4) + x * 4] = color;
+		if (color != -16777216 && color != 0x000000)
+			c->img.addr[(y * c->r1 * 4) + x * 4] = color;
 		color = c->t[sp->num + 2].addr[(texty * sp->width * 4) + textx * 4 + 1];
-		c->img.addr[(y * c->r1 * 4) + x * 4 + 1] = color;
+		if (color != -16777216 && color != 0x000000)
+			c->img.addr[(y * c->r1 * 4) + x * 4 + 1] = color;
 		color = c->t[sp->num + 2].addr[(texty * sp->width * 4) + textx * 4 + 2];
-		c->img.addr[(y * c->r1 * 4) + x * 4 + 2] = color;
-		color = c->t[sp->num + 2].addr[(texty * sp->width * 4) + textx * 4 + 3];
-		c->img.addr[(y * c->r1 * 4) + x * 4 + 3] = color;
+		if (color != -16777216 && color != 0x000000)
+			c->img.addr[(y * c->r1 * 4) + x * 4 + 2] = color;
 		y++;
 	}
 }
@@ -169,12 +173,12 @@ void	draw_textures_sprite(t_sprite *sp, int x, int y, t_config *c)
 void	draw_one_sprite(t_sprite *sp, float newy, t_config *c)
 {
 	int	x;
-	int	y;
+	int	y;	
 
 	x = sp->topx;
 	while (x <= sp->botx)
 	{
-		if (newy > 0 && x > 0 && x < c->r1 && newy < sp->dist)
+		if (newy > 0 && x > 0 && x < c->r1 && newy < c->buff[x])
 		{
 			y = sp->topy;
 			draw_textures_sprite(sp, x, y, c);
@@ -183,29 +187,13 @@ void	draw_one_sprite(t_sprite *sp, float newy, t_config *c)
 	}
 }
 
-void	update_var_angle(t_config *c)
-{
-	float	tmpx;
-	float	tmpplanx;
-	float	tmpangle;
-
-	tmpx = c->p.xdir;
-	tmpplanx = c->p.planx;
-	tmpangle = c->r.angle;
-	c->p.xdir = c->p.xdir * cos(tmpangle) - c->p.ydir * sin(tmpangle);
-	c->p.ydir = tmpx * sin(tmpangle) + c->p.ydir * cos(tmpangle);
-	c->p.planx = c->p.planx * cos(tmpangle) - c->p.plany * sin(tmpangle);
-	c->p.plany = tmpplanx * sin(tmpangle) + c->p.plany * cos(tmpangle);
-}
-
 void	draw_sprites(t_config *c)
 {
 	int	i;
 
 	i = 0;
-	update_var_angle(c);
 	sort_sprites(c);
-	while (i < NUM_SPRITES)
+	while (i < c->n_sprite)
 	{
 		get_newy(c, i);
 		get_sprite_size(c, i);

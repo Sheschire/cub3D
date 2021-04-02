@@ -36,9 +36,8 @@
 # define ESC 53
 # define DIST 0.01
 # define PI 3.1415926
-# define TILE 32
+# define TILE 27
 # define SCALE 5
-# define NUM_SPRITES 1
 
 typedef struct  s_vars {
     void        *mlx;
@@ -134,6 +133,7 @@ typedef struct	s_sprite
 
 typedef struct	s_config
 {
+	float		*buff;
 	int			r1;
 	int			r2;
 	char		*no;
@@ -151,6 +151,7 @@ typedef struct	s_config
 	float		ord;
 	int			error;
 	int			tile;
+	int			n_sprite;
 	t_player	p;
 	t_map		m;
 	t_vars		v;
@@ -158,7 +159,7 @@ typedef struct	s_config
 	t_ray		r;
 	t_world		w;
 	t_texture	t[5];
-	t_sprite	sp[NUM_SPRITES];
+	t_sprite	*sp;
 }				t_config;
 
 # ifndef BUFFER_SIZE

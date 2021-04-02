@@ -26,10 +26,10 @@ void	init_player(t_config *c)
 
 void	init_ray(t_config *c)
 {
-	c->r.speed = 4 * (PI / 180);
+	c->r.speed = 2 * (PI / 180);
 	c->r.angle = 0;
 	c->r.dir = 0;
-	c->r.fov = 90 * (PI / 180);
+	c->r.fov = 66 * (PI / 180);
 	c->r.fov_angle = 0;
 	c->r.n_rays = 0;
 	c->r.verthit = 0;

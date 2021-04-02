@@ -12,12 +12,13 @@
 
 #include "../../includes/cub3d.h"
 
-void    get_wall_values(t_config *c)
+void    get_wall_values(t_config *c, int column)
 {
 	float   dist_proj_plane;
 	float   perp_dist;
 	
 	perp_dist = c->r.dist_p_hit * cos(c->r.fov_angle - c->r.angle);
+	c->buff[column] = perp_dist;
 	dist_proj_plane = (c->r1 / 2) / tan(c->r.fov / 2);
 	c->w.w_height = (TILE / perp_dist) * dist_proj_plane;
 	c->w.w_top = (c->r2 / 2) - (c->w.w_height / 2);
@@ -71,14 +72,6 @@ void	apply_texture(t_config *c, int column)
 
 void    draw_3d(t_config *c, int column)
 {
-	get_wall_values(c);
+	get_wall_values(c, column);
 	apply_texture(c, column);
-/*	while (c->w.w_top < c->w.w_bot)
-	{
-		if (c->r.verthit == 0)
-			pixel_put(&c->img, column, c->w.w_top, 0x00EEEEEE);
-		else
-			pixel_put(&c->img, column, c->w.w_top, 0x00FFFFFF);
-		c->w.w_top++;
-	}*/
 }

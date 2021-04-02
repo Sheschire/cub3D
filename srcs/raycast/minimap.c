@@ -68,6 +68,7 @@ void	print_player(t_config *c)
 		i++;
 	}
 }
+
 void	print_grid(t_config *c)
 {
 	float	x;
@@ -101,7 +102,7 @@ void	minimap_to_window(t_config *c)
 		c->x = 0;
 		while (c->x < c->x_max && c->x < c->r1)
 		{
-			if (c->m.map[c->y][c->x] == '1')
+			if (is_in_set(c->m.map[c->y][c->x], "19"))
 				print_cube(c, 0x00D90F56);
 			if (c->m.map[c->y][c->x] == '0')
 				print_cube(c, 0x00E0DABD);
@@ -112,13 +113,10 @@ void	minimap_to_window(t_config *c)
 		}
 		c->y++;
 	}
-	print_fov(c);
 	print_player(c);
-	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
-	mlx_destroy_image(c->v.mlx, c->img.img);
 }
 
-void    draw_background(t_config *c)
+void    paint_floor_ceiling(t_config *c)
 {
     int x;
     int y;
@@ -143,10 +141,14 @@ int		launch_game(t_config *c)
 {
 	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
 	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
-	draw_background(c);
-	minimap_to_window(c);
 	keyhook(c);
 	player_movement(c);
+	paint_floor_ceiling(c);
+	print_fov(c);
+	draw_sprites(c);
+	minimap_to_window(c);
+	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
+	mlx_destroy_image(c->v.mlx, c->img.img);	
 	return (1);
 }
 

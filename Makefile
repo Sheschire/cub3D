@@ -24,7 +24,7 @@ SRCS	=	./srcs/checks/check_config.c\
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-g -Wall -Wextra -Werror
 AR		=	ar rc
 RM		=	rm -f
 

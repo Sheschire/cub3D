@@ -23,7 +23,7 @@ int        is_wall(float y, float x, t_config *c)
         y < 0 || y > c->y_max * TILE ||
         mapx > c->x_max - 1 || mapy > c->y_max - 1)
         return (1);
-    if (c->m.map[mapy][mapx] == '1')
+    if (is_in_set(c->m.map[mapy][mapx], "1"))
         return (1);
     return (0);
 }

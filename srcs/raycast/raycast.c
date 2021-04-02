@@ -118,7 +118,6 @@ void	print_fov(t_config *c)
 	int		column;
 	
 	c->r.n_rays = c->r1;
-//	c->r.angle += c->r.dir * c->r.speed;
 	column = 0;
 	while (column < c->r.n_rays)
 	{
@@ -127,7 +126,6 @@ void	print_fov(t_config *c)
 		update_ray(c);
 		cast_ray(c);
 		draw_3d(c, column);
-		draw_sprites(c);
 		column++;
 	}
 }
