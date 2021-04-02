@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 		f_error("fd", &c);
 	ft_check_map(fd, &c);
 	player_orientation(&c);
-	c.sp = (t_sprite *) malloc(sizeof(t_sprite) * 50);
+//	c.sp = (t_sprite *) malloc(sizeof(t_sprite) * 50);
 	find_sprite(&c);
 	init_mlx(&c);
 	return (0);

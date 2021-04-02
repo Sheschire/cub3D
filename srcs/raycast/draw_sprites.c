@@ -32,8 +32,9 @@ void	find_sprite(t_config *c)
 {
 	int	x;
 	int	y;
+	int	n;
 	
-	c->n_sprite = 0;
+	n = 0;
 	y = -1;
 	if (c->buff)
 		free(c->buff);
@@ -46,8 +47,8 @@ void	find_sprite(t_config *c)
 		{
 			if (c->m.map[y][x] == '2')
 			{
-				init_sprite(c, c->n_sprite, x, y);
-				c->n_sprite++;
+				init_sprite(c, n, x, y);
+				n++;
 			}
 		}
 	}
@@ -58,7 +59,7 @@ void	update_dist_sprites(t_config *c)
 	int	i;
 	
 	i = -1;
-	while (++i < c->n_sprite)
+	while (++i < NUM_SPRITES)
 		c->sp[i].dist = hypot(c->sp[i].x - (c->p.x * TILE), c->sp[i].y - (c->p.y * TILE));
 }
 
@@ -70,7 +71,7 @@ void	sort_sprites(t_config *c)
 	t_sprite	tmp;
 	
 	sorted = 0;
-	n = c->n_sprite;
+	n = NUM_SPRITES;
 	update_dist_sprites(c);
 	while (sorted == 0)
 	{
@@ -193,7 +194,7 @@ void	draw_sprites(t_config *c)
 
 	i = 0;
 	sort_sprites(c);
-	while (i < c->n_sprite)
+	while (i < NUM_SPRITES)
 	{
 		get_newy(c, i);
 		get_sprite_size(c, i);
