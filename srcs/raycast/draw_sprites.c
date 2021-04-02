@@ -32,9 +32,7 @@ void	find_sprite(t_config *c)
 {
 	int	x;
 	int	y;
-	int	n;
-	
-	n = 0;
+
 	y = -1;
 	if (c->buff)
 		free(c->buff);
@@ -45,10 +43,10 @@ void	find_sprite(t_config *c)
 		x = -1;
 		while (++x < c->x_max)
 		{
-			if (c->m.map[y][x] == '2')
+			if (is_in_set(c->m.map[y][x], "2345"))
 			{
-				init_sprite(c, n, x, y);
-				n++;
+				init_sprite(c, c->n_sprite, x, y);
+				c->n_sprite++;
 			}
 		}
 	}
@@ -59,7 +57,7 @@ void	update_dist_sprites(t_config *c)
 	int	i;
 	
 	i = -1;
-	while (++i < NUM_SPRITES)
+	while (++i < c->n_sprite)
 		c->sp[i].dist = hypot(c->sp[i].x - (c->p.x * TILE), c->sp[i].y - (c->p.y * TILE));
 }
 
@@ -71,7 +69,7 @@ void	sort_sprites(t_config *c)
 	t_sprite	tmp;
 	
 	sorted = 0;
-	n = NUM_SPRITES;
+	n = c->n_sprite;
 	update_dist_sprites(c);
 	while (sorted == 0)
 	{
@@ -113,12 +111,12 @@ void	get_sprite_size(t_config *c, int i)
 {
 	float	coef;
 
-	if (c->sp[i].num == 3 || c->sp[i].num == 4)
-		coef = 0.3;
-	else if (c->sp[i].num == 5)
-		coef = 0.5;
-	else
+	if (c->sp[i].num == 2)
 		coef = 1;
+	else if (c->sp[i].num == 3 || c->sp[i].num == 5)
+		coef = 0.3;
+	else if (c->sp[i].num == 4)
+		coef = 2;
 	c->sp[i].size = TILE * coef * fabs((int)c->r2 / c->sp[i].newy);
 }
 
@@ -194,7 +192,7 @@ void	draw_sprites(t_config *c)
 
 	i = 0;
 	sort_sprites(c);
-	while (i < NUM_SPRITES)
+	while (i < c->n_sprite)
 	{
 		get_newy(c, i);
 		get_sprite_size(c, i);

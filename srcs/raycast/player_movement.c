@@ -61,7 +61,7 @@ void		update_player(t_config *c, float step, char var)
 	tmpx = (int)floor(c->p.x);
 	tmpy = (int)floor(c->p.y);
 	if (tmpx > c->x_max - 1 || tmpy > c->y_max - 1 || tmpx < 0 || tmpy < 0 ||
-	is_in_set(c->m.map[tmpy][tmpx], "12"))
+	is_in_set(c->m.map[tmpy][tmpx], "124"))
 	{
 		if (var == 'x')
 			c->p.x = c->p.x - cos(c->r.angle) * step;

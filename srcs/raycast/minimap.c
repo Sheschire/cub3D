@@ -102,11 +102,11 @@ void	minimap_to_window(t_config *c)
 		c->x = 0;
 		while (c->x < c->x_max && c->x < c->r1)
 		{
-			if (is_in_set(c->m.map[c->y][c->x], "19"))
+			if (c->m.map[c->y][c->x] == '1')
 				print_cube(c, 0x00D90F56);
 			if (c->m.map[c->y][c->x] == '0')
 				print_cube(c, 0x00E0DABD);
-			if (c->m.map[c->y][c->x] == '2')
+			if (is_in_set(c->m.map[c->y][c->x], "2345"))
 				print_cube(c, 0x002F29E0);
 //			print_grid(c);
 			c->x++;
@@ -147,6 +147,7 @@ int		launch_game(t_config *c)
 	print_fov(c);
 	draw_sprites(c);
 	minimap_to_window(c);
+	event(c);
 	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
 	mlx_destroy_image(c->v.mlx, c->img.img);	
 	return (1);
@@ -155,7 +156,8 @@ int		launch_game(t_config *c)
 void    init_mlx(t_config *c)
 {
 	c->v.mlx = mlx_init();
-	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "IceCub3D");
+	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
+//	init_obj(c);
 	mlx_loop_hook(c->v.mlx, launch_game, c);
 	mlx_loop(c->v.mlx);
 }
