@@ -139,17 +139,49 @@ void    paint_floor_ceiling(t_config *c)
     }
 }
 
+void	game_screen(t_config *c)
+{
+	int x;
+    int y;
+	int	color;
+
+    y = 0;
+    while (y < c->r2)
+    {
+        x = 0;
+        while (x < c->r1)
+        {
+            color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4];
+			c->img.addr[(y * c->r1 * 4) + x * 4] = color;
+			color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4 + 1];
+			c->img.addr[(y * c->r1 * 4) + x * 4 + 1] = color;
+			color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4 + 2];
+			c->img.addr[(y * c->r1 * 4) + x * 4 + 2] = color;
+			color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4 + 3];
+			c->img.addr[(y * c->r1 * 4) + x * 4 + 3] = color;
+            x++;
+        }
+        y++;
+    }
+}
+
 int		launch_game(t_config *c)
 {
 	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
 	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
 	keyhook(c);
-	player_movement(c);
-	paint_floor_ceiling(c);
-	print_fov(c);
-	draw_sprites(c);
-	minimap_to_window(c);
-	event(c);
+	if (!c->game_started)
+		game_screen(c);
+	if (c->game_started)
+	{
+		player_movement(c);
+		paint_floor_ceiling(c);
+		print_fov(c);
+		draw_sprites(c);
+		minimap_to_window(c);
+		is_item_picked(c);
+		event(c);
+	}
 	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
 	mlx_destroy_image(c->v.mlx, c->img.img);	
 	return (1);

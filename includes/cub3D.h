@@ -27,6 +27,7 @@
 # define D 2
 # define S 1
 # define TAB 48
+# define ENTER 36
 # define SHIFT 257
 # define SPACE 49
 # define UP_ARROW 126
@@ -135,10 +136,12 @@ typedef struct	s_pkmn
 {
 	int			ray_encounter;
 	int			candy;
+	int			current_item;
 }				t_pkmn;
 
 typedef struct	s_config
 {
+	int			game_started;
 	float		*buff;
 	int			r1;
 	int			r2;
@@ -174,7 +177,7 @@ typedef struct	s_config
 	t_data		img;
 	t_ray		r;
 	t_wall		w;
-	t_texture	t[14];
+	t_texture	t[20];
 	t_sprite	*sp;
 	t_pkmn		pkmn;
 }				t_config;
@@ -268,5 +271,10 @@ void			draw_sprites(t_config *c);
 void			find_sprite(t_config *c);
 void			update_var_angle(t_config *c);
 void			event(t_config *c);
-char	*get_texture_addr(t_config *c, int n, char *filename);
+char			*get_texture_addr(t_config *c, int n, char *filename);
+void			draw_item(t_config *c, int n);
+void			is_item_picked(t_config *c);
+void			switch_item(t_config *c);
+int				launch_game(t_config *c);
+void			clean_item(t_config *c);
 #endif

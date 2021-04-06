@@ -54,19 +54,20 @@ void	encounter_event(t_config *c, int x, int y)
 
 void	evolution_ronflex_capture(t_config *c, int x, int y)
 {
-	if (is_around_with_item(c, "8", c->pkmn.candy, 'T'))
+	if (c->pkmn.current_item == 11 && is_around_with_item(c, "8", c->pkmn.candy, 'T'))
 	{
 		system("afplay ./sounds/typhlosion.mp3 &");
 		find_sprite(c);
 		draw_sprites(c);
 		c->pkmn.candy--;
 	}
-	if (is_around_with_item(c, "4", c->pokeflute, '0'))
+	if (c->pkmn.current_item == 7 && is_around_with_item(c, "4", c->pokeflute, '0'))
 	{
 		c->n_sprite--;
+		c->pokeflute--;
 		system("afplay ./sounds/snorlax.mp3 &");
 	}
-	if (is_around_with_item(c, "27", c->pokeball, '0'))
+	if (c->pkmn.current_item == 5 && is_around_with_item(c, "27", c->pokeball, '0'))
 	{
 		c->pokeball--;
 		c->n_sprite--;
@@ -95,4 +96,5 @@ void	event(t_config *c)
 	}
 	encounter_event(c, x, y);
 	evolution_ronflex_capture(c, x, y);
+	clean_item(c);
 }

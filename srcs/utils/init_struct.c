@@ -37,12 +37,14 @@ void	init_ray(t_config *c)
 
 void	init_pkmn(t_config *c)
 {
-	int	ray_encounter = 0;
-	int	candy = 0;
+	c->pkmn.ray_encounter = 0;
+	c->pkmn.candy = 0;
+	c->pkmn.current_item = 0;
 }
 
 void	ft_init_t_config(t_config *c)
 {
+	c->game_started = 0;
 	c->r1 = 0;
 	c->r2 = 0;
 	c->no = NULL;

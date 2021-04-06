@@ -92,6 +92,7 @@ void	xpm_to_img(t_config *c)
 		c->t[11].addr = get_texture_addr(c, 11, c->s7);
 	if (c->s8)
 		c->t[12].addr = get_texture_addr(c, 12, c->s8);
+	c->t[13].addr = get_texture_addr(c, 13, "./images/startscreen.xpm");
 }
 
 void	ft_get_texture(char *line, t_config *c)
