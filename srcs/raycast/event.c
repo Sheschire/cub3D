@@ -1,40 +1,31 @@
 #include "../../includes/cub3d.h"
 
-int		is_around_with_item(t_config *c, char *set, int item)
+int		is_around_with_item(t_config *c, char *set, int item, char new_char)
 {
 	int	y;
 
 	y = (int)c->p.y;
 	if (is_in_set(c->m.map[y][(int)c->p.x + 1], set) && item >= 1)
 	{
-		c->m.map[y][(int)c->p.x + 1] = '0';
+		c->m.map[y][(int)c->p.x + 1] = new_char;
 		return (1);
 	}
 	if (is_in_set(c->m.map[y][(int)c->p.x - 1], set) && item >= 1)
 	{
-		c->m.map[y][(int)c->p.x - 1] = '0';
+		c->m.map[y][(int)c->p.x - 1] = new_char;
 		return (1);
 	}
 	if (is_in_set(c->m.map[y - 1][(int)c->p.x], set) && item >= 1)
 	{
-		c->m.map[y - 1][(int)c->p.x] = '0';
+		c->m.map[y - 1][(int)c->p.x] = new_char;
 		return (1);
 	}
 	if (is_in_set(c->m.map[y + 1][(int)c->p.x], set) && item >= 1)
 	{
-		c->m.map[y + 1][(int)c->p.x] = '0';
+		c->m.map[y + 1][(int)c->p.x] = new_char;
 		return (1);
 	}
 	return (0);
-}
-
-void	ronflex_event(t_config *c)
-{
-	if (is_around_with_item(c, "4", c->pokeflute))
-	{
-		c->n_sprite--;
-		system("afplay ./sounds/snorlax.mp3 &");
-	}
 }
 
 void	encounter_event(t_config *c, int x, int y)
@@ -61,19 +52,24 @@ void	encounter_event(t_config *c, int x, int y)
 	}
 }
 
-void	capture_event(t_config *c)
+void	evolution_ronflex_capture(t_config *c, int x, int y)
 {
-	if (is_around_with_item(c, "7", c->pokeball) && c->pokeball >= 1)
+	if (is_around_with_item(c, "8", c->pkmn.candy, 'T'))
 	{
-		c->pokeball--;
-		c->n_sprite--;
-		system("afplay ./sounds/capture.mp3 &");	
+		system("afplay ./sounds/typhlosion.mp3 &");
+		find_sprite(c);
+		draw_sprites(c);
+		c->pkmn.candy--;
 	}
-	if (is_around_with_item(c, "2", c->pokeball) && c->pokeball >= 1)
+	if (is_around_with_item(c, "4", c->pokeflute, '0'))
+	{
+		c->n_sprite--;
+		system("afplay ./sounds/snorlax.mp3 &");
+	}
+	if (is_around_with_item(c, "27", c->pokeball, '0'))
 	{
 		c->pokeball--;
 		c->n_sprite--;
-		system("killall afplay");	
 		system("afplay ./sounds/capture.mp3 &");
 	}
 }
@@ -85,21 +81,18 @@ void	event(t_config *c)
 
 	y = (int)c->p.y;
 	x = (int)c->p.x;
-	if (c->m.map[y][x] == '3')
+	if (is_in_set(c->m.map[y][x], "359" ))
 	{
 		system("afplay ./sounds/pick_obj.mp3 &");
-		c->pokeball++;
-		c->m.map[y][x] = '0';
-		c->n_sprite--;
-	}
-	if (c->m.map[y][x] == '5')
-	{
-		system("afplay ./sounds/pick_obj.mp3 &");
-		c->pokeflute = 1;
+		if (c->m.map[y][x] == '3')
+			c->pokeball++;
+		if (c->m.map[y][x] == '5')
+			c->pokeflute++;
+		if (c->m.map[y][x] == '9')
+			c->pkmn.candy++;
 		c->m.map[y][x] = '0';
 		c->n_sprite--;
 	}
 	encounter_event(c, x, y);
-	ronflex_event(c);
-	capture_event(c);
+	evolution_ronflex_capture(c, x, y);
 }

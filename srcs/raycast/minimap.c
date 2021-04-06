@@ -104,11 +104,12 @@ void	minimap_to_window(t_config *c)
 		{
 			if (c->m.map[c->y][c->x] == '1')
 				print_cube(c, 0x00D90F56);
-			if (c->m.map[c->y][c->x] == '0')
+			if (is_in_set(c->m.map[c->y][c->x], "0359"))
 				print_cube(c, 0x00E0DABD);
-			if (is_in_set(c->m.map[c->y][c->x], "234567"))
+			if (is_in_set(c->m.map[c->y][c->x], "468T"))
 				print_cube(c, 0x002F29E0);
-//			print_grid(c);
+			if (is_in_set(c->m.map[c->y][c->x], "27"))
+				print_cube(c, 0x00F5C02B);
 			c->x++;
 		}
 		c->y++;
@@ -158,7 +159,7 @@ void    init_mlx(t_config *c)
 {
 	c->v.mlx = mlx_init();
 	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
-//	system("afplay ./sounds/route1.mp3 &");
+	system("afplay ./sounds/route1.mp3 &");
 	mlx_loop_hook(c->v.mlx, launch_game, c);
 	mlx_loop(c->v.mlx);
 }

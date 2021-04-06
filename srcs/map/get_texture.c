@@ -40,6 +40,12 @@ void	ft_get_path(t_config *c, char **param)
 			c->s4 = ft_substr(param[1], 0, ft_strlen(param[1]));
 		if (ft_strcmp(param[0], "S5") == 0)
 			c->s5 = ft_substr(param[1], 0, ft_strlen(param[1]));
+		if (ft_strcmp(param[0], "S6") == 0)
+			c->s6 = ft_substr(param[1], 0, ft_strlen(param[1]));
+		if (ft_strcmp(param[0], "S7") == 0)
+			c->s7 = ft_substr(param[1], 0, ft_strlen(param[1]));
+		if (ft_strcmp(param[0], "S8") == 0)
+			c->s8 = ft_substr(param[1], 0, ft_strlen(param[1]));
 	}
 }
 
@@ -80,6 +86,12 @@ void	xpm_to_img(t_config *c)
 		c->t[8].addr = get_texture_addr(c, 8, c->s4);
 	if (c->s5)
 		c->t[9].addr = get_texture_addr(c, 9, c->s5);
+	if (c->s6)
+		c->t[10].addr = get_texture_addr(c, 10, c->s6);
+	if (c->s7)
+		c->t[11].addr = get_texture_addr(c, 11, c->s7);
+	if (c->s8)
+		c->t[12].addr = get_texture_addr(c, 12, c->s8);
 }
 
 void	ft_get_texture(char *line, t_config *c)

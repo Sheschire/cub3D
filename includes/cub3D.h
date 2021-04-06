@@ -134,6 +134,7 @@ typedef struct	s_sprite
 typedef struct	s_pkmn
 {
 	int			ray_encounter;
+	int			candy;
 }				t_pkmn;
 
 typedef struct	s_config
@@ -151,6 +152,9 @@ typedef struct	s_config
 	char		*s3;
 	char		*s4;
 	char		*s5;
+	char		*s6;
+	char		*s7;
+	char		*s8;
 	int			pokeflute;
 	int			pokeball;
 	unsigned int	f_rgb;
@@ -170,7 +174,7 @@ typedef struct	s_config
 	t_data		img;
 	t_ray		r;
 	t_wall		w;
-	t_texture	t[10];
+	t_texture	t[14];
 	t_sprite	*sp;
 	t_pkmn		pkmn;
 }				t_config;
@@ -264,4 +268,5 @@ void			draw_sprites(t_config *c);
 void			find_sprite(t_config *c);
 void			update_var_angle(t_config *c);
 void			event(t_config *c);
+char	*get_texture_addr(t_config *c, int n, char *filename);
 #endif

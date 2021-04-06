@@ -14,13 +14,13 @@
 
 int		check_UDRL(t_config *c, int y, int x)
 {
-	if (!is_in_set(c->m.map[y - 1][x], "12345670NSWE"))
+	if (!is_in_set(c->m.map[y - 1][x], "123456789T0NSWE"))
 		return (0);
-	if (!is_in_set(c->m.map[y + 1][x], "12345670NSWE"))
+	if (!is_in_set(c->m.map[y + 1][x], "123456789T0NSWE"))
 		return (0);
-	if (!is_in_set(c->m.map[y][x + 1], "12345670NSWE"))
+	if (!is_in_set(c->m.map[y][x + 1], "123456789T0NSWE"))
 		return (0);
-	if (!is_in_set(c->m.map[y][x - 1], "12345670NSWE"))
+	if (!is_in_set(c->m.map[y][x - 1], "123456789T0NSWE"))
 		return (0);
 	return (1);
 }
@@ -36,12 +36,12 @@ int		ft_check_walls(t_config *c)
 		x = 0;
 		while (c->m.map[y][x])
 		{
-			if (!is_in_set(c->m.map[y][x], " 12345670NSEW"))
+			if (!is_in_set(c->m.map[y][x], " 123456789T0NSEW"))
 				return (0);
 			if (c->m.map[y][x] == 'N' || c->m.map[y][x] == 'S' || \
 			c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
 				ft_get_player(c, x, y);
-			if (is_in_set(c->m.map[y][x], "0234567NSWE"))
+			if (is_in_set(c->m.map[y][x], "023456789TNSWE"))
 				if (!check_UDRL(c, y, x))
 					return (0);
 			x++;

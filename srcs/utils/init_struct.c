@@ -38,6 +38,7 @@ void	init_ray(t_config *c)
 void	init_pkmn(t_config *c)
 {
 	int	ray_encounter = 0;
+	int	candy = 0;
 }
 
 void	ft_init_t_config(t_config *c)
@@ -54,6 +55,9 @@ void	ft_init_t_config(t_config *c)
 	c->s3 = NULL;
 	c->s4 = NULL;
 	c->s5 = NULL;
+	c->s6 = NULL;
+	c->s7 = NULL;
+	c->s8 = NULL;
 	c->pokeflute = 0;
 	c->pokeball = 0;
 	c->f_rgb = -1;
