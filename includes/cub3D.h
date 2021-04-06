@@ -131,6 +131,11 @@ typedef struct	s_sprite
 	float		dist;
 }				t_sprite;
 
+typedef struct	s_pkmn
+{
+	int			ray_encounter;
+}				t_pkmn;
+
 typedef struct	s_config
 {
 	float		*buff;
@@ -167,6 +172,7 @@ typedef struct	s_config
 	t_wall		w;
 	t_texture	t[10];
 	t_sprite	*sp;
+	t_pkmn		pkmn;
 }				t_config;
 
 # ifndef BUFFER_SIZE

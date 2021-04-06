@@ -35,6 +35,11 @@ void	init_ray(t_config *c)
 	c->r.verthit = 0;
 }
 
+void	init_pkmn(t_config *c)
+{
+	int	ray_encounter = 0;
+}
+
 void	ft_init_t_config(t_config *c)
 {
 	c->r1 = 0;
@@ -59,4 +64,5 @@ void	ft_init_t_config(t_config *c)
 	c->m.map = NULL;
 	init_player(c);
 	init_ray(c);
+	init_pkmn(c);
 }

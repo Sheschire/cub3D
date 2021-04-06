@@ -33,25 +33,48 @@ void	ronflex_event(t_config *c)
 	if (is_around_with_item(c, "4", c->pokeflute))
 	{
 		c->n_sprite--;
-		system("afplay ./sounds/ronflex.mp3 &");
+		system("afplay ./sounds/snorlax.mp3 &");
 	}
 }
 
-void	teleport_event(t_config *c, int x, int y)
+void	encounter_event(t_config *c, int x, int y)
 {
 	if (c->m.map[y][x] == '6' && y == 8 && x == 31)
+	{
 		c->p.x += 5;
+		system("killall afplay");
+		system("afplay ./sounds/lugia.mp3 &");
+		system("afplay ./sounds/lugia_theme.mp3 &");
+	}
 	if (c->m.map[y][x] == '6' && y == 8 && x == 33)
+	{
 		c->p.x -= 5;
+		system("killall afplay");
+		system("afplay ./sounds/route1.mp3 &");
+	}
+	if (y == 15 && x == 16 && c->pkmn.ray_encounter == 0)
+	{
+		c->pkmn.ray_encounter = 1;
+		system("killall afplay");
+		system("afplay ./sounds/rayquaza.mp3 &");
+		system("afplay ./sounds/rayquaza_theme.mp3 &");		
+	}
 }
 
 void	capture_event(t_config *c)
 {
-	if (is_around_with_item(c, "27", c->pokeball) && c->pokeball >= 1)
+	if (is_around_with_item(c, "7", c->pokeball) && c->pokeball >= 1)
 	{
 		c->pokeball--;
 		c->n_sprite--;
 		system("afplay ./sounds/capture.mp3 &");	
+	}
+	if (is_around_with_item(c, "2", c->pokeball) && c->pokeball >= 1)
+	{
+		c->pokeball--;
+		c->n_sprite--;
+		system("killall afplay");	
+		system("afplay ./sounds/capture.mp3 &");
 	}
 }
 
@@ -64,17 +87,19 @@ void	event(t_config *c)
 	x = (int)c->p.x;
 	if (c->m.map[y][x] == '3')
 	{
+		system("afplay ./sounds/pick_obj.mp3 &");
 		c->pokeball++;
 		c->m.map[y][x] = '0';
 		c->n_sprite--;
 	}
 	if (c->m.map[y][x] == '5')
 	{
+		system("afplay ./sounds/pick_obj.mp3 &");
 		c->pokeflute = 1;
 		c->m.map[y][x] = '0';
 		c->n_sprite--;
 	}
+	encounter_event(c, x, y);
 	ronflex_event(c);
-	teleport_event(c, x, y);
 	capture_event(c);
 }

@@ -158,7 +158,7 @@ void    init_mlx(t_config *c)
 {
 	c->v.mlx = mlx_init();
 	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
-	system("afplay ./sounds/route1mp3 &");
+//	system("afplay ./sounds/route1.mp3 &");
 	mlx_loop_hook(c->v.mlx, launch_game, c);
 	mlx_loop(c->v.mlx);
 }
