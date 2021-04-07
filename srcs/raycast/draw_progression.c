@@ -12,9 +12,34 @@
 
 #include "../../includes/cub3d.h"
 
-void	adapt_progression_bar(t_config *c, int n, int i)
+void	write_on_taddr(t_config *c, int n, int j)
 {
-	int		co;
+	int	co;
+
+	co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
+	+ (int)c->i_tmp * 4)];
+	if (co != 0x0000000)
+			c->img.addr[(int)c->yb * (c->r1 * 4) \
+			+ (int)c->xb * 4] = co;
+	co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
+	+ (int)c->i_tmp * 4 + 1)];
+	if (co != 0x0000000)
+		c->img.addr[(int)c->yb * (c->r1 * 4) \
+		+ ((int)c->xb * 4 + 1)] = co;
+	co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
+	+ (int)c->i_tmp * 4 + 2)];
+	if (co != 0x0000000)
+		c->img.addr[(int)c->yb * (c->r1 * 4) \
+		+ ((int)c->xb * 4 + 2)] = co;
+	co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
+	+ (int)c->i_tmp * 4 + 3)];
+	if (co != 0x0000000)
+		c->img.addr[(int)c->yb * (c->r1 * 4) \
+		+ (int)c->xb * 4 + 3] = co;
+}
+
+void	adapt_progression_bar(t_config *c, int n)
+{
 	float	j;
 
 	j = 165;
@@ -25,14 +50,7 @@ void	adapt_progression_bar(t_config *c, int n, int i)
 		c->i_tmp = 18;
 		while (c->i_tmp < 343)
 		{
-			while (++i < 3)
-			{
-				co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
-				+ ((int)c->i_tmp * 4 + i))];
-				if (co != 0x0000000)
-					c->img.addr[(int)c->yb * (c->r1 * 4) \
-					+ ((int)c->xb * 4 + i)] = co;
-			}
+			write_on_taddr(c, n, j);
 			c->i_tmp += (float)(c->t[n].width) / (float)((c->r1) * 0.25);
 			c->xb++;
 		}
@@ -69,15 +87,15 @@ void	game_end_screen(t_config *c)
 void	draw_progression(t_config *c)
 {
 	if (c->pkmn.progress == 0)
-		adapt_progression_bar(c, 14, -1);
+		adapt_progression_bar(c, 14);
 	if (c->pkmn.progress == 1)
-		adapt_progression_bar(c, 15, -1);
+		adapt_progression_bar(c, 15);
 	if (c->pkmn.progress == 2)
-		adapt_progression_bar(c, 16, -1);
+		adapt_progression_bar(c, 16);
 	if (c->pkmn.progress == 3)
-		adapt_progression_bar(c, 17, -1);
+		adapt_progression_bar(c, 17);
 	if (c->pkmn.progress == 4)
-		adapt_progression_bar(c, 18, -1);
+		adapt_progression_bar(c, 18);
 	if (c->pkmn.progress == 5)
 	{
 		c->pkmn.progress++;

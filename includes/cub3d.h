@@ -185,7 +185,7 @@ typedef struct	s_config
 	t_data		img;
 	t_ray		r;
 	t_wall		w;
-	t_texture	t[19];
+	t_texture	t[20];
 	t_sprite	*sp;
 	t_pkmn		pkmn;
 }				t_config;

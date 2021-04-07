@@ -114,5 +114,4 @@ void	event(t_config *c)
 	encounter_event(c, x, y);
 	evolution_ronflex_capture(c);
 	clean_item(c);
-	draw_progression(c);
 }

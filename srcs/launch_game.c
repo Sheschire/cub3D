@@ -56,6 +56,7 @@ int		launch_game(t_config *c)
 		is_item_picked(c);
 		event(c);
 		normalize_r_angle(c);
+		draw_progression(c);
 	}
 	if (c->bmp_save)
 	{
