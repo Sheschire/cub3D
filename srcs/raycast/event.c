@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:33:54 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 15:22:58 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:52:16 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,5 @@ void	event(t_config *c)
 	encounter_event(c, x, y);
 	evolution_ronflex_capture(c);
 	clean_item(c);
+	draw_progression(c);
 }

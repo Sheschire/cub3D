@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 16:00:01 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:03:10 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
-# include <../mlx/mlx.h>
+# include "os.h"
 # include <math.h>
 
-# define W 13
-# define A 0
-# define D 2
-# define S 1
-# define TAB 48
-# define ENTER 36
-# define SHIFT 257
-# define SPACE 49
-# define UP_ARROW 126
-# define DOWN_ARROW 125
-# define LEFT_ARROW 123
-# define RIGHT_ARROW 124
-# define ESC 53
 # define DIST 0.01
 # define PI 3.1415926
 # define TILE 27

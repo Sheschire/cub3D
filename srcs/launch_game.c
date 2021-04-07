@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:20:55 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 14:24:06 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:52:08 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		launch_game(t_config *c)
 		is_item_picked(c);
 		event(c);
 		normalize_r_angle(c);
-		draw_progression(c);
 	}
 	if (c->bmp_save)
 	{

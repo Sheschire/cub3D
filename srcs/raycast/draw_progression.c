@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:52:15 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 13:56:43 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:51:46 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	write_on_taddr(t_config *c, int n, int j)
 	co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
 	+ (int)c->i_tmp * 4)];
 	if (co != 0x0000000)
-			c->img.addr[(int)c->yb * (c->r1 * 4) \
-			+ (int)c->xb * 4] = co;
+		c->img.addr[(int)c->yb * (c->r1 * 4) \
+		+ (int)c->xb * 4] = co;
 	co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
 	+ (int)c->i_tmp * 4 + 1)];
 	if (co != 0x0000000)
