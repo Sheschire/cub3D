@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/17 16:50:44 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:06:38 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		key_press(int keycode, t_config *c)
 	return (1);
 }
 
-int	key_release(int keycode, t_config *c)
+int		key_release(int keycode, t_config *c)
 {
 	if (keycode == UP_ARROW || keycode == W)
 		c->p.walk = 0;
@@ -62,10 +62,10 @@ int	key_release(int keycode, t_config *c)
 	return (1);
 }
 
-int	keyhook(t_config *c)
+int		keyhook(t_config *c)
 {
-	mlx_hook(c->v.win, 2, 1L<<0, key_press, c);
-	mlx_hook(c->v.win, 3, 1L<<1, key_release, c);
+	mlx_hook(c->v.win, 2, 1L << 0, key_press, c);
+	mlx_hook(c->v.win, 3, 1L << 1, key_release, c);
 	mlx_hook(c->v.win, 17, 0, win_close, c);
 	return (1);
 }

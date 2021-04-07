@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/31 15:29:55 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:27:14 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	init_pkmn(t_config *c)
 	c->pkmn.candy = 0;
 	c->pkmn.current_item = 0;
 	c->pkmn.progress = 0;
+	c->pokeflute = 0;
+	c->pokeball = 0;
 }
 
 void	ft_init_t_config(t_config *c)
@@ -62,8 +64,6 @@ void	ft_init_t_config(t_config *c)
 	c->s6 = NULL;
 	c->s7 = NULL;
 	c->s8 = NULL;
-	c->pokeflute = 0;
-	c->pokeball = 0;
 	c->f_rgb = -1;
 	c->c_rgb = -1;
 	c->x = 0;

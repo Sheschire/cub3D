@@ -1,28 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_item.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/07 13:39:38 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/04/07 13:47:29 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	draw_item(t_config *c, int n)
 {
-	int		color;
+	int		co;
 	float	i;
 	float	j;
 
 	j = 0;
-	c->y_tmp = (float)c->r2 * 0.6 - 1;
-	while (++c->y_tmp <= (c->r2 - 1))
+	c->yb = (float)c->r2 * 0.6 - 1;
+	while (++c->yb <= (c->r2 - 1))
 	{
-		c->x_tmp = ((float)c->r1 * 0.4 - 1);
+		c->xb = ((float)c->r1 * 0.4 - 1);
 		i = 0;
-		while (++c->x_tmp < (float)(c->r1 * 0.65 - 1))
+		while (++c->xb < (float)(c->r1 * 0.65 - 1))
 		{
-			color = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4)];
-			if (color != 0x0000000)
-				c->img.addr[(int)c->y_tmp * (c->r1 * 4) + (int)c->x_tmp * 4] = color;
-			color = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4 + 1)];
-			if (color != 0x0000000)
-				c->img.addr[(int)c->y_tmp * (c->r1 * 4) + (int)c->x_tmp * 4 + 1] = color;
-			color = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4 + 2)];
-			if (color != 0x000000)
-				c->img.addr[(int)c->y_tmp * (c->r1 * 4) + (int)c->x_tmp * 4 + 2] = color;
+			co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4)];
+			if (co != 0x0000000)
+				c->img.addr[(int)c->yb * (c->r1 * 4) + (int)c->xb * 4] = co;
+			co = c->t[n].addr[((int)j * (c->t[n].width * 4) + (int)i * 4 + 1)];
+			if (co != 0x0000000)
+				c->img.addr[(int)c->yb * (c->r1 * 4) + (int)c->xb * 4 + 1] = co;
+			co = c->t[n].addr[((int)j * (c->t[n].width * 4) + (int)i * 4 + 2)];
+			if (co != 0x000000)
+				c->img.addr[(int)c->yb * (c->r1 * 4) + (int)c->xb * 4 + 2] = co;
 			i += (float)(c->t[n].width) / (float)((c->r1) * 0.25);
 		}
 		j += (float)(c->t[n].height - 1) / (float)(c->r2 * 0.5);

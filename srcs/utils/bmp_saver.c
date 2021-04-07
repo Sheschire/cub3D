@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bmp_saver.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/07 13:25:08 by tlemesle          #+#    #+#             */
+/*   Updated: 2021/04/07 13:26:17 by tlemesle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void		ft_fill_header(int fd, t_config *c)
@@ -40,9 +52,12 @@ static void		ft_fill_pixel(int fd, t_config *c)
 		x = -1;
 		while (++x < c->r1)
 		{
-			r = c->img.addr[y *  c->img.line_length + x * c->img.bits_per_pixel / 8];
-			g = c->img.addr[y * c->img.line_length + x * c->img.bits_per_pixel / 8 + 1];
-			b = c->img.addr[y * c->img.line_length + x * c->img.bits_per_pixel / 8 + 2];
+			r = c->img.addr[y * c->img.line_length + x * \
+			c->img.bits_per_pixel / 8];
+			g = c->img.addr[y * c->img.line_length + x * \
+			c->img.bits_per_pixel / 8 + 1];
+			b = c->img.addr[y * c->img.line_length + x *\
+			c->img.bits_per_pixel / 8 + 2];
 			write(fd, &r, 1);
 			write(fd, &g, 1);
 			write(fd, &b, 1);

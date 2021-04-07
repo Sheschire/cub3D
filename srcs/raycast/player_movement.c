@@ -6,11 +6,52 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:38:23 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/31 17:55:08 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:08:27 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	player_orientation_2(t_config *c)
+{
+	if (c->p.orient == 'N')
+	{
+		c->r.angle = 1.5 * PI;
+		c->p.xdir = 0;
+		c->p.ydir = -1;
+		c->p.planx = -0.66;
+		c->p.plany = 0;
+	}
+	else if (c->p.orient == 'S')
+	{
+		c->r.angle = 0.5 * PI;
+		c->p.xdir = 0;
+		c->p.ydir = 1;
+		c->p.planx = 0.66;
+		c->p.plany = 0;
+	}
+}
+
+void	player_orientation(t_config *c)
+{
+	if (c->p.orient == 'W')
+	{
+		c->r.angle = PI;
+		c->p.xdir = -1;
+		c->p.ydir = 0;
+		c->p.planx = 0;
+		c->p.plany = 0.66;
+	}
+	else if (c->p.orient == 'E')
+	{
+		c->r.angle = 0;
+		c->p.xdir = 1;
+		c->p.ydir = 0;
+		c->p.planx = 0;
+		c->p.plany = -0.66;
+	}
+	player_orientation_2(c);
+}
 
 void	update_var_angle(t_config *c)
 {
@@ -27,7 +68,7 @@ void	update_var_angle(t_config *c)
 	c->p.plany = tmpplanx * sin(tmpangle) + c->p.plany * cos(tmpangle);
 }
 
-void		update_player(t_config *c, float step, char var)
+void	update_player(t_config *c, float step, char var)
 {
 	int		tmpx;
 	int		tmpy;
@@ -52,12 +93,11 @@ void		update_player(t_config *c, float step, char var)
 			c->p.y = c->p.y + c->p.xdir * c->p.speed;
 		}
 	}
-//	wich_collision(c, tmpx, tmpy);
 }
 
 void	player_movement(t_config *c)
 {
-	float step;	
+	float step;
 
 	step = c->p.walk * c->p.speed;
 	c->r.angle += c->r.dir * c->r.speed;

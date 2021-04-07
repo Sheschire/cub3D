@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/31 17:55:21 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:48:43 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,20 @@
 # define TILE 27
 # define SCALE 5
 
-typedef struct  s_vars {
-    void        *mlx;
-    void        *win;
-}               t_vars;
+typedef struct	s_vars
+{
+	void		*mlx;
+	void		*win;
+}				t_vars;
 
-typedef struct  s_data {
-	void        *img;
-	char        *addr;
-	int         bits_per_pixel;
-	int         line_length;
-	int         endian;
-}               t_data;
+typedef struct	s_data
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
 
 typedef struct	s_wall
 {
@@ -74,12 +76,12 @@ typedef struct	s_texture
 	int			width;
 }				t_texture;
 
-typedef	struct	s_player
+typedef struct	s_player
 {
-	float			x;
-	float			y;
-	float			mx;
-	float			my;
+	float		x;
+	float		y;
+	float		mx;
+	float		my;
 	char		orient;
 	int			pos_count;
 	int			walk;
@@ -162,8 +164,8 @@ typedef struct	s_config
 	char		*s8;
 	int			pokeflute;
 	int			pokeball;
-	unsigned int	f_rgb;
-	unsigned int	c_rgb;
+	int			f_rgb;
+	int			c_rgb;
 	int			x;
 	int			y;
 	int			x_max;
@@ -173,8 +175,8 @@ typedef struct	s_config
 	int			error;
 	int			tile;
 	int			n_sprite;
-	float		x_tmp;
-	float		y_tmp;
+	float		xb;
+	float		yb;
 	float		i_tmp;
 	int			bmp_save;
 	t_player	p;
@@ -246,7 +248,7 @@ int				get_next_line(int fd, char **line);
 /*
 **	MLX
 */
-void    		init_mlx(t_config *c);
+void			init_mlx(t_config *c);
 void			pixel_put(t_data *data, int x, int y, int color);
 int				keyhook(t_config *c);
 int				key_press(int keycode, t_config *c);
@@ -265,28 +267,37 @@ void			player_movement(t_config *c);
 void			horizontal_hit(t_config *c);
 void			vertical_hit(t_config *c);
 void			reset_ray(t_config *c);
-int        		is_wall(float y, float x, t_config *c);
+int				is_wall(float y, float x, t_config *c);
+void			normalize_r_angle(t_config *c);
+void			update_var_angle(t_config *c);
 
 /*
 **	WORLD
 */
 void			init_world(t_config *c);
-void    		draw_background(t_config *c);
-void    		draw_3d(t_config *c, int column);
+void			draw_background(t_config *c);
+void			draw_3d(t_config *c, int column);
+int				launch_game(t_config *c);
+void			ft_bmp_saver(t_config *c);
+void			paint_floor_ceiling(t_config *c);
+
+/*
+**	SPRITES
+*/
+char			*get_texture_addr(t_config *c, int n, char *filename);
 void			draw_sprites(t_config *c);
 void			find_sprite(t_config *c);
-void			update_var_angle(t_config *c);
-void			event(t_config *c);
-char			*get_texture_addr(t_config *c, int n, char *filename);
+void			get_coord_draw(t_sprite *sp, t_config*c);
+void			get_sprite_size(t_config *c, int i);
+void			get_newy(t_config *c, int i);
+
+/*
+**	POKEMON
+*/
 void			draw_item(t_config *c, int n);
 void			is_item_picked(t_config *c);
 void			switch_item(t_config *c);
-int				launch_game(t_config *c);
 void			clean_item(t_config *c);
-void    		draw_progression(t_config *c);
-char			*get_texture_addr(t_config *c, int n, char *filename);
-void    		normalize_r_angle(t_config *c);
-void			ft_bmp_saver(t_config *c);
-void    		init_mlx(t_config *c);
-void    		paint_floor_ceiling(t_config *c);
+void			event(t_config *c);
+void			draw_progression(t_config *c);
 #endif

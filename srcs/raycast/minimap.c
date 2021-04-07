@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/29 16:59:15 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:29:47 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,23 @@ void	minimap_to_window(t_config *c)
 		print_player(c);
 }
 
-void    paint_floor_ceiling(t_config *c)
+void	paint_floor_ceiling(t_config *c)
 {
-    int x;
-    int y;
+	int x;
+	int y;
 
-    y = 0;
-    while (y < c->r2)
-    {
-        x = 0;
-        while (x < c->r1)
-        {
-            if (y < c->r2 / 2)
-                pixel_put(&c->img, x, y, c->c_rgb);
-            else
-                pixel_put(&c->img, x, y, c->f_rgb);
-            x++;
-        }
-        y++;
-    }
+	y = 0;
+	while (y < c->r2)
+	{
+		x = 0;
+		while (x < c->r1)
+		{
+			if (y < c->r2 / 2)
+				pixel_put(&c->img, x, y, c->c_rgb);
+			else
+				pixel_put(&c->img, x, y, c->f_rgb);
+			x++;
+		}
+		y++;
+	}
 }

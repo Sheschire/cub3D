@@ -6,13 +6,13 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/16 12:05:06 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:22:31 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int		check_UDRL(t_config *c, int y, int x)
+int		check_udrl(t_config *c, int y, int x)
 {
 	if (!is_in_set(c->m.map[y - 1][x], "123456789T0NSWE"))
 		return (0);
@@ -50,37 +50,13 @@ int		ft_check_walls(t_config *c)
 	}
 	return (1);
 }
-/*
-void	tmp_print_check(t_config *c)
-{
-	int	i;
-
-	i = 0;
-	printf("[MAP CHECK]\n\n");
-	while (c->m.map[i])
-		printf("%s\n", c->m.map[i++]);
-	printf("\n");
-	printf("[CONFIG CHECK]\n\n");
-	printf("RESOLUTION = %d %d\n", c->r1, c->r2);
-	printf("NO TEXTURE = %s\n", c->no);
-	printf("SO TEXTURE = %s\n", c->so);
-	printf("WE TEXTURE = %s\n", c->we);
-	printf("EA TEXTURE = %s\n", c->ea);
-	printf("S TEXTURE = %s\n\n", c->s);
-	printf("F COLOR = %d\n\n", c->f_rgb);
-	printf("C COLOR = %d\n\n", c->c_rgb);
-	printf("PLAYER CHECK\n\n");
-	printf("POSITION = %c\n", c->p.orient);
-	printf("x = %f\n", c->p.x);
-	printf("y = %f\n", c->p.y);
-}*/
 
 char	*space_to_join(t_config *c, char *map_y, int len)
 {
 	char	*space;
 	int		i;
 	int		size;
-	
+
 	i = 0;
 	size = c->x_max - len;
 	space = (char *)malloc(sizeof(char) * size + 1);
@@ -97,7 +73,7 @@ void	adapt_to_greatest(t_config *c)
 	int		y;
 	int		len;
 	char	*space;
-	
+
 	y = 0;
 	while (c->m.map[y])
 	{
