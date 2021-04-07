@@ -23,6 +23,15 @@ int	main(int ac, char **av)
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
 		f_error("fd", &c);
+	if (ft_strcmp(av[1], "./map/poke.cub") == 0)
+		c.pkmn.pokecub = 1;
+	if (ac == 3)
+	{
+		if (ft_strcmp(av[2], "--save") == 0)
+			c.bmp_save = 1;
+		else
+			f_error("bmp", &c);
+	}
 	ft_check_map(fd, &c);
 	player_orientation(&c);
 	c.sp = malloc(sizeof(t_sprite) * 50);

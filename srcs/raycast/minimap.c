@@ -12,14 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void	pixel_put(t_data *data, int x, int y, int color)
-{
-	char    *dst;
-
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
-}
-
 void	print_cube(t_config *c, int color)
 {
 	int		tmp_x;
@@ -69,31 +61,6 @@ void	print_player(t_config *c)
 	}
 }
 
-void	print_grid(t_config *c)
-{
-	float	x;
-	float	y;
-	float	tmp_y;
-	float	tmp_x;
-	float	x_abs;
-	float	y_ord;
-	
-	x = c->x * (TILE / SCALE);
-	y = c->y * (TILE / SCALE);
-	x_abs = x + (TILE / SCALE);
-	y_ord = y + (TILE / SCALE);
-	tmp_y = 0;
-	while (tmp_y < y_ord && tmp_y < c->r2)
-	{
-		tmp_x = x;
-		while (tmp_x < x_abs && tmp_x < c->r1)
-			pixel_put(&c->img, tmp_x++, y, 0x0000000);
-		while (tmp_y < y_ord && tmp_y < c->r2)
-			pixel_put(&c->img, tmp_x, tmp_y++, 0x0000000);
-		tmp_y += TILE;
-	}
-}
-
 void	minimap_to_window(t_config *c)
 {
 	c->y = 0;
@@ -137,61 +104,4 @@ void    paint_floor_ceiling(t_config *c)
         }
         y++;
     }
-}
-
-void	game_screen(t_config *c)
-{
-	int x;
-    int y;
-	int	color;
-
-    y = 0;
-    while (y < c->r2)
-    {
-        x = 0;
-        while (x < c->r1)
-        {
-            color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4];
-			c->img.addr[(y * c->r1 * 4) + x * 4] = color;
-			color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4 + 1];
-			c->img.addr[(y * c->r1 * 4) + x * 4 + 1] = color;
-			color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4 + 2];
-			c->img.addr[(y * c->r1 * 4) + x * 4 + 2] = color;
-			color = c->t[13].addr[(c->t[13].width * y * 4) + x * 4 + 3];
-			c->img.addr[(y * c->r1 * 4) + x * 4 + 3] = color;
-            x++;
-        }
-        y++;
-    }
-}
-
-int		launch_game(t_config *c)
-{
-	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
-	c->img.addr = mlx_get_data_addr(c->img.img, &c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
-	keyhook(c);
-	if (!c->game_started)
-		game_screen(c);
-	if (c->game_started)
-	{
-		player_movement(c);
-		paint_floor_ceiling(c);
-		print_fov(c);
-		draw_sprites(c);
-		minimap_to_window(c);
-		is_item_picked(c);
-		event(c);
-	}
-	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
-	mlx_destroy_image(c->v.mlx, c->img.img);	
-	return (1);
-}
-
-void    init_mlx(t_config *c)
-{
-	c->v.mlx = mlx_init();
-	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
-	system("afplay ./sounds/route1.mp3 &");
-	mlx_loop_hook(c->v.mlx, launch_game, c);
-	mlx_loop(c->v.mlx);
 }

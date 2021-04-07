@@ -134,9 +134,11 @@ typedef struct	s_sprite
 
 typedef struct	s_pkmn
 {
+	int			pokecub;
 	int			ray_encounter;
 	int			candy;
 	int			current_item;
+	int			progress;
 }				t_pkmn;
 
 typedef struct	s_config
@@ -171,6 +173,10 @@ typedef struct	s_config
 	int			error;
 	int			tile;
 	int			n_sprite;
+	float		x_tmp;
+	float		y_tmp;
+	float		i_tmp;
+	int			bmp_save;
 	t_player	p;
 	t_map		m;
 	t_vars		v;
@@ -277,4 +283,10 @@ void			is_item_picked(t_config *c);
 void			switch_item(t_config *c);
 int				launch_game(t_config *c);
 void			clean_item(t_config *c);
+void    		draw_progression(t_config *c);
+char			*get_texture_addr(t_config *c, int n, char *filename);
+void    		normalize_r_angle(t_config *c);
+void			ft_bmp_saver(t_config *c);
+void    		init_mlx(t_config *c);
+void    		paint_floor_ceiling(t_config *c);
 #endif

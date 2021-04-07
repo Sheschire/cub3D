@@ -60,6 +60,7 @@ void	evolution_ronflex_capture(t_config *c, int x, int y)
 		find_sprite(c);
 		draw_sprites(c);
 		c->pkmn.candy--;
+		c->pkmn.progress++;
 	}
 	if (c->pkmn.current_item == 7 && is_around_with_item(c, "4", c->pokeflute, '0'))
 	{
@@ -71,6 +72,7 @@ void	evolution_ronflex_capture(t_config *c, int x, int y)
 	{
 		c->pokeball--;
 		c->n_sprite--;
+		c->pkmn.progress++;
 		system("afplay ./sounds/capture.mp3 &");
 	}
 }

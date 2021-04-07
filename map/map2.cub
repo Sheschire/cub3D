@@ -1,15 +1,15 @@
     R      1000 600
 
-NO      ../images/Lugia.png.xpm 
+NO      ./images/tower.xpm 
 
 
-    SO ../images/Lugia.png.xpm  
+    SO ./images/tower.xpm  
 
-WE ../images/Lugia.png.xpm 
+WE ./images/tower.xpm 
 
-EA ../images/Lugia.png.xpm  
+EA ./images/tower.xpm  
 
-S ../images/Lugia.png.xpm 
+S ./images/tower.xpm 
 
 
 

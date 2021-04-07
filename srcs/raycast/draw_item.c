@@ -1,32 +1,29 @@
 #include "../../includes/cub3d.h"
 
-void			draw_item(t_config *c, int n)
+void	draw_item(t_config *c, int n)
 {
-	float	x;
-	float	y;
 	int		color;
 	float	i;
 	float	j;
 
 	j = 0;
-	y = (float)c->r2 * 0.6 - 1;
-	while (++y <= (c->r2 - 1))
+	c->y_tmp = (float)c->r2 * 0.6 - 1;
+	while (++c->y_tmp <= (c->r2 - 1))
 	{
-		x = ((float)c->r1 * 0.4 - 1);
+		c->x_tmp = ((float)c->r1 * 0.4 - 1);
 		i = 0;
-		while (x < (float)(c->r1 * 0.65 - 1))
+		while (++c->x_tmp < (float)(c->r1 * 0.65 - 1))
 		{
 			color = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4)];
 			if (color != 0x0000000)
-				c->img.addr[(int)y * (c->r1 * 4) + (int)x * 4] = color;
+				c->img.addr[(int)c->y_tmp * (c->r1 * 4) + (int)c->x_tmp * 4] = color;
 			color = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4 + 1)];
 			if (color != 0x0000000)
-				c->img.addr[(int)y * (c->r1 * 4) + (int)x * 4 + 1] = color;
+				c->img.addr[(int)c->y_tmp * (c->r1 * 4) + (int)c->x_tmp * 4 + 1] = color;
 			color = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) + (int)i * 4 + 2)];
 			if (color != 0x000000)
-				c->img.addr[(int)y * (c->r1 * 4) + (int)x * 4 + 2] = color;
+				c->img.addr[(int)c->y_tmp * (c->r1 * 4) + (int)c->x_tmp * 4 + 2] = color;
 			i += (float)(c->t[n].width) / (float)((c->r1) * 0.25);
-			x++;
 		}
 		j += (float)(c->t[n].height - 1) / (float)(c->r2 * 0.5);
 	}

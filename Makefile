@@ -22,7 +22,11 @@ SRCS	=	./srcs/checks/check_config.c\
 			./srcs/raycast/draw_3d.c\
 			./srcs/raycast/draw_sprites.c\
 			./srcs/raycast/event.c\
-			./srcs/raycast/draw_item.c
+			./srcs/raycast/draw_item.c\
+			./srcs/raycast/draw_progression.c\
+			./srcs/utils/raycast_utils.c\
+			./srcs/utils/bmp_saver.c\
+			./srcs/launch_game.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang
