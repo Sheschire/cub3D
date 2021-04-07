@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 14:06:38 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:22:11 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ int		keyhook(t_config *c)
 {
 	mlx_hook(c->v.win, 2, 1L << 0, key_press, c);
 	mlx_hook(c->v.win, 3, 1L << 1, key_release, c);
-	mlx_hook(c->v.win, 17, 0, win_close, c);
 	return (1);
 }

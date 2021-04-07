@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:46:31 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/31 17:29:14 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:14:18 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	main(int ac, char **av)
 	}
 	ft_check_map(fd, &c);
 	player_orientation(&c);
-	c.sp = malloc(sizeof(t_sprite) * 50);
-	find_sprite(&c);
 	init_mlx(&c);
 	return (0);
 }

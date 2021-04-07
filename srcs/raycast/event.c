@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:33:54 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 14:23:27 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:22:58 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	encounter_event(t_config *c, int x, int y)
 	}
 }
 
-void	evolution_ronflex_capture(t_config *c, int x, int y)
+void	evolution_ronflex_capture(t_config *c)
 {
 	if (c->pkmn.current_item == 11 && \
 	is_around_with_item(c, "8", c->pkmn.candy, 'T'))
@@ -112,7 +112,7 @@ void	event(t_config *c)
 		c->n_sprite--;
 	}
 	encounter_event(c, x, y);
-	evolution_ronflex_capture(c, x, y);
+	evolution_ronflex_capture(c);
 	clean_item(c);
 	draw_progression(c);
 }

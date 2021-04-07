@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 14:48:43 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:00:01 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ typedef struct	s_config
 	t_data		img;
 	t_ray		r;
 	t_wall		w;
-	t_texture	t[20];
+	t_texture	t[19];
 	t_sprite	*sp;
 	t_pkmn		pkmn;
 }				t_config;
@@ -290,6 +290,7 @@ void			find_sprite(t_config *c);
 void			get_coord_draw(t_sprite *sp, t_config*c);
 void			get_sprite_size(t_config *c, int i);
 void			get_newy(t_config *c, int i);
+void			count_sprites(t_config *c);
 
 /*
 **	POKEMON

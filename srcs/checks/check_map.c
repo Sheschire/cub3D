@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 13:22:31 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:59:54 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ft_check_walls(t_config *c)
 	return (1);
 }
 
-char	*space_to_join(t_config *c, char *map_y, int len)
+char	*space_to_join(t_config *c, int len)
 {
 	char	*space;
 	int		i;
@@ -80,7 +80,7 @@ void	adapt_to_greatest(t_config *c)
 		len = (int)ft_strlen(c->m.map[y]);
 		if (len < c->x_max)
 		{
-			space = space_to_join(c, c->m.map[y], len);
+			space = space_to_join(c, len);
 			c->m.map[y] = ft_strjoin(c->m.map[y], space, 2);
 		}
 		y++;
@@ -100,4 +100,7 @@ void	ft_check_map(int fd, t_config *c)
 		f_error("player", c);
 	greatest_x_y_max(c);
 	adapt_to_greatest(c);
+	count_sprites(c);
+	c->sp = malloc(sizeof(t_sprite) * c->n_sprite);
+	find_sprite(c);
 }

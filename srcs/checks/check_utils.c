@@ -6,13 +6,13 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:27:10 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/01 15:45:47 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:47:11 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	is_map_1st_line(char *line)
+int		is_map_1st_line(char *line)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ int	is_map_1st_line(char *line)
 	return (0);
 }
 
-int	is_in_set(char c, char *set)
+int		is_in_set(char c, char *set)
 {
 	int		i;
 
@@ -37,4 +37,22 @@ int	is_in_set(char c, char *set)
 		if (c == set[i++])
 			return (1);
 	return (0);
+}
+
+void	count_sprites(t_config *c)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	c->n_sprite = 0;
+	while (++y < c->y_max)
+	{
+		x = -1;
+		while (++x < c->x_max)
+		{
+			if (is_in_set(c->m.map[y][x], "23456789T"))
+				c->n_sprite++;
+		}
+	}
 }
