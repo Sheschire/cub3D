@@ -42,7 +42,7 @@ int		ft_check_walls(t_config *c)
 			c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
 				ft_get_player(c, x, y);
 			if (is_in_set(c->m.map[y][x], "023456789TNSWE"))
-				if (!check_UDRL(c, y, x))
+				if (!check_udrl(c, y, x))
 					return (0);
 			x++;
 		}

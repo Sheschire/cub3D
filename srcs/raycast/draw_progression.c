@@ -18,8 +18,8 @@ void	adapt_progression_bar(t_config *c, int n, int i)
 	float	j;
 
 	j = 165;
-	c->y_tmp = (float)c->r2 * 0.1 - 1;
-	while (++c->y_tmp <= (c->r2 * 0.145 - 1))
+	c->yb = (float)c->r2 * 0.1 - 1;
+	while (++c->yb <= (c->r2 * 0.145 - 1))
 	{
 		c->xb = ((float)c->r1 * 0.4 - 1);
 		c->i_tmp = 18;
@@ -28,12 +28,12 @@ void	adapt_progression_bar(t_config *c, int n, int i)
 			while (++i < 3)
 			{
 				co = c->t[n].addr[(int)((int)j * (c->t[n].width * 4) \
-				+ (int)c->i_tmp * 4 + i)];
+				+ ((int)c->i_tmp * 4 + i))];
 				if (co != 0x0000000)
-					c->img.addr[(int)c->y_tmp * (c->r1 * 4) \
-					+ (int)c->xb * 4 + i] = co;
-				c->i_tmp += (float)(c->t[n].width) / (float)((c->r1) * 0.25);
+					c->img.addr[(int)c->yb * (c->r1 * 4) \
+					+ ((int)c->xb * 4 + i)] = co;
 			}
+			c->i_tmp += (float)(c->t[n].width) / (float)((c->r1) * 0.25);
 			c->xb++;
 		}
 		j += (float)(c->t[n].height - 1) / (float)(c->r2 * 0.5);

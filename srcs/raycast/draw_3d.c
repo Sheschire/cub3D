@@ -57,7 +57,7 @@ void	apply_texture(t_config *c, int column)
 	while (c->w.w_top < c->w.w_bot)
 	{
 		off_y = c->w.w_top + (c->w.w_height / 2) - (c->r2 / 2);
-		off_y = offset_y * ((float)c->t[n_t].height / c->w.w_height);
+		off_y = off_y * ((float)c->t[n_t].height / c->w.w_height);
 		color = c->t[n_t].addr[(c->t[n_t].width * off_y * 4) + off_x * 4];
 		c->img.addr[(c->w.w_top * c->r1 * 4) + column * 4] = color;
 		color = c->t[n_t].addr[(c->t[n_t].width * off_y * 4) + off_x * 4 + 1];
