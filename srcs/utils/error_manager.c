@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:28:00 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 13:16:03 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 13:49:41 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_exit(t_config *c)
 {
-	system("killall afplay");
+	play_sound('x');
 	ft_free_all(c);
 	exit(0);
 }

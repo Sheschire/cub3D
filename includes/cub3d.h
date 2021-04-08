@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 13:17:56 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 13:49:07 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void			ft_exit(t_config *c);
 int				is_in_set(char	c, char *set);
 int				is_map_1st_line(char *line);
 int				get_next_line(int fd, char **line);
+void			play_sound(char c);
 
 /*
 **	MLX

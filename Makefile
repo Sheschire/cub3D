@@ -44,7 +44,8 @@ SRC	=	checks/check_config\
 			utils/raycast_utils\
 			utils/bmp_saver\
 			launch_game\
-			utils/free_mlx
+			utils/free_mlx\
+			utils/play_sound
 
 FIL = $(addsuffix .c, $(addprefix srcs/, $(SRC)))
 
