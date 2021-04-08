@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 13:27:14 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 19:19:53 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	init_pkmn(t_config *c)
 
 void	ft_init_t_config(t_config *c)
 {
+	c->bmp_save = 0;
 	c->game_started = 0;
 	c->r1 = 0;
 	c->r2 = 0;

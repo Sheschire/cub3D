@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:39:38 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 13:47:29 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 19:10:49 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	switch_item(t_config *c)
 		if (!c->pokeball && c->pokeflute)
 			c->pkmn.current_item = 7;
 	}
-	draw_item(c, c->pkmn.current_item);
 }
 
 void	is_item_picked(t_config *c)

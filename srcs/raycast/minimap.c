@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 13:29:47 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 19:19:19 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	minimap_to_window(t_config *c)
 	while (c->y < c->y_max && c->y < c->r2)
 	{
 		c->x = 0;
-		while (c->x < 33 && c->x < c->r1)
+		while (c->x < 33 && c->x < c->x_max)
 		{
 			if (c->m.map[c->y][c->x] == '1')
 				print_cube(c, 0x00D90F56);

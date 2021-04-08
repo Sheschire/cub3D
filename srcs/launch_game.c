@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:20:55 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 16:52:08 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/07 19:08:23 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		launch_game(t_config *c)
 	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
 	c->img.addr = mlx_get_data_addr(c->img.img, \
 	&c->img.bits_per_pixel, &c->img.line_length, &c->img.endian);
-	keyhook(c);
 	if (!c->game_started && c->pkmn.pokecub)
 		game_screen(c);
 	if (c->game_started || !c->pkmn.pokecub)
@@ -69,10 +68,7 @@ int		launch_game(t_config *c)
 
 void	init_mlx(t_config *c)
 {
-	c->v.mlx = mlx_init();
-	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
-	if (c->pkmn.pokecub)
-		system("afplay ./sounds/route1.mp3 &");
+	keyhook(c);
 	mlx_loop_hook(c->v.mlx, launch_game, c);
 	mlx_loop(c->v.mlx);
 }
