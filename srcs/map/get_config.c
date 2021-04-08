@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 14:21:54 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 16:07:38 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ char	*ft_config(int fd, t_config *c)
 		free(line);
 	}
 	if (!check_config(c) || ret == 0)
+	{
+		free(line);
 		f_error("config", c);
+	}
 	return (line);
 }

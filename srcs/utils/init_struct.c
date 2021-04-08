@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 15:32:46 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 15:55:37 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	ft_init_t_config(t_config *c)
 
 	i = -1;
 	c->buff = 0;
+	c->v.mlx = mlx_init();
+	c->v.win = NULL;
 	c->bmp_save = 0;
 	c->game_started = 0;
 	c->r1 = 0;
@@ -75,9 +77,11 @@ void	ft_init_t_config(t_config *c)
 	c->y = 0;
 	c->m.line = NULL;
 	c->m.map = NULL;
+	c->sp = NULL;
 	while (++i < 20)
 	{
 		c->t[i].img = 0;
+		c->t[i].addr = 0;
 		c->t[i].height = 0;
 		c->t[i].width = 0;
 	}
