@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:33:54 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 12:24:15 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 13:15:16 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ void	encounter_event(t_config *c, int x, int y)
 	if (c->m.map[y][x] == '6' && y == 8 && x == 31)
 	{
 		c->p.x += 5;
-		play_sound('x');
-		play_sound('l');
-		play_sound('t');
+		system("killall afplay");
+		system("afplay ./sounds/lugia.mp3 &");
+		system("afplay ./sounds/lugia_theme.mp3 &");
 	}
 	if (c->m.map[y][x] == '6' && y == 8 && x == 33)
 	{
 		c->p.x -= 5;
-		play_sound('x');
-		play_sound('r');
+		system("killall afplay");
+		system("afplay ./sounds/route1.mp3 &");
 	}
 	if (y == 15 && x == 16 && c->pkmn.ray_encounter == 0)
 	{
 		c->pkmn.ray_encounter = 1;
-		play_sound('x');
-		play_sound('z');
-		play_sound('q');
+		system("killall afplay");
+		system("afplay ./sounds/rayquaza.mp3 &");
+		system("afplay ./sounds/rayquaza_theme.mp3 &");
 	}
 }
 
@@ -69,7 +69,7 @@ void	evolution_ronflex_capture(t_config *c)
 	if (c->pkmn.current_item == 11 && \
 	is_around_with_item(c, "8", c->pkmn.candy, 'T'))
 	{
-		play_sound('y');
+		system("afplay ./sounds/typhlosion.mp3 &");
 		find_sprite(c);
 		draw_sprites(c);
 		c->pkmn.candy--;
@@ -80,7 +80,7 @@ void	evolution_ronflex_capture(t_config *c)
 	{
 		c->n_sprite--;
 		c->pokeflute--;
-		play_sound('s');
+		system("afplay ./sounds/snorlax.mp3 &");
 	}
 	if (c->pkmn.current_item == 5 && \
 	is_around_with_item(c, "27", c->pokeball, '0'))
@@ -88,7 +88,7 @@ void	evolution_ronflex_capture(t_config *c)
 		c->pokeball--;
 		c->n_sprite--;
 		c->pkmn.progress++;
-		play_sound('c');
+		system("afplay ./sounds/capture.mp3 &");
 	}
 }
 
@@ -101,7 +101,7 @@ void	event(t_config *c)
 	x = (int)c->p.x;
 	if (is_in_set(c->m.map[y][x], "359"))
 	{
-		play_sound('o');
+		system("afplay ./sounds/pick_obj.mp3 &");
 		if (c->m.map[y][x] == '3')
 			c->pokeball++;
 		if (c->m.map[y][x] == '5')

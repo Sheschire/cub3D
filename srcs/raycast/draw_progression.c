@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:52:15 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 12:24:57 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 13:15:32 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	draw_progression(t_config *c)
 	if (c->pkmn.progress == 5)
 	{
 		c->pkmn.progress++;
-		play_sound('x');
-		play_sound('v');
+		system("killall afplay");
+		system("afplay ./sounds/victory.mp3 &");
 	}
 	if (c->pkmn.progress == 6)
 		game_end_screen(c);
