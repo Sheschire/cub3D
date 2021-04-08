@@ -59,7 +59,7 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 /*
 ** Image stuff
 */
-
+int	mlx_destroy_display(void *mlx);
 void	*mlx_new_image(void *mlx_ptr,int width,int height);
 /*
 **  return void *0 if failed
