@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:30:32 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/02/23 15:30:51 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:08:57 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,36 @@ void	ft_free(char *tmp)
 	}
 }
 
+void	ft_free_all_2(t_config *c)
+{
+	int	i;
+	
+	i = -1;
+	while (++i <= 7)
+	{
+		if (PLATFORM == 2 && c->t[i].img)
+			mlx_destroy_image(c->v.mlx, c->t[i].img);
+		else if (PLATFORM == 1 && c->t[i].img)
+		{
+			free(c->t[i].img);
+			c->t[i].img = 0;
+			free(c->t[i].addr);
+			c->t[i].addr = 0;
+		}
+	}
+	free_window(c);
+	free(c);
+}
+
 void	ft_free_all(t_config *c)
 {
 	if (c->m.map)
 		free_tab(c->m.map, c->m.line, '*');
 	free(c->m.line);
-	ft_free(c->no);
-	ft_free(c->so);
-	ft_free(c->s);
-	ft_free(c->we);
-	ft_free(c->ea);
+	if (c->sp)
+		free(c->sp);
+	ft_free_all_2(c);
 }
+
+
+

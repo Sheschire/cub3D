@@ -6,17 +6,11 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:24:36 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:23:49 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:44:18 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	win_close(t_config *c)
-{
-	mlx_destroy_window(c->v.mlx, c->v.win);
-	exit(0);
-}
 
 int		key_press(int keycode, t_config *c)
 {
@@ -29,7 +23,7 @@ int		key_press(int keycode, t_config *c)
 	if (keycode == D)
 		c->p.right = 1;
 	if (keycode == ESC)
-		win_close(c);
+		ft_exit(c);
 	if (keycode == SHIFT)
 		c->p.speed *= 2;
 	if (keycode == LEFT_ARROW)

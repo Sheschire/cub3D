@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:19:29 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:17:20 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_sprites(t_config *c)
 	if (c->pkmn.pokecub == 1)
 	{
 		get_path_bonus(c);
-		system("afplay ./sounds/route1.mp3 &");
+		play_sound('r');
 	}
 	count_sprites(c);
 	c->sp = malloc(sizeof(t_sprite) * c->n_sprite);
@@ -64,19 +64,6 @@ void	ft_init_t_config(t_config *c)
 	c->game_started = 0;
 	c->r1 = 0;
 	c->r2 = 0;
-	c->no = NULL;
-	c->so = NULL;
-	c->we = NULL;
-	c->ea = NULL;
-	c->s = NULL;
-	c->s1 = NULL;
-	c->s2 = NULL;
-	c->s3 = NULL;
-	c->s4 = NULL;
-	c->s5 = NULL;
-	c->s6 = NULL;
-	c->s7 = NULL;
-	c->s8 = NULL;
 	c->f_rgb = -1;
 	c->c_rgb = -1;
 	c->x = 0;

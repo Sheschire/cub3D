@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:03:59 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:31:33 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,19 +136,6 @@ typedef struct	s_config
 	float		*buff;
 	int			r1;
 	int			r2;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		*s;
-	char		*s1;
-	char		*s2;
-	char		*s3;
-	char		*s4;
-	char		*s5;
-	char		*s6;
-	char		*s7;
-	char		*s8;
 	int			pokeflute;
 	int			pokeball;
 	int			f_rgb;
@@ -207,7 +194,6 @@ void			player_orientation(t_config *c);
 void			ft_get_texture(char *line, t_config *c);
 void			ft_get_path(t_config *c, char **param);
 void			get_path_bonus(t_config *c);
-void			ft_free_textures(t_config *c);
 
 /*
 **	init structs
@@ -220,6 +206,8 @@ void			init_sprites(t_config *c);
 */
 void			free_tab(char **tab, char const *s, char sep);
 void			ft_free_all(t_config *c);
+void			free_window(t_config *c);
+void			free_image(t_config *c);
 
 /*
 **	Error
@@ -233,6 +221,7 @@ void			ft_exit(t_config *c);
 int				is_in_set(char	c, char *set);
 int				is_map_1st_line(char *line);
 int				get_next_line(int fd, char **line);
+void			play_sound(char c);
 
 /*
 **	MLX

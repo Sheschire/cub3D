@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:19:28 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 19:19:19 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 11:36:25 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ void	minimap_to_window(t_config *c)
 		}
 		c->y++;
 	}
-	if (c->p.x < 33)
+	if (c->p.x < 33 && c->pkmn.pokecub)
+		print_player(c);
+	if (c->p.x < 33 && !c->pkmn.pokecub)
 		print_player(c);
 }
 

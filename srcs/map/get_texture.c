@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:43:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:19:25 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:32:01 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_get_path(t_config *c, char **param)
 
 void	get_path_bonus(t_config *c)
 {
-	c->t[13].addr = get_texture_addr(c, 13, "./images/startscreen.xpm");
+	c->t[13].addr = get_texture_addr(c, 13, "./images/startscreenpokecub.xpm");
 	c->t[14].addr = get_texture_addr(c, 14, "./images/progression.xpm");
 	c->t[15].addr = get_texture_addr(c, 15, "./images/progression2.xpm");
 	c->t[16].addr = get_texture_addr(c, 16, "./images/progression3.xpm");

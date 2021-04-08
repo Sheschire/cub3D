@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:20:55 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:24:09 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 11:26:21 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ void	game_screen(t_config *c)
 	}
 }
 
+void	run_game(t_config *c)
+{
+	player_movement(c);
+	paint_floor_ceiling(c);
+	print_fov(c);
+	draw_sprites(c);
+	minimap_to_window(c);
+	if (c->pkmn.pokecub)
+	{
+		is_item_picked(c);
+		event(c);
+	}
+	normalize_r_angle(c);
+}
+
 int		launch_game(t_config *c)
 {
 	c->img.img = mlx_new_image(c->v.mlx, c->r1, c->r2);
@@ -46,23 +61,14 @@ int		launch_game(t_config *c)
 	if (!c->game_started && c->pkmn.pokecub)
 		game_screen(c);
 	if (c->game_started || !c->pkmn.pokecub)
-	{
-		player_movement(c);
-		paint_floor_ceiling(c);
-		print_fov(c);
-		draw_sprites(c);
-		minimap_to_window(c);
-		is_item_picked(c);
-		event(c);
-		normalize_r_angle(c);
-	}
+		run_game(c);
 	if (c->bmp_save)
 	{
 		ft_bmp_saver(c);
 		c->bmp_save = 0;
 	}
 	mlx_put_image_to_window(c->v.mlx, c->v.win, c->img.img, 0, 0);
-	mlx_destroy_image(c->v.mlx, c->img.img);
+	free_image(c);
 	return (1);
 }
 
