@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:55:53 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 17:02:14 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:23:45 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@
 #  define TAB 65289
 #  define SPACE_BAR 32
 #  define SHIFT 65505
-#  define ENTER 36
+#  define ENTER 65293
 # endif
 #endif

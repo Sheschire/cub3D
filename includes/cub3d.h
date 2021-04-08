@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 17:03:10 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:03:59 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,12 +206,14 @@ void			player_orientation(t_config *c);
 */
 void			ft_get_texture(char *line, t_config *c);
 void			ft_get_path(t_config *c, char **param);
+void			get_path_bonus(t_config *c);
 void			ft_free_textures(t_config *c);
 
 /*
 **	init structs
 */
 void			ft_init_t_config(t_config *c);
+void			init_sprites(t_config *c);
 
 /*
 **	Free

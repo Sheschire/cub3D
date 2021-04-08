@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/31 09:44:48 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:13:52 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 int		check_config(t_config *c)
 {
-	if (c->r1 && c->r2 && c->no && c->so && \
-	c->we && c->ea && c->s && c->f_rgb != -1 && c->c_rgb != 1)
+	int	i;
+	
+	i = -1;
+	if (c->r1 && c->r2 && c->f_rgb != -1 && c->c_rgb != 1)
+	{
+		while (++i <= 4)
+			if (!c->t[i].addr)
+				return (0);
 		return (1);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/07 19:00:14 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:05:58 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,9 @@ void	ft_check_map(int fd, t_config *c)
 {
 	char	*line;
 
+	c->v.mlx = mlx_init();
 	line = ft_config(fd, c);
 	c->v.win = mlx_new_window(c->v.mlx, c->r1, c->r2, "Pokecube 3D");
-	if (c->pkmn.pokecub)
-		system("afplay ./sounds/route1.mp3 &");
 	map_gnl(fd, line, c);
 	c->m.map = ft_split(c->m.line, '*');
 	if (!ft_check_walls(c))
@@ -103,7 +102,5 @@ void	ft_check_map(int fd, t_config *c)
 		f_error("player", c);
 	greatest_x_y_max(c);
 	adapt_to_greatest(c);
-	count_sprites(c);
-	c->sp = malloc(sizeof(t_sprite) * c->n_sprite);
-	find_sprite(c);
+	init_sprites(c);
 }
