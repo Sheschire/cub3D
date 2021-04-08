@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 15:49:08 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:02:03 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,5 @@ void	ft_check_map(int fd, t_config *c)
 	greatest_x_y_max(c);
 	adapt_to_greatest(c);
 	init_sprites(c);
+	c->line_bool = 0;
 }

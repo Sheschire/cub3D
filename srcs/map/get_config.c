@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 17:31:45 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:12:50 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_get_r(char *line, t_config *c)
 	r = ft_split(line, ' ');
 	if (!check_r(r, c))
 	{
-		free(line);
 		free_tab(r, line, ' ');
 		f_error("R", c);
 	}
@@ -74,7 +73,6 @@ void	ft_split_colors(char *line, t_config *c)
 			free_tab(rgb, line, ',');
 			if (tmp)
 				free_tab(tmp, line, ' ');
-			free(line);
 			f_error("colors", c);
 		}
 		else
@@ -94,26 +92,26 @@ void	check_wrong_line(char *line, t_config *c)
 		while (line[i] == ' ')
 			i++;
 		if (!is_in_set(line[i], "RSNWEFC"))
-		{
-			free(line);
 			f_error("param", c);
-		}
 	}
 }
 
 void	ft_get_config(char *line, t_config *c)
 {
-	if (*line)
+	int	i;
+
+	i = 0;
+	if (line[i])
 	{
 		check_wrong_line(line, c);
-		while (*line)
+		while (line[i])
 		{
-			if (*line == 'R')
+			if (line[i] == 'R')
 				ft_get_r(line, c);
-			if (*line == 'S' || *line == 'N' || \
-			*line == 'E' || *line == 'W')
+			if (line[i] == 'S' || line[i] == 'N' || \
+			line[i] == 'E' || line[i] == 'W')
 				ft_get_texture(line, c);
-			if (*line == 'F' || *line == 'C')
+			if (line[i] == 'F' || line[i] == 'C')
 				ft_split_colors(line, c);
 			line++;
 		}
@@ -122,18 +120,14 @@ void	ft_get_config(char *line, t_config *c)
 
 char	*ft_config(int fd, t_config *c)
 {
-	char		*line;
 	int			ret;
 
-	while ((ret = get_next_line(fd, &line)) > 0 && !is_map_1st_line(line))
+	while ((ret = get_next_line(fd, &c->line)) > 0 && !is_map_1st_line(c->line))
 	{
-		ft_get_config(line, c);
-		free(line);
+		ft_get_config(c->line, c);
+		free(c->line);
 	}
 	if (!check_config(c) || ret == 0)
-	{
-		free(line);
 		f_error("config", c);
-	}
-	return (line);
+	return (c->line);
 }

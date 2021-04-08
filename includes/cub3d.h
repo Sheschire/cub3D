@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 15:32:49 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:06:25 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ typedef struct	s_pkmn
 typedef struct	s_config
 {
 	int			game_started;
+	int			line_bool;
+	char		*line;
 	float		*buff;
 	int			r1;
 	int			r2;
@@ -262,7 +264,8 @@ void			paint_floor_ceiling(t_config *c);
 /*
 **	SPRITES
 */
-char			*get_texture_addr(t_config *c, int n, char *filename);
+char			*get_texture_addr(t_config *c, int n, char **param);
+char			*get_texture_addr_bonus(t_config *c, int n, char *filename);
 void			draw_sprites(t_config *c);
 void			find_sprite(t_config *c);
 void			get_coord_draw(t_sprite *sp, t_config*c);
