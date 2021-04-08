@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 14:46:24 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 15:32:46 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void	init_sprites(t_config *c)
 
 void	ft_init_t_config(t_config *c)
 {
+	int	i;
+
+	i = -1;
 	c->buff = 0;
 	c->bmp_save = 0;
 	c->game_started = 0;
@@ -72,6 +75,12 @@ void	ft_init_t_config(t_config *c)
 	c->y = 0;
 	c->m.line = NULL;
 	c->m.map = NULL;
+	while (++i < 20)
+	{
+		c->t[i].img = 0;
+		c->t[i].height = 0;
+		c->t[i].width = 0;
+	}
 	init_player(c);
 	init_ray(c);
 	init_pkmn(c);

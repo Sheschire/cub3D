@@ -1,11 +1,11 @@
-    R      1920 1080
+    R      1000 1000
 
 NO      ./images/poketext.xpm
 
 
     SO ./images/pokecenter.xpm
 
-WE ./images/kyogre.xpm
+WE ./images/lugia.xpm
 
 EA ./images/lugia.xpm
 
