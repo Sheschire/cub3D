@@ -8,7 +8,7 @@ MLX = -L $(MLX_DIR) -lmlx -lm -lbsd -lX11 -lXext
 LISTPKG := "$(shell dpkg -l | grep -c "mpg123")"
 endif
 ifeq ($(CURRENTOS), Darwin)
-MLX_DIR = ./mlx
+MLX_DIR = ./mlxopengl
 MLX = -L $(MLX_DIR) -lmlx -lm -framework OpenGL -framework AppKit
 endif
 
