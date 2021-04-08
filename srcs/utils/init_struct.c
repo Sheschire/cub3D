@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 13:48:33 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 14:46:24 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	init_sprites(t_config *c)
 		get_path_bonus(c);
 		play_sound('r');
 	}
+	c->n_sprite = 0;
 	count_sprites(c);
 	c->sp = malloc(sizeof(t_sprite) * c->n_sprite);
 	find_sprite(c);
@@ -60,6 +61,7 @@ void	init_sprites(t_config *c)
 
 void	ft_init_t_config(t_config *c)
 {
+	c->buff = 0;
 	c->bmp_save = 0;
 	c->game_started = 0;
 	c->r1 = 0;

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:30:32 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 12:08:57 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 14:37:17 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_free_all_2(t_config *c)
 	{
 		if (PLATFORM == 2 && c->t[i].img)
 			mlx_destroy_image(c->v.mlx, c->t[i].img);
-		else if (PLATFORM == 1 && c->t[i].img)
+		if (PLATFORM == 1 && c->t[i].img)
 		{
 			free(c->t[i].img);
 			c->t[i].img = 0;
@@ -88,6 +88,8 @@ void	ft_free_all(t_config *c)
 	free(c->m.line);
 	if (c->sp)
 		free(c->sp);
+	if (c->buff)
+		free(c->buff);
 	ft_free_all_2(c);
 }
 

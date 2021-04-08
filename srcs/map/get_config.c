@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/03/31 09:44:15 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 14:21:54 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,18 @@ void	ft_split_colors(char *line, t_config *c)
 	while (tmp[i])
 		i++;
 	if (i != 2 || (ft_strcmp(tmp[0], "F") != 0 && ft_strcmp(tmp[0], "C") != 0))
+	{
+		free_tab(tmp, line, ' ');
 		f_error("param", c);
+	}
 	else
 	{
 		rgb = ft_split(tmp[1], ',');
 		if (!check_colors(rgb))
+		{
+			free_tab(rgb, line, ',');
 			f_error("colors", c);
+		}
 		else
 			ft_get_colors(tmp, rgb, c);
 		free_tab(rgb, line, ',');

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:43:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:32:01 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 14:31:52 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	ft_get_texture(char *line, t_config *c)
 	i = 0;
 	param = ft_split(line, ' ');
 	if (!check_param(c, param, line))
+	{
+		free_tab(param, line, ' ');
 		f_error("texture", c);
-	else;
+	}
+	else
 		free_tab(param, line, ' ');
 }
