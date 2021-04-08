@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:13:52 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 17:31:29 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int		check_r(char **r, t_config *c)
 	while (r[2][i])
 		if (!ft_isdigit(r[2][i++]))
 			error = 1;
+	if ((c->r1 || c->r2) && r[0][0] == 'R')
+		error = 1;
 	if (error == 1)
 		return (0);
-	if ((c->r1 || c->r2) && r[0][0] == 'R')
-		f_error("twice", c);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 16:07:38 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 17:31:45 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_get_r(char *line, t_config *c)
 	r = ft_split(line, ' ');
 	if (!check_r(r, c))
 	{
+		free(line);
 		free_tab(r, line, ' ');
 		f_error("R", c);
 	}
@@ -71,6 +72,9 @@ void	ft_split_colors(char *line, t_config *c)
 		if (!check_colors(rgb))
 		{
 			free_tab(rgb, line, ',');
+			if (tmp)
+				free_tab(tmp, line, ' ');
+			free(line);
 			f_error("colors", c);
 		}
 		else
@@ -80,27 +84,38 @@ void	ft_split_colors(char *line, t_config *c)
 	free_tab(tmp, line, ' ');
 }
 
+void	check_wrong_line(char *line, t_config *c)
+{
+	int	i;
+
+	i = 0;
+	if (line[i])
+	{
+		while (line[i] == ' ')
+			i++;
+		if (!is_in_set(line[i], "RSNWEFC"))
+		{
+			free(line);
+			f_error("param", c);
+		}
+	}
+}
+
 void	ft_get_config(char *line, t_config *c)
 {
 	if (*line)
 	{
-		while (*line == ' ')
-			line++;
-		if (!is_in_set(*line, "RSNWEFC"))
-			f_error("param", c);
-		else
+		check_wrong_line(line, c);
+		while (*line)
 		{
-			while (*line)
-			{
-				if (*line == 'R')
-					ft_get_r(line, c);
-				if (*line == 'S' || *line == 'N' || \
-				*line == 'E' || *line == 'W')
-					ft_get_texture(line, c);
-				if (*line == 'F' || *line == 'C')
-					ft_split_colors(line, c);
-				line++;
-			}
+			if (*line == 'R')
+				ft_get_r(line, c);
+			if (*line == 'S' || *line == 'N' || \
+			*line == 'E' || *line == 'W')
+				ft_get_texture(line, c);
+			if (*line == 'F' || *line == 'C')
+				ft_split_colors(line, c);
+			line++;
 		}
 	}
 }
