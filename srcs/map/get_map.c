@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:42:10 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 10:01:47 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 19:15:06 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,17 @@ void	map_gnl(int fd, char *line, t_config *c)
 		if (!*line)
 			end_map = 1;
 		if (*line && end_map == 1)
+		{
+			c->line_bool = 0;
+			free(line);
 			f_error("line_after_map", c);
+		}
 		get_map(line, c);
 	}
 	if (*line && !is_map_1st_line(line))
+	{
+		c->line_bool = 0;
 		f_error("wall", c);
+	}
 	get_map(line, c);
 }

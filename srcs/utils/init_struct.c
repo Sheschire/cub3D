@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 17:58:42 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:40:29 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	ft_init_t_config(t_config *c)
 	c->m.map = NULL;
 	c->sp = NULL;
 	c->line = NULL;
-	c->line_bool = 1;
 	while (++i < 20)
 	{
 		c->t[i].img = 0;

@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:06:25 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:38:54 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void			greatest_x_y_max(t_config *c);
 /*
 **	Config
 */
-char			*ft_config(int fd, t_config *c);
+void			ft_config(int fd, t_config *c);
 int				check_config(t_config *c);
 int				check_r(char **r, t_config *c);
 int				check_colors(char **rgb);

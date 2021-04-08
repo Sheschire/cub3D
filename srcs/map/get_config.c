@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:12:50 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:38:41 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	ft_get_config(char *line, t_config *c)
 	}
 }
 
-char	*ft_config(int fd, t_config *c)
+void	ft_config(int fd, t_config *c)
 {
 	int			ret;
 
@@ -129,5 +129,4 @@ char	*ft_config(int fd, t_config *c)
 	}
 	if (!check_config(c) || ret == 0)
 		f_error("config", c);
-	return (c->line);
 }

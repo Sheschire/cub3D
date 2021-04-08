@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:43:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:09:10 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:34:14 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void	ft_get_path(t_config *c, char **param)
 		else if (ft_strcmp(param[0], "S") == 0)
 			c->t[4].addr = get_texture_addr(c, 4, param);
 		get_path_2(c, param);
+	}
+	else
+	{
+		free_tab(param, c->line, ' ');
+		ft_exit(c);
 	}
 }
 

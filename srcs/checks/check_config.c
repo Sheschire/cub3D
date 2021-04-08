@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 17:36:18 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:44:28 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int		check_param(t_config *c, char **param, char *line)
 	if (i - 1 != 1)
 	{
 		free_tab(param, line, ' ');
-		free(line);
 		f_error("param", c);
 		return (0);
 	}
