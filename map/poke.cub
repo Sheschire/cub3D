@@ -5,9 +5,9 @@ NO ./images/poketext.xpm
 
     SO ./images/poketext.xpm
 
-WE ./images/pokecenter.xpm
+WE ./images/shop.xpm
 
-EA ./images/pokecenter.xpm
+EA ./images/shop.xpm
 
 S ./images/rayquaza.xpm
 S1 ./images/pokeball.xpm
