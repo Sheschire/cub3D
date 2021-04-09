@@ -22,4 +22,7 @@ If you want to play PokeCub3D, run :
 
 ENJOY !
 
+PS : You will prefer play on MacOs because I put some sounds in the game. However playing on Linux will be enjoyable, sounds are missing.
+PLEASE play on mac !
+
 ![Screenshot](startscreen.jpeg)
