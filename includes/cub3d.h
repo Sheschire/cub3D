@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:38:54 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:45:37 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void			free_image(t_config *c);
 **	Error
 */
 void			f_error(char *s, t_config *c);
-void			ft_exit(t_config *c);
+int				ft_exit(t_config *c);
 
 /*
 **	Utils

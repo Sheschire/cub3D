@@ -6,19 +6,20 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:28:00 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:43:25 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:45:27 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_exit(t_config *c)
+int		ft_exit(t_config *c)
 {
 	if (c->line_bool == 1 && c->line)
 		free(c->line);
 	play_sound('x');
 	ft_free_all(c);
 	exit(0);
+	return (1);
 }
 
 void	f_error(char *s, t_config *c)
