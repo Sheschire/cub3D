@@ -21,3 +21,5 @@ If you want to play PokeCub3D, run :
 ```./cub3D map/poke.cub```
 
 ENJOY !
+
+![Screenshot](startscreen.jpeg)
