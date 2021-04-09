@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:46:31 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 15:51:27 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:38:35 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_fd_save_pokecub(int ac, char **av, t_config *c)
 {
 	int fd;
-	
+
 	if (av[1])
 		fd = open(av[1], O_RDONLY);
 	else

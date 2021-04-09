@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:33:06 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:38:41 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:21:02 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_get_r(char *line, t_config *c)
 	{
 		c->r1 = ft_atoi(r[1]);
 		c->r2 = ft_atoi(r[2]);
+		check_screen_size(c);
 		free_tab(r, line, ' ');
 	}
 }
@@ -43,43 +44,6 @@ void	ft_get_colors(char **tmp, char **rgb, t_config *c)
 		c->f_rgb = (r << 16) + (g << 8) + b;
 	if (ft_strcmp(tmp[0], "C") == 0)
 		c->c_rgb = (r << 16) + (g << 8) + b;
-}
-
-void	ft_split_colors(char *line, t_config *c)
-{
-	char	**tmp;
-	char	**rgb;
-	int		i;
-
-	i = 0;
-	if ((*line == 'C' && c->c_rgb != -1) || (*line == 'F' && c->f_rgb != -1))
-	{
-		f_error("twice", c);
-		return ;
-	}
-	tmp = ft_split(line, ' ');
-	while (tmp[i])
-		i++;
-	if (i != 2 || (ft_strcmp(tmp[0], "F") != 0 && ft_strcmp(tmp[0], "C") != 0))
-	{
-		free_tab(tmp, line, ' ');
-		f_error("param", c);
-	}
-	else
-	{
-		rgb = ft_split(tmp[1], ',');
-		if (!check_colors(rgb))
-		{
-			free_tab(rgb, line, ',');
-			if (tmp)
-				free_tab(tmp, line, ' ');
-			f_error("colors", c);
-		}
-		else
-			ft_get_colors(tmp, rgb, c);
-		free_tab(rgb, line, ',');
-	}
-	free_tab(tmp, line, ' ');
 }
 
 void	check_wrong_line(char *line, t_config *c)

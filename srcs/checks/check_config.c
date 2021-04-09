@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:18:22 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:44:28 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:11:34 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_config(t_config *c)
 {
 	int	i;
-	
+
 	i = -1;
 	if (c->r1 && c->r2 && c->f_rgb != -1 && c->c_rgb != 1)
 	{
@@ -87,7 +87,6 @@ int		check_param(t_config *c, char **param, char *line)
 	{
 		free_tab(param, line, ' ');
 		f_error("param", c);
-		return (0);
 	}
 	ft_get_path(c, param);
 	return (1);

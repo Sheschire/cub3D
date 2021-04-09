@@ -1,23 +1,24 @@
-R   1000 1000
+R   500 500
 
 NO      ./images/poketext.xpm
 
-    SO ./images/pokecenter.xpm
+    SO ./images/pokecenter.xpm     
 
-WE ./images/lugia.xpm
+WE ./images/poketext.xpm
 
-EA ./images/lugia.xpm
+EA ./images/poketext.xpm
 
 S ./images/lugia.xpm
 
 
 
-F 8,196,64
-
+F 8,196,250
 C 30,115,245
 
 1111111
-12002001
-10000011
-100N001
+10S0001
+100N011
+1111111
+1000001
+1101111
 1111111

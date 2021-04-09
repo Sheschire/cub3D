@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 10:58:21 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 11:57:54 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:25:33 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_image(t_config *c)
 		c->img.addr = 0;
 	}
 }
+
 void	free_window(t_config *c)
 {
 	if (c->v.win)

@@ -18,17 +18,14 @@ CC = clang -g3 -Wall -Wextra -Werror
 
 INC= -I./includes
 
-SRC	=	checks/check_config\
+SRC	=		cub3d\
+			launch_game\
+			checks/check_config\
 			checks/check_map\
 			checks/check_utils\
 			map/get_config\
 			map/get_map\
 			map/get_texture\
-			utils/error_manager\
-			utils/free_tab\
-			utils/get_next_line\
-			utils/init_struct\
-			cub3d\
 			raycast/minimap\
 			raycast/keyhook\
 			raycast/player_movement\
@@ -36,16 +33,20 @@ SRC	=	checks/check_config\
 			raycast/horizontal_hit\
 			raycast/vertical_hit\
 			raycast/draw_3d\
-			raycast/draw_sprites\
-			raycast/sprites_utils\
-			raycast/event\
-			raycast/draw_item\
-			raycast/draw_progression\
+			sprites/draw_sprites\
+			sprites/sprites_utils\
+			sprites/event\
+			sprites/draw_item\
+			sprites/draw_progression\
+			utils/error_manager\
+			utils/free_tab\
+			utils/get_next_line\
+			utils/init_struct\
 			utils/raycast_utils\
 			utils/bmp_saver\
-			launch_game\
 			utils/free_mlx\
-			utils/play_sound
+			utils/play_sound\
+			utils/config_parser_utils
 
 FIL = $(addsuffix .c, $(addprefix srcs/, $(SRC)))
 

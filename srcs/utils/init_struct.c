@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:32:01 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:40:29 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:36:14 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,9 @@ void	init_player(t_config *c)
 	c->p.speed = 0.05;
 }
 
-void	init_ray(t_config *c)
-{
-	c->r.speed = 2 * (PI / 180);
-	c->r.angle = 0;
-	c->r.dir = 0;
-	c->r.fov = 66 * (PI / 180);
-	c->r.fov_angle = 0;
-	c->r.n_rays = 0;
-	c->r.verthit = 0;
-}
-
 void	init_pkmn(t_config *c)
 {
+	c->game_started = 0;
 	c->pkmn.pokecub = 0;
 	c->pkmn.ray_encounter = 0;
 	c->pkmn.candy = 0;
@@ -59,16 +49,29 @@ void	init_sprites(t_config *c)
 	find_sprite(c);
 }
 
+void	init_mlx_and_textures(t_config *c)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 20)
+	{
+		c->t[i].img = 0;
+		c->t[i].addr = 0;
+		c->t[i].height = 0;
+		c->t[i].width = 0;
+	}
+	c->v.mlx = mlx_init();
+	c->v.win = NULL;
+}
+
 void	ft_init_t_config(t_config *c)
 {
 	int	i;
 
 	i = -1;
 	c->buff = 0;
-	c->v.mlx = mlx_init();
-	c->v.win = NULL;
 	c->bmp_save = 0;
-	c->game_started = 0;
 	c->r1 = 0;
 	c->r2 = 0;
 	c->f_rgb = -1;
@@ -79,14 +82,8 @@ void	ft_init_t_config(t_config *c)
 	c->m.map = NULL;
 	c->sp = NULL;
 	c->line = NULL;
-	while (++i < 20)
-	{
-		c->t[i].img = 0;
-		c->t[i].addr = 0;
-		c->t[i].height = 0;
-		c->t[i].width = 0;
-	}
 	init_player(c);
 	init_ray(c);
 	init_pkmn(c);
+	init_mlx_and_textures(c);
 }

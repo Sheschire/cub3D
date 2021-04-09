@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:04:08 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/09 10:45:37 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:36:33 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,9 @@ int				check_colors(char **rgb);
 int				ft_check_xpm(t_config *c);
 int				check_param(t_config *c, char **param, char *line);
 void			player_orientation(t_config *c);
+void			check_screen_size(t_config *c);
+void			ft_split_colors(char *line, t_config *c);
+void			ft_get_colors(char **tmp, char **rgb, t_config *c);
 
 /*
 **	Texture
@@ -202,6 +205,7 @@ void			get_path_bonus(t_config *c);
 */
 void			ft_init_t_config(t_config *c);
 void			init_sprites(t_config *c);
+void			init_ray(t_config *c);
 
 /*
 **	Free

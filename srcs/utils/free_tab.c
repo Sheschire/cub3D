@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:30:32 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 15:48:39 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:24:42 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_free(char *tmp)
 void	ft_free_all_2(t_config *c)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i <= 19)
 	{
@@ -92,6 +92,3 @@ void	ft_free_all(t_config *c)
 		free(c->buff);
 	ft_free_all_2(c);
 }
-
-
-

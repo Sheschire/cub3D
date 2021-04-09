@@ -6,7 +6,7 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:20:14 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/09 10:38:44 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:40:46 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		check_udrl(t_config *c, int y, int x)
 {
 	if (is_in_set(c->m.map[y][0], "23456789T0NSWE"))
+		return (0);
+	if (x > (int)ft_strlen(c->m.map[y + 1]))
 		return (0);
 	if (!is_in_set(c->m.map[y - 1][x], "123456789T0NSWE"))
 		return (0);
@@ -44,7 +46,7 @@ int		ft_check_walls(t_config *c)
 			c->m.map[y][x] == 'E' || c->m.map[y][x] == 'W')
 				ft_get_player(c, x, y);
 			if (is_in_set(c->m.map[y][x], "023456789TNSWE"))
-				if (!check_udrl(c, y, x))
+				if (!ft_strchr(c->m.map[y + 1], '1') || !check_udrl(c, y, x))
 					return (0);
 			x++;
 		}
@@ -101,7 +103,10 @@ void	ft_check_map(int fd, t_config *c)
 		f_error("wall", c);
 	}
 	if (c->p.pos_count != 1)
+	{
+		c->line_bool = 0;
 		f_error("player", c);
+	}
 	greatest_x_y_max(c);
 	adapt_to_greatest(c);
 	init_sprites(c);

@@ -6,11 +6,22 @@
 /*   By: tlemesle <tlemesle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:23:15 by tlemesle          #+#    #+#             */
-/*   Updated: 2021/04/08 18:29:19 by tlemesle         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:36:20 by tlemesle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	init_ray(t_config *c)
+{
+	c->r.speed = 2 * (PI / 180);
+	c->r.angle = 0;
+	c->r.dir = 0;
+	c->r.fov = 66 * (PI / 180);
+	c->r.fov_angle = 0;
+	c->r.n_rays = 0;
+	c->r.verthit = 0;
+}
 
 char	*get_texture_addr_bonus(t_config *c, int n, char *filename)
 {
