@@ -1,6 +1,6 @@
 # cub3D
 
-CUB3D is a project from 42 School Paris, a dev school in Paris.
+CUB3D is a project from 42 School Paris, a development school in Paris.
 
 # PokeCub3D
 I added some bonus in my cub3d project that transforms the game into a POKEMON game !
