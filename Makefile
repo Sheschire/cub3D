@@ -14,7 +14,7 @@ endif
 
 NAME = cub3D
 
-CC = clang -g3 -Wall -Wextra -Werror
+CC = clang 
 
 INC= -I./includes
 
