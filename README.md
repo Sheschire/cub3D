@@ -4,7 +4,7 @@ CUB3D is a project from 42 School Paris, a development school in Paris.
 
 # PokeCub3D
 I added some bonus in my cub3d project that transforms the game into a POKEMON game !
-The goal is to capture the 2 legendaries Pokemon hidden in the game. You also have to evolve all 3 Hericendre into Typhlosion to finish the game !
+The goal is to capture the 2 legendaries Pokemon hidden in the game. You also have to evolve all 3 Cyndaquil into Typhlosion to finish the game !
 All the controls are written on the home screen, so have a good look ! ;)
 
 # How to get the code
